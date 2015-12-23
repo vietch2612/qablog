@@ -1,5 +1,5 @@
 baseurl = "http://vietch2612.github.io/qablog"
-title = "Cao Hoai Viet blog"
+title = "Cao Hoai Viet Blog"
 languageCode = "en-us"
 disqusShortname = "hoaiviet" # Optional, enable Disqus integration
 MetaDataFormat = "hyde"
@@ -28,8 +28,8 @@ paginate = 2
     truncate = true
 
     # Used when a given page doesn't set its own.
-    defaultDescription = "Your default page description"
-    defaultKeywords = "your,default,page,keywords"
+    defaultDescription = "Share more to Learn more"
+    defaultKeywords = "automation,qa,quality,testing"
 
     # Changes sidebar background and link/accent colours.
     # See below for more colour options.
@@ -59,7 +59,7 @@ paginate = 2
     stackOverflow = ""
     linkedin = "https://vn.linkedin.com/in/vietch2612"
     googleplus = ""
-    facebook = "https://www.facebook.com/vietch2612"
+    facebook = ""
     twitter = ""
     youtube = ""
 
