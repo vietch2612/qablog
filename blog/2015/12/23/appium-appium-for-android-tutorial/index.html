@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Appium: Appium for Android tutorial &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-x.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/highlight/monokai.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://vietch2612.github.io/qablog/touch-icon-144-precomposed.png">
+  <link href="http://vietch2612.github.io/qablog/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to use Appium to Automated Test for Android Application">
+  <meta name="keywords" content="appium,android,automation test,testing,quality control,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body class="theme-base-00">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/RX7KvGI.jpg"
+             alt="gravatar" title="Hoai Viet">
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">Senior Automation QA at Silicon Straits Saigon</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      <a href="https://www.facebook.com/vietch2612"><i class="fa fa-facebook-square fa-3x"></i></a>
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2015 <br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Appium: Appium for Android tutorial</h1>
+    <span class="post-date">Dec 23, 2015 &middot; 1 minute read &middot; <a href="http://vietch2612.github.io/qablog/blog/2015/12/23/appium-appium-for-android-tutorial/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://vietch2612.github.io/qablog/categories/automation">Automation</a>
+    </span>
+    
+
+<hr />
+
+<h3 id="các-phần-mềm-yêu-cầu-dành-cho-windows:f72e3a3f38d30978d9166738b1fc35df">Các phần mềm yêu cầu. (Dành cho Windows)</h3>
+
+<ol>
+<li>Java JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></li>
+<li>Android SDK <a href="https://developer.android.com/sdk/index.html">https://developer.android.com/sdk/index.html</a></li>
+<li>Appium Desktop Apps <a href="http://appium.io/downloads.html">http://appium.io/downloads.html</a></li>
+<li>Phầm mềm giả lập Android hoặc một chiếc device chạy Android thật. Yêu cầu phải có API &gt;= 17 (4.2). Mình gợi ý dùng Genymotion vì khá là nhẹ với những bạn có PC cấu hình yếu. <a href="https://www.genymotion.com/">https://www.genymotion.com/</a></li>
+<li>Java IDE (IntelliJ, Eclipse, Netbeans &hellip;). Tại bài hướng dẫn này thì mình sử dụng IntelliJ 14 <a href="https://www.jetbrains.com/idea/download/">https://www.jetbrains.com/idea/download/</a></li>
+</ol>
+
+<h3 id="các-bước-tiến-hành:f72e3a3f38d30978d9166738b1fc35df">Các bước tiến hành</h3>
+
+<ol>
+<li><p>Cài đặt Java JDK.
+Tiến hành cài đặt như bình thường và tạo biến môi trường: JAVA_HOME. Hướng dẫn có sẵn tại đây <a href="https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html">https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html</a></p></li>
+
+<li><p>Android SDK: Cài đặt và tải SDK Packages mới nhất. Hướng dẫn có sẵn tại đây <a href="https://developer.android.com/sdk/installing/adding-packages.html">https://developer.android.com/sdk/installing/adding-packages.html</a>. Sau khi cài đặt xong sẽ tạo thêm biến môi trường ANDROID_HOME.</p></li>
+
+<li><p>Cài đặt Appium và chạy Appium.exe, nhấn nút Start để start appium server.</p></li>
+
+<li><p>Tạo một Android Emulator hoặc tìm một device thật để test.</p></li>
+</ol>
+
+<h3 id="tạo-một-project-mới:f72e3a3f38d30978d9166738b1fc35df">Tạo một project mới</h3>
+
+<p>Hướng dẫn này sử dụng IntelliJ IDEA và test trên Whatsapp.apk</p>
+
+<p>Từ IntelliJ, tạo một Maven Project mới.</p>
+
+<p>Trong pom.xml, add thêm 2 dependencies là io.appium và testNG</p>
+
+<blockquote>
+<pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.appium&lt;/groupId&gt;
+        &lt;artifactId&gt;java-client&lt;/artifactId&gt;
+        &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.testng&lt;/groupId&gt;
+        &lt;artifactId&gt;testng&lt;/artifactId&gt;
+        &lt;version&gt;6.9.6&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+</blockquote>
+
+<h3 id="tạo-một-class-test-cơ-bản:f72e3a3f38d30978d9166738b1fc35df">Tạo một class Test cơ bản.</h3>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://vietch2612.github.io/qablog/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+
