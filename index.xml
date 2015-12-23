@@ -504,5 +504,21 @@ $ bundle exec cucumber
 </description>
     </item>
     
+    <item>
+      <title>About Me</title>
+      <link>http://vietch2612.github.io/qablog/about_me/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://vietch2612.github.io/qablog/about_me/</guid>
+      <description>
+
+&lt;p&gt;Hi, I&amp;rsquo;m Hoai Viet! I&amp;rsquo;m a automation quality assurance engineer living and working in Saigon.&lt;/p&gt;
+
+&lt;h3 id=&#34;contact:9b877be78ccadff6b7c92351ba3d5881&#34;&gt;Contact&lt;/h3&gt;
+
+&lt;p&gt;If you&amp;rsquo;d like to get in touch, you can find me on &lt;a href=&#34;http://www.linkedin.com/in/vietch2612&#34;&gt;LinkedIn&lt;/a&gt; or reach me at hello@andreimihu.com&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
