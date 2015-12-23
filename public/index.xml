@@ -19,7 +19,7 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;các-phần-mềm-yêu-cầu-dành-cho-windows:f72e3a3f38d30978d9166738b1fc35df&#34;&gt;Các phần mềm yêu cầu. (Dành cho Windows)&lt;/h3&gt;
+&lt;h3 id=&#34;các-phần-mềm-yêu-cầu-dành-cho-windows:f49a5604b6340dc5e957ed2613328282&#34;&gt;Các phần mềm yêu cầu. (Dành cho Windows)&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Java JDK &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/index.html&#34;&gt;http://www.oracle.com/technetwork/java/javase/downloads/index.html&lt;/a&gt;&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;li&gt;Java IDE (IntelliJ, Eclipse, Netbeans &amp;hellip;). Tại bài hướng dẫn này thì mình sử dụng IntelliJ 14 &lt;a href=&#34;https://www.jetbrains.com/idea/download/&#34;&gt;https://www.jetbrains.com/idea/download/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;các-bước-tiến-hành:f72e3a3f38d30978d9166738b1fc35df&#34;&gt;Các bước tiến hành&lt;/h3&gt;
+&lt;h3 id=&#34;các-bước-tiến-hành:f49a5604b6340dc5e957ed2613328282&#34;&gt;Các bước tiến hành&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Cài đặt Java JDK.
@@ -42,7 +42,7 @@ Tiến hành cài đặt như bình thường và tạo biến môi trường: J
 &lt;li&gt;&lt;p&gt;Tạo một Android Emulator hoặc tìm một device thật để test.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;tạo-một-project-mới:f72e3a3f38d30978d9166738b1fc35df&#34;&gt;Tạo một project mới&lt;/h3&gt;
+&lt;h3 id=&#34;tạo-một-project-mới:f49a5604b6340dc5e957ed2613328282&#34;&gt;Tạo một project mới&lt;/h3&gt;
 
 &lt;p&gt;Hướng dẫn này sử dụng IntelliJ IDEA và test trên Whatsapp.apk&lt;/p&gt;
 
@@ -66,7 +66,7 @@ Tiến hành cài đặt như bình thường và tạo biến môi trường: J
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&#34;tạo-một-class-test-cơ-bản:f72e3a3f38d30978d9166738b1fc35df&#34;&gt;Tạo một class Test cơ bản.&lt;/h3&gt;
+&lt;h3 id=&#34;tạo-một-class-test-cơ-bản:f49a5604b6340dc5e957ed2613328282&#34;&gt;Tạo một class Test cơ bản.&lt;/h3&gt;
 </description>
     </item>
     
@@ -80,11 +80,11 @@ Tiến hành cài đặt như bình thường và tạo biến môi trường: J
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;automation-test-cho-android-app-sử-dụng-calabash-cucumber:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Automation Test cho Android app sử dụng Calabash-Cucumber&lt;/h1&gt;
+&lt;h1 id=&#34;automation-test-cho-android-app-sử-dụng-calabash-cucumber:639caf80ece67ae5de0150c731de3547&#34;&gt;Automation Test cho Android app sử dụng Calabash-Cucumber&lt;/h1&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;yêu-cầu:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Yêu cầu&lt;/h3&gt;
+&lt;h3 id=&#34;yêu-cầu:639caf80ece67ae5de0150c731de3547&#34;&gt;Yêu cầu&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;JAVA JDK&lt;/li&gt;
@@ -92,11 +92,11 @@ Tiến hành cài đặt như bình thường và tạo biến môi trường: J
 &lt;li&gt;RUBY&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;cài-đặt-java-jdk:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Java JDK&lt;/h2&gt;
+&lt;h2 id=&#34;cài-đặt-java-jdk:639caf80ece67ae5de0150c731de3547&#34;&gt;Cài đặt Java JDK&lt;/h2&gt;
 
 &lt;p&gt;Các bạn tải và cài đặt tại đây: &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;Java JDK&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;cài-đặt-android-sdk:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Android SDK.&lt;/h2&gt;
+&lt;h2 id=&#34;cài-đặt-android-sdk:639caf80ece67ae5de0150c731de3547&#34;&gt;Cài đặt Android SDK.&lt;/h2&gt;
 
 &lt;p&gt;Tải và cài đặt Android SDK dành cho Mac OS tại &lt;a href=&#34;http://developer.android.com/sdk/index.html#Other&#34;&gt;Android SDK Stand alone download&lt;/a&gt;
     &lt;img src=&#34;http://i.imgur.com/sm5eCyE.png&#34; alt=&#34;android_sdk_for_macos&#34; /&gt;&lt;/p&gt;
@@ -121,7 +121,7 @@ Khởi động lại Terminal hoặc run dòng command&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;cài-đặt-ruby:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Ruby.&lt;/h2&gt;
+&lt;h2 id=&#34;cài-đặt-ruby:639caf80ece67ae5de0150c731de3547&#34;&gt;Cài đặt Ruby.&lt;/h2&gt;
 
 &lt;p&gt;Đầu tiên là máy Mac của bạn phải có &lt;code&gt;Homebrew&lt;/code&gt;, nếu chưa có thì bạn phải cài đặt trước khi cài đặt Ruby.&lt;/p&gt;
 
@@ -151,14 +151,14 @@ eval &amp;quot;$(rbenv init -)&amp;quot;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;cài-đặt-gem-calabash-android:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt gem calabash-android.&lt;/h2&gt;
+&lt;h2 id=&#34;cài-đặt-gem-calabash-android:639caf80ece67ae5de0150c731de3547&#34;&gt;Cài đặt gem calabash-android.&lt;/h2&gt;
 
 &lt;p&gt;Sau khi đã cài đặt xong Ruby thì chúng ta cần cài đặt gem Calabash-Android&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-android
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;khởi-tạo-thư-mục-test:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Khởi tạo thư mục test&lt;/h2&gt;
+&lt;h2 id=&#34;khởi-tạo-thư-mục-test:639caf80ece67ae5de0150c731de3547&#34;&gt;Khởi tạo thư mục test&lt;/h2&gt;
 
 &lt;p&gt;Các thứ các bạn cần chuẩn bị là:&lt;br /&gt;
 * Device android hoặc Emulator&lt;br /&gt;
@@ -196,7 +196,7 @@ eval &amp;quot;$(rbenv init -)&amp;quot;
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android resign skype.apk
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;viết-scenario-đầu-tiên:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Viết scenario đầu tiên&lt;/h2&gt;
+&lt;h2 id=&#34;viết-scenario-đầu-tiên:639caf80ece67ae5de0150c731de3547&#34;&gt;Viết scenario đầu tiên&lt;/h2&gt;
 
 &lt;p&gt;Bắt đầu chúng ta hãy mở file &lt;code&gt;my_fist.feature&lt;/code&gt; bằng Sublime Text, chúng ta sẽ thấy như hình&lt;/p&gt;
 
@@ -252,7 +252,7 @@ end
 
 &lt;p&gt;Tất cả đều passed.&lt;/p&gt;
 
-&lt;h2 id=&#34;test-report:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Test report?&lt;/h2&gt;
+&lt;h2 id=&#34;test-report:639caf80ece67ae5de0150c731de3547&#34;&gt;Test report?&lt;/h2&gt;
 
 &lt;p&gt;Các bạn sẽ tự hỏi, tất cả thông báo các steps pass và fail đều hiện lên trên command line như vậy thì lưu lại report kiểu gì phải không? Tất nhiên là Calabash có hỗ trợ lưu report dưới dạng file, và cụ thể là HTML và report cũng rất là &amp;ldquo;cool&amp;rdquo;.&lt;/p&gt;
 
@@ -267,14 +267,14 @@ end
 &lt;p&gt;và đây là file report đã generate ra
 &lt;img src=&#34;http://i.imgur.com/6FLE3m5.png&#34; alt=&#34;report&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;run-cụ-thể-một-feature-nào-đó:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Run cụ thể một feature nào đó?&lt;/h2&gt;
+&lt;h2 id=&#34;run-cụ-thể-một-feature-nào-đó:639caf80ece67ae5de0150c731de3547&#34;&gt;Run cụ thể một feature nào đó?&lt;/h2&gt;
 
 &lt;p&gt;Đơn giản là bạn chỉ cần dẫn tới file feature đó là được&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk feature/&amp;lt;filename&amp;gt;.feature
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;run-cụ-thể-một-tag-nào-đó:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Run cụ thể một @tag nào đó?&lt;/h2&gt;
+&lt;h2 id=&#34;run-cụ-thể-một-tag-nào-đó:639caf80ece67ae5de0150c731de3547&#34;&gt;Run cụ thể một @tag nào đó?&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --tag @test
 &lt;/code&gt;&lt;/pre&gt;
@@ -284,9 +284,9 @@ end
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -t @test
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;clear-app-data:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Clear app data&lt;/h2&gt;
+&lt;h2 id=&#34;clear-app-data:639caf80ece67ae5de0150c731de3547&#34;&gt;Clear app data&lt;/h2&gt;
 
-&lt;h3 id=&#34;cách-1-dùng-tag-reset:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cách 1: Dùng tag &lt;code&gt;@reset&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;cách-1-dùng-tag-reset:639caf80ece67ae5de0150c731de3547&#34;&gt;Cách 1: Dùng tag &lt;code&gt;@reset&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Các bạn chỉ cần thêm đoạn code sau vào file &lt;code&gt;feature/support/app_installation_hooks.rb&lt;/code&gt; bên trong &lt;code&gt;Before&lt;/code&gt;&lt;/p&gt;
 
@@ -303,7 +303,7 @@ end
     Given I press the &amp;quot;Skype Name&amp;quot; button
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;cách-2-define-1-step-để-clear-app-data:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cách 2: Define 1 step để clear app data&lt;/h3&gt;
+&lt;h3 id=&#34;cách-2-define-1-step-để-clear-app-data:639caf80ece67ae5de0150c731de3547&#34;&gt;Cách 2: Define 1 step để clear app data&lt;/h3&gt;
 
 &lt;p&gt;Trong file sử dụng define step thì trước tiên chúng ta phải &lt;code&gt;require app_installation&lt;/code&gt; trước&lt;/p&gt;
 
@@ -319,19 +319,19 @@ end
 
 &lt;p&gt;Note: Khi dử dụng step dạng này thì bạn nên có thêm thời gian đợi nhé&lt;/p&gt;
 
-&lt;h2 id=&#34;xem-id-class-của-các-đối-tượng:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Xem ID, Class của các đối tượng&lt;/h2&gt;
+&lt;h2 id=&#34;xem-id-class-của-các-đối-tượng:639caf80ece67ae5de0150c731de3547&#34;&gt;Xem ID, Class của các đối tượng&lt;/h2&gt;
 
 &lt;p&gt;Các bạn hãy dùng &lt;code&gt;uiautomatorviewer&lt;/code&gt; có sẵn trong thư mực &lt;code&gt;tools&lt;/code&gt; của &lt;code&gt;ANDROID SDK&lt;/code&gt;
 &lt;img src=&#34;http://i.imgur.com/PHTeRBP.png&#34; alt=&#34;uiautomatorviewer&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;debugging-test-các-steps-của-bạn:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Debugging, test các steps của bạn&lt;/h2&gt;
+&lt;h2 id=&#34;debugging-test-các-steps-của-bạn:639caf80ece67ae5de0150c731de3547&#34;&gt;Debugging, test các steps của bạn&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android console skype.apk
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Tại đây các bạn có thể nhập các hàm của mình vào để test và xem kết quả trên device&lt;/p&gt;
 
-&lt;h2 id=&#34;kết:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Kết&lt;/h2&gt;
+&lt;h2 id=&#34;kết:639caf80ece67ae5de0150c731de3547&#34;&gt;Kết&lt;/h2&gt;
 
 &lt;p&gt;Các bạn có thể clone repo này về rồi thực hành nhé&lt;/p&gt;
 </description>
@@ -347,7 +347,7 @@ end
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;calabash-ios:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Calabash iOS&lt;/h2&gt;
+&lt;h2 id=&#34;calabash-ios:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Calabash iOS&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
 
@@ -355,7 +355,7 @@ end
 
 &lt;p&gt;Calabash is a free-to-use open source project that is developed and maintained by &lt;a href=&#34;http://xamarin.com&#34;&gt;Xamarin&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;requirements:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Requirements&lt;/h2&gt;
+&lt;h2 id=&#34;requirements:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Requirements&lt;/h2&gt;
 
 &lt;p&gt;We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.&lt;/p&gt;
 
@@ -386,7 +386,7 @@ $ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-os
 &lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo&#34;&gt;Best Practice: Never install gems with sudo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;getting-started:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Getting Started&lt;/h2&gt;
+&lt;h2 id=&#34;getting-started:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Getting Started&lt;/h2&gt;
 
 &lt;p&gt;If you want to see Calabash iOS in action, head over to the &lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;Calabash iOS Smoke Test App&lt;/a&gt; and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.&lt;/p&gt;
 
@@ -398,7 +398,7 @@ This terminal is now ready to use with Calabash.
 To exit, type &#39;exit&#39;.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;step-1-link-calabash-framework:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Step 1: Link calabash.framework&lt;/h3&gt;
+&lt;h3 id=&#34;step-1-link-calabash-framework:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Step 1: Link calabash.framework&lt;/h3&gt;
 
 &lt;p&gt;To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
 that are written in Swift.&lt;/p&gt;
@@ -431,7 +431,7 @@ that are written in Swift.&lt;/p&gt;
 
 &lt;p&gt;If you want to get started quickly, follow the &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt; instructions.  The &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode&#34;&gt;Tutorial: How to add Calabash to Xcode&lt;/a&gt; wiki page discusses the merits of each approach and has instructions for using CocoaPods.&lt;/p&gt;
 
-&lt;h3 id=&#34;step-2-run-cucumber-against-an-ios-simulator:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Step 2: Run Cucumber against an iOS Simulator&lt;/h3&gt;
+&lt;h3 id=&#34;step-2-run-cucumber-against-an-ios-simulator:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Step 2: Run Cucumber against an iOS Simulator&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/calabash/calabash-ios-example&#34;&gt;Calabash iOS Example&lt;/a&gt; README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.&lt;/p&gt;
 
@@ -459,7 +459,7 @@ $ bundle exec cucumber
 
 &lt;p&gt;We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a &lt;code&gt;./Products&lt;/code&gt;, even when building from Xcode.  You can use the Xcode &amp;gt; Preferences &amp;gt; Locations settings to do the same.&lt;/p&gt;
 
-&lt;h3 id=&#34;where-to-go-from-here:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Where to go from here?&lt;/h3&gt;
+&lt;h3 id=&#34;where-to-go-from-here:fa51c5f683dd69d73f37ebe0700e0144&#34;&gt;Where to go from here?&lt;/h3&gt;
 
 &lt;table&gt;
 &lt;thead&gt;

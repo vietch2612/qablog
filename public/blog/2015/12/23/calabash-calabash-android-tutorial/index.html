@@ -84,11 +84,11 @@
 
 <hr />
 
-<h1 id="automation-test-cho-android-app-sử-dụng-calabash-cucumber:13bfcdf96d6f4bd40b719727127c3e97">Automation Test cho Android app sử dụng Calabash-Cucumber</h1>
+<h1 id="automation-test-cho-android-app-sử-dụng-calabash-cucumber:639caf80ece67ae5de0150c731de3547">Automation Test cho Android app sử dụng Calabash-Cucumber</h1>
 
 <hr />
 
-<h3 id="yêu-cầu:13bfcdf96d6f4bd40b719727127c3e97">Yêu cầu</h3>
+<h3 id="yêu-cầu:639caf80ece67ae5de0150c731de3547">Yêu cầu</h3>
 
 <ul>
 <li>JAVA JDK</li>
@@ -96,11 +96,11 @@
 <li>RUBY<br /></li>
 </ul>
 
-<h2 id="cài-đặt-java-jdk:13bfcdf96d6f4bd40b719727127c3e97">Cài đặt Java JDK</h2>
+<h2 id="cài-đặt-java-jdk:639caf80ece67ae5de0150c731de3547">Cài đặt Java JDK</h2>
 
 <p>Các bạn tải và cài đặt tại đây: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java JDK</a></p>
 
-<h2 id="cài-đặt-android-sdk:13bfcdf96d6f4bd40b719727127c3e97">Cài đặt Android SDK.</h2>
+<h2 id="cài-đặt-android-sdk:639caf80ece67ae5de0150c731de3547">Cài đặt Android SDK.</h2>
 
 <p>Tải và cài đặt Android SDK dành cho Mac OS tại <a href="http://developer.android.com/sdk/index.html#Other">Android SDK Stand alone download</a>
     <img src="http://i.imgur.com/sm5eCyE.png" alt="android_sdk_for_macos" /></p>
@@ -125,7 +125,7 @@ Khởi động lại Terminal hoặc run dòng command</p>
 <pre><code class="language-bash">source ~/.bash_profile
 </code></pre>
 
-<h2 id="cài-đặt-ruby:13bfcdf96d6f4bd40b719727127c3e97">Cài đặt Ruby.</h2>
+<h2 id="cài-đặt-ruby:639caf80ece67ae5de0150c731de3547">Cài đặt Ruby.</h2>
 
 <p>Đầu tiên là máy Mac của bạn phải có <code>Homebrew</code>, nếu chưa có thì bạn phải cài đặt trước khi cài đặt Ruby.</p>
 
@@ -155,14 +155,14 @@ eval &quot;$(rbenv init -)&quot;
 <pre><code class="language-bash">source ~/.bash_profile
 </code></pre>
 
-<h2 id="cài-đặt-gem-calabash-android:13bfcdf96d6f4bd40b719727127c3e97">Cài đặt gem calabash-android.</h2>
+<h2 id="cài-đặt-gem-calabash-android:639caf80ece67ae5de0150c731de3547">Cài đặt gem calabash-android.</h2>
 
 <p>Sau khi đã cài đặt xong Ruby thì chúng ta cần cài đặt gem Calabash-Android</p>
 
 <pre><code class="language-bash">gem install calabash-android
 </code></pre>
 
-<h2 id="khởi-tạo-thư-mục-test:13bfcdf96d6f4bd40b719727127c3e97">Khởi tạo thư mục test</h2>
+<h2 id="khởi-tạo-thư-mục-test:639caf80ece67ae5de0150c731de3547">Khởi tạo thư mục test</h2>
 
 <p>Các thứ các bạn cần chuẩn bị là:<br />
 * Device android hoặc Emulator<br />
@@ -200,7 +200,7 @@ eval &quot;$(rbenv init -)&quot;
 <pre><code class="language-bash">calabash-android resign skype.apk
 </code></pre>
 
-<h2 id="viết-scenario-đầu-tiên:13bfcdf96d6f4bd40b719727127c3e97">Viết scenario đầu tiên</h2>
+<h2 id="viết-scenario-đầu-tiên:639caf80ece67ae5de0150c731de3547">Viết scenario đầu tiên</h2>
 
 <p>Bắt đầu chúng ta hãy mở file <code>my_fist.feature</code> bằng Sublime Text, chúng ta sẽ thấy như hình</p>
 
@@ -256,7 +256,7 @@ end
 
 <p>Tất cả đều passed.</p>
 
-<h2 id="test-report:13bfcdf96d6f4bd40b719727127c3e97">Test report?</h2>
+<h2 id="test-report:639caf80ece67ae5de0150c731de3547">Test report?</h2>
 
 <p>Các bạn sẽ tự hỏi, tất cả thông báo các steps pass và fail đều hiện lên trên command line như vậy thì lưu lại report kiểu gì phải không? Tất nhiên là Calabash có hỗ trợ lưu report dưới dạng file, và cụ thể là HTML và report cũng rất là &ldquo;cool&rdquo;.</p>
 
@@ -271,14 +271,14 @@ end
 <p>và đây là file report đã generate ra
 <img src="http://i.imgur.com/6FLE3m5.png" alt="report" /></p>
 
-<h2 id="run-cụ-thể-một-feature-nào-đó:13bfcdf96d6f4bd40b719727127c3e97">Run cụ thể một feature nào đó?</h2>
+<h2 id="run-cụ-thể-một-feature-nào-đó:639caf80ece67ae5de0150c731de3547">Run cụ thể một feature nào đó?</h2>
 
 <p>Đơn giản là bạn chỉ cần dẫn tới file feature đó là được</p>
 
 <pre><code class="language-bash">calabash-android run skype.apk feature/&lt;filename&gt;.feature
 </code></pre>
 
-<h2 id="run-cụ-thể-một-tag-nào-đó:13bfcdf96d6f4bd40b719727127c3e97">Run cụ thể một @tag nào đó?</h2>
+<h2 id="run-cụ-thể-một-tag-nào-đó:639caf80ece67ae5de0150c731de3547">Run cụ thể một @tag nào đó?</h2>
 
 <pre><code class="language-bash">calabash-android run skype.apk --tag @test
 </code></pre>
@@ -288,9 +288,9 @@ end
 <pre><code class="language-bash">calabash-android run skype.apk -t @test
 </code></pre>
 
-<h2 id="clear-app-data:13bfcdf96d6f4bd40b719727127c3e97">Clear app data</h2>
+<h2 id="clear-app-data:639caf80ece67ae5de0150c731de3547">Clear app data</h2>
 
-<h3 id="cách-1-dùng-tag-reset:13bfcdf96d6f4bd40b719727127c3e97">Cách 1: Dùng tag <code>@reset</code></h3>
+<h3 id="cách-1-dùng-tag-reset:639caf80ece67ae5de0150c731de3547">Cách 1: Dùng tag <code>@reset</code></h3>
 
 <p>Các bạn chỉ cần thêm đoạn code sau vào file <code>feature/support/app_installation_hooks.rb</code> bên trong <code>Before</code></p>
 
@@ -307,7 +307,7 @@ end
     Given I press the &quot;Skype Name&quot; button
 </code></pre>
 
-<h3 id="cách-2-define-1-step-để-clear-app-data:13bfcdf96d6f4bd40b719727127c3e97">Cách 2: Define 1 step để clear app data</h3>
+<h3 id="cách-2-define-1-step-để-clear-app-data:639caf80ece67ae5de0150c731de3547">Cách 2: Define 1 step để clear app data</h3>
 
 <p>Trong file sử dụng define step thì trước tiên chúng ta phải <code>require app_installation</code> trước</p>
 
@@ -323,19 +323,19 @@ end
 
 <p>Note: Khi dử dụng step dạng này thì bạn nên có thêm thời gian đợi nhé</p>
 
-<h2 id="xem-id-class-của-các-đối-tượng:13bfcdf96d6f4bd40b719727127c3e97">Xem ID, Class của các đối tượng</h2>
+<h2 id="xem-id-class-của-các-đối-tượng:639caf80ece67ae5de0150c731de3547">Xem ID, Class của các đối tượng</h2>
 
 <p>Các bạn hãy dùng <code>uiautomatorviewer</code> có sẵn trong thư mực <code>tools</code> của <code>ANDROID SDK</code>
 <img src="http://i.imgur.com/PHTeRBP.png" alt="uiautomatorviewer" /></p>
 
-<h2 id="debugging-test-các-steps-của-bạn:13bfcdf96d6f4bd40b719727127c3e97">Debugging, test các steps của bạn</h2>
+<h2 id="debugging-test-các-steps-của-bạn:639caf80ece67ae5de0150c731de3547">Debugging, test các steps của bạn</h2>
 
 <pre><code class="language-bash">calabash-android console skype.apk
 </code></pre>
 
 <p>Tại đây các bạn có thể nhập các hàm của mình vào để test và xem kết quả trên device</p>
 
-<h2 id="kết:13bfcdf96d6f4bd40b719727127c3e97">Kết</h2>
+<h2 id="kết:639caf80ece67ae5de0150c731de3547">Kết</h2>
 
 <p>Các bạn có thể clone repo này về rồi thực hành nhé</p>
 
