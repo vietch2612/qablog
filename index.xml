@@ -337,5 +337,221 @@ end
 </description>
     </item>
     
+    <item>
+      <title>Calabash: Calabash-iOS for iOS tutorial</title>
+      <link>http://vietch2612.github.io/qablog/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</link>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://vietch2612.github.io/qablog/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;master&lt;/th&gt;
+&lt;th&gt;develop&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;VERSIONING.md&#34;&gt;versioning&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;LICENSE&#34;&gt;license&lt;/a&gt;&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;CONTRIBUTING.md&#34;&gt;contributing&lt;/a&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://travis-ci.org/calabash/calabash-ios&#34;&gt;&lt;img src=&#34;https://travis-ci.org/calabash/calabash-ios.svg?branch=master&#34; alt=&#34;Build Status&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://travis-ci.org/calabash/calabash-ios-server&#34;&gt;&lt;img src=&#34;https://travis-ci.org/calabash/calabash-ios.svg?branch=develop&#34; alt=&#34;Build Status&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://badge.fury.io/gh/calabash%2Fcalabash-ios&#34;&gt;&lt;img src=&#34;https://badge.fury.io/gh/calabash%2Fcalabash-ios.svg&#34; alt=&#34;GitHub version&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;http://opensource.org/licenses/EPL-1.0&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/licence-Eclipse-blue.svg&#34; alt=&#34;License&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/contrib-gitflow-orange.svg&#34; alt=&#34;Contributing&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;calabash-ios:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Calabash iOS&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Calabash is an automated testing technology for Android and iOS native and hybrid applications.&lt;/p&gt;
+
+&lt;p&gt;Calabash is a free-to-use open source project that is developed and maintained by &lt;a href=&#34;http://xamarin.com&#34;&gt;Xamarin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;While Calabash is completely free, Xamarin provides a number of commercial services centered around Calabash and quality assurance for mobile, namely Xamarin Test Cloud consisting of hosted test-execution environments which let you execute Calabash tests on a large number of Android and iOS devices.  For more information about the Xamarin Test Cloud visit &lt;a href=&#34;http://xamarin.com/test-cloud&#34;&gt;http://xamarin.com/test-cloud&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;requirements:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;Xamarin Studio users should visit &lt;a href=&#34;http://developer.xamarin.com/testcloud/&#34;&gt;http://developer.xamarin.com/testcloud/&lt;/a&gt; for setup instructions and requirements.&lt;/p&gt;
+
+&lt;p&gt;We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MacOS 10.10 or 10.11&lt;/li&gt;
+&lt;li&gt;Xcode 6 or 7&lt;/li&gt;
+&lt;li&gt;iOS Devices &amp;gt;= 7.1&lt;/li&gt;
+&lt;li&gt;iOS Simulators &amp;gt;= 8.0&lt;/li&gt;
+&lt;li&gt;ruby &amp;gt;= 2.0 (latest is preferred)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the best Ruby experience we recommend that you use a managed Ruby
+like &lt;a href=&#34;https://github.com/sstephenson/rbenv&#34;&gt;rbenv&lt;/a&gt; or &lt;a href=&#34;https://rvm.io/&#34;&gt;rvm&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you are just getting started or don&amp;rsquo;t want to commit to a managed Ruby, we
+recommend you install and use the &lt;a href=&#34;https://github.com/calabash/install&#34;&gt;Calabash Sandbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Installs the Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please do &lt;em&gt;not&lt;/em&gt; install gems with &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more information about ruby on MacOS, see these Wiki pages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Ruby-on-MacOS&#34;&gt;Ruby on MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo&#34;&gt;Best Practice: Never install gems with sudo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;getting-started:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;If you want to see Calabash iOS in action, head over to the &lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;Calabash iOS Smoke Test App&lt;/a&gt; and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.&lt;/p&gt;
+
+&lt;p&gt;The examples below assume you are using a managed ruby or are working in the Calabash
+Sandbox:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ calabash-sandbox
+This terminal is now ready to use with Calabash.
+To exit, type &#39;exit&#39;.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;step-1-link-calabash-framework:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Step 1: Link calabash.framework&lt;/h3&gt;
+
+&lt;p&gt;To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
+that are written in Swift.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;Tutorial&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Use linker flags in the Debug build config to load the calabash.framework&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Calabash-config&#34;&gt;Calabash Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Create a new Calabash Build Configuration&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A--Creating-a-cal-Target&#34;&gt;-cal Target&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Add a new app target to Xcode.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you want to get started quickly, follow the &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt; instructions.  The &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode&#34;&gt;Tutorial: How to add Calabash to Xcode&lt;/a&gt; wiki page discusses the merits of each approach and has instructions for using CocoaPods.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-2-run-cucumber-against-an-ios-simulator:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Step 2: Run Cucumber against an iOS Simulator&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/calabash/calabash-ios-example&#34;&gt;Calabash iOS Example&lt;/a&gt; README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# In the directory where your .xcodeproj and Gemfile are
+$ bundle exec calabash-ios gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build and run in Xcode, targeting an iOS Simulator.  Calabash will try to detect the .app you just built.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If Calabash cannot find the .app you just built, it will raise an error.  If this happens, you will to tell Calabash where it can find your .app.&lt;/p&gt;
+
+&lt;p&gt;By default, Xcode builds to a DerivedData directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Try to locate the .app and set the &lt;code&gt;APP&lt;/code&gt; variable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export APP=&amp;quot;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app&amp;quot;
+$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a &lt;code&gt;./Products&lt;/code&gt;, even when building from Xcode.  You can use the Xcode &amp;gt; Preferences &amp;gt; Locations settings to do the same.&lt;/p&gt;
+
+&lt;h3 id=&#34;where-to-go-from-here:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Where to go from here?&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Getting-Started&#34;&gt;Getting Started&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A more in-depth tutorial using the LPSimpleExample.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Testing-on-Physical-Devices&#34;&gt;Testing on Physical Devices&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Everything you need to know about testing on physical devices.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://calabashapi.xamarin.com/ios&#34;&gt;API Docs&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS ruby API&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;iOS Smoke Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates advanced features, setups, and workflows&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-webview-test-app&#34;&gt;iOS WebView Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates how to interact with UIWebView and WKWebView&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki&#34;&gt;Getting Help&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS Wiki&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;links:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki#getting-help&#34;&gt;Getting Help&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki#reporting-problems&#34;&gt;Reporting Problems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://calabashapi.xamarin.com/ios/&#34;&gt;Public API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://developer.xamarin.com/guides/testcloud/calabash/configuring/&#34;&gt;Xamarin Studio + Ruby Client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://developer.xamarin.com/guides/testcloud/uitest/&#34;&gt;Xamarin Studio + UITest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;CONTRIBUTING.md&#34;&gt;Contributing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/tree/master/changelog&#34;&gt;CHANGELOGS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;license:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;License&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Copyright (c) LessPainful APS. All rights reserved.
+The use and distribution terms for this software are covered by the
+Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
+which can be found in the file epl-v10.html at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license. You must not remove this notice, or any other,
+from this software.
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
