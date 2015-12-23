@@ -347,28 +347,6 @@ end
 
 &lt;hr /&gt;
 
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;master&lt;/th&gt;
-&lt;th&gt;develop&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;VERSIONING.md&#34;&gt;versioning&lt;/a&gt;&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;LICENSE&#34;&gt;license&lt;/a&gt;&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;CONTRIBUTING.md&#34;&gt;contributing&lt;/a&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://travis-ci.org/calabash/calabash-ios&#34;&gt;&lt;img src=&#34;https://travis-ci.org/calabash/calabash-ios.svg?branch=master&#34; alt=&#34;Build Status&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;https://travis-ci.org/calabash/calabash-ios-server&#34;&gt;&lt;img src=&#34;https://travis-ci.org/calabash/calabash-ios.svg?branch=develop&#34; alt=&#34;Build Status&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://badge.fury.io/gh/calabash%2Fcalabash-ios&#34;&gt;&lt;img src=&#34;https://badge.fury.io/gh/calabash%2Fcalabash-ios.svg&#34; alt=&#34;GitHub version&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://opensource.org/licenses/EPL-1.0&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/licence-Eclipse-blue.svg&#34; alt=&#34;License&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/contrib-gitflow-orange.svg&#34; alt=&#34;Contributing&#34; /&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
 &lt;h2 id=&#34;calabash-ios:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Calabash iOS&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
@@ -377,11 +355,7 @@ end
 
 &lt;p&gt;Calabash is a free-to-use open source project that is developed and maintained by &lt;a href=&#34;http://xamarin.com&#34;&gt;Xamarin&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;While Calabash is completely free, Xamarin provides a number of commercial services centered around Calabash and quality assurance for mobile, namely Xamarin Test Cloud consisting of hosted test-execution environments which let you execute Calabash tests on a large number of Android and iOS devices.  For more information about the Xamarin Test Cloud visit &lt;a href=&#34;http://xamarin.com/test-cloud&#34;&gt;http://xamarin.com/test-cloud&lt;/a&gt;.&lt;/p&gt;
-
 &lt;h2 id=&#34;requirements:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Requirements&lt;/h2&gt;
-
-&lt;p&gt;Xamarin Studio users should visit &lt;a href=&#34;http://developer.xamarin.com/testcloud/&#34;&gt;http://developer.xamarin.com/testcloud/&lt;/a&gt; for setup instructions and requirements.&lt;/p&gt;
 
 &lt;p&gt;We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.&lt;/p&gt;
 
@@ -527,29 +501,6 @@ $ bundle exec cucumber
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;h2 id=&#34;links:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;Links&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki#getting-help&#34;&gt;Getting Help&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki#reporting-problems&#34;&gt;Reporting Problems&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://calabashapi.xamarin.com/ios/&#34;&gt;Public API&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://developer.xamarin.com/guides/testcloud/calabash/configuring/&#34;&gt;Xamarin Studio + Ruby Client&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://developer.xamarin.com/guides/testcloud/uitest/&#34;&gt;Xamarin Studio + UITest&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;CONTRIBUTING.md&#34;&gt;Contributing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/tree/master/changelog&#34;&gt;CHANGELOGS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;license:a77ed1ade38ce3c238f99a3daa112ef1&#34;&gt;License&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;Copyright (c) LessPainful APS. All rights reserved.
-The use and distribution terms for this software are covered by the
-Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
-which can be found in the file epl-v10.html at the root of this distribution.
-By using this software in any fashion, you are agreeing to be bound by
-the terms of this license. You must not remove this notice, or any other,
-from this software.
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
