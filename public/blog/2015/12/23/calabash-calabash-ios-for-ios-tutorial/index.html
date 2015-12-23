@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Calabash: Calabash-iOS for iOS tutorial &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-x.css">
+  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/highlight/monokai.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://vietch2612.github.io/qablog/touch-icon-144-precomposed.png">
+  <link href="http://vietch2612.github.io/qablog/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to use Calabash-iOS to Automated Test for iOS Application">
+  <meta name="keywords" content="Calabash,ios,automation test,testing,quality control,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body class="theme-base-00">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/RX7KvGI.jpg"
+             alt="gravatar" title="Hoai Viet">
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">Senior Automation QA at Silicon Straits Saigon</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2015 <br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Calabash: Calabash-iOS for iOS tutorial</h1>
+    <span class="post-date">Dec 23, 2015 &middot; 4 minute read &middot; <a href="http://vietch2612.github.io/qablog/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://vietch2612.github.io/qablog/categories/automation">Automation</a>
+    </span>
+    
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>master</th>
+<th>develop</th>
+<th><a href="VERSIONING.md">versioning</a></th>
+<th><a href="LICENSE">license</a></th>
+<th><a href="CONTRIBUTING.md">contributing</a></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="https://travis-ci.org/calabash/calabash-ios"><img src="https://travis-ci.org/calabash/calabash-ios.svg?branch=master" alt="Build Status" /></a></td>
+<td><a href="https://travis-ci.org/calabash/calabash-ios-server"><img src="https://travis-ci.org/calabash/calabash-ios.svg?branch=develop" alt="Build Status" /></a></td>
+<td><a href="http://badge.fury.io/gh/calabash%2Fcalabash-ios"><img src="https://badge.fury.io/gh/calabash%2Fcalabash-ios.svg" alt="GitHub version" /></a></td>
+<td><a href="http://opensource.org/licenses/EPL-1.0"><img src="https://img.shields.io/badge/licence-Eclipse-blue.svg" alt="License" /></a></td>
+<td><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/"><img src="https://img.shields.io/badge/contrib-gitflow-orange.svg" alt="Contributing" /></a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="calabash-ios:a77ed1ade38ce3c238f99a3daa112ef1">Calabash iOS</h2>
+
+<p><a href="http://calaba.sh/">http://calaba.sh/</a></p>
+
+<p>Calabash is an automated testing technology for Android and iOS native and hybrid applications.</p>
+
+<p>Calabash is a free-to-use open source project that is developed and maintained by <a href="http://xamarin.com">Xamarin</a>.</p>
+
+<p>While Calabash is completely free, Xamarin provides a number of commercial services centered around Calabash and quality assurance for mobile, namely Xamarin Test Cloud consisting of hosted test-execution environments which let you execute Calabash tests on a large number of Android and iOS devices.  For more information about the Xamarin Test Cloud visit <a href="http://xamarin.com/test-cloud">http://xamarin.com/test-cloud</a>.</p>
+
+<h2 id="requirements:a77ed1ade38ce3c238f99a3daa112ef1">Requirements</h2>
+
+<p>Xamarin Studio users should visit <a href="http://developer.xamarin.com/testcloud/">http://developer.xamarin.com/testcloud/</a> for setup instructions and requirements.</p>
+
+<p>We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.</p>
+
+<ul>
+<li>MacOS 10.10 or 10.11</li>
+<li>Xcode 6 or 7</li>
+<li>iOS Devices &gt;= 7.1</li>
+<li>iOS Simulators &gt;= 8.0</li>
+<li>ruby &gt;= 2.0 (latest is preferred)</li>
+</ul>
+
+<p>For the best Ruby experience we recommend that you use a managed Ruby
+like <a href="https://github.com/sstephenson/rbenv">rbenv</a> or <a href="https://rvm.io/">rvm</a>).</p>
+
+<p>If you are just getting started or don&rsquo;t want to commit to a managed Ruby, we
+recommend you install and use the <a href="https://github.com/calabash/install">Calabash Sandbox</a>.</p>
+
+<pre><code># Installs the Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+</code></pre>
+
+<p>Please do <em>not</em> install gems with <code>sudo</code></p>
+
+<p>For more information about ruby on MacOS, see these Wiki pages:</p>
+
+<ul>
+<li><a href="https://github.com/calabash/calabash-ios/wiki/Ruby-on-MacOS">Ruby on MacOS</a></li>
+<li><a href="https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo">Best Practice: Never install gems with sudo</a></li>
+</ul>
+
+<h2 id="getting-started:a77ed1ade38ce3c238f99a3daa112ef1">Getting Started</h2>
+
+<p>If you want to see Calabash iOS in action, head over to the <a href="https://github.com/calabash/ios-smoke-test-app">Calabash iOS Smoke Test App</a> and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.</p>
+
+<p>The examples below assume you are using a managed ruby or are working in the Calabash
+Sandbox:</p>
+
+<pre><code>$ calabash-sandbox
+This terminal is now ready to use with Calabash.
+To exit, type 'exit'.
+</code></pre>
+
+<h3 id="step-1-link-calabash-framework:a77ed1ade38ce3c238f99a3daa112ef1">Step 1: Link calabash.framework</h3>
+
+<p>To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
+that are written in Swift.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Tutorial</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config">Debug Config</a></td>
+<td>Use linker flags in the Debug build config to load the calabash.framework</td>
+</tr>
+
+<tr>
+<td align="center"><a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Calabash-config">Calabash Config</a></td>
+<td>Create a new Calabash Build Configuration</td>
+</tr>
+
+<tr>
+<td align="center"><a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A--Creating-a-cal-Target">-cal Target</a></td>
+<td>Add a new app target to Xcode.</td>
+</tr>
+</tbody>
+</table>
+
+<p>If you want to get started quickly, follow the <a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config">Debug Config</a> instructions.  The <a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode">Tutorial: How to add Calabash to Xcode</a> wiki page discusses the merits of each approach and has instructions for using CocoaPods.</p>
+
+<h3 id="step-2-run-cucumber-against-an-ios-simulator:a77ed1ade38ce3c238f99a3daa112ef1">Step 2: Run Cucumber against an iOS Simulator</h3>
+
+<p>The <a href="https://github.com/calabash/calabash-ios-example">Calabash iOS Example</a> README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.</p>
+
+<pre><code># In the directory where your .xcodeproj and Gemfile are
+$ bundle exec calabash-ios gen
+</code></pre>
+
+<p>Build and run in Xcode, targeting an iOS Simulator.  Calabash will try to detect the .app you just built.</p>
+
+<pre><code>$ bundle exec cucumber
+</code></pre>
+
+<p>If Calabash cannot find the .app you just built, it will raise an error.  If this happens, you will to tell Calabash where it can find your .app.</p>
+
+<p>By default, Xcode builds to a DerivedData directory:</p>
+
+<pre><code>~/Library/Developer/Xcode/DerivedData/&lt;UDID&gt;/Build/Products/Debug-iphonesimulator/&lt;NAME&gt;.app
+</code></pre>
+
+<p>Try to locate the .app and set the <code>APP</code> variable:</p>
+
+<pre><code>$ export APP=&quot;~/Library/Developer/Xcode/DerivedData/&lt;UDID&gt;/Build/Products/Debug-iphonesimulator/&lt;NAME&gt;.app&quot;
+$ bundle exec cucumber
+</code></pre>
+
+<p>We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a <code>./Products</code>, even when building from Xcode.  You can use the Xcode &gt; Preferences &gt; Locations settings to do the same.</p>
+
+<h3 id="where-to-go-from-here:a77ed1ade38ce3c238f99a3daa112ef1">Where to go from here?</h3>
+
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="https://github.com/calabash/calabash-ios/wiki/Getting-Started">Getting Started</a></td>
+<td>A more in-depth tutorial using the LPSimpleExample.</td>
+</tr>
+
+<tr>
+<td><a href="https://github.com/calabash/calabash-ios/wiki/Testing-on-Physical-Devices">Testing on Physical Devices</a></td>
+<td>Everything you need to know about testing on physical devices.</td>
+</tr>
+
+<tr>
+<td><a href="http://calabashapi.xamarin.com/ios">API Docs</a></td>
+<td>The Calabash iOS ruby API</td>
+</tr>
+
+<tr>
+<td><a href="https://github.com/calabash/ios-smoke-test-app">iOS Smoke Test App</a></td>
+<td>Demonstrates advanced features, setups, and workflows</td>
+</tr>
+
+<tr>
+<td><a href="https://github.com/calabash/ios-webview-test-app">iOS WebView Test App</a></td>
+<td>Demonstrates how to interact with UIWebView and WKWebView</td>
+</tr>
+
+<tr>
+<td><a href="https://github.com/calabash/calabash-ios/wiki">Getting Help</a></td>
+<td>The Calabash iOS Wiki</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="links:a77ed1ade38ce3c238f99a3daa112ef1">Links</h2>
+
+<ul>
+<li><a href="https://github.com/calabash/calabash-ios/wiki#getting-help">Getting Help</a></li>
+<li><a href="https://github.com/calabash/calabash-ios/wiki#reporting-problems">Reporting Problems</a></li>
+<li><a href="http://calabashapi.xamarin.com/ios/">Public API</a></li>
+<li><a href="http://developer.xamarin.com/guides/testcloud/calabash/configuring/">Xamarin Studio + Ruby Client</a></li>
+<li><a href="http://developer.xamarin.com/guides/testcloud/uitest/">Xamarin Studio + UITest</a></li>
+<li><a href="CONTRIBUTING.md">Contributing</a></li>
+<li><a href="https://github.com/calabash/calabash-ios/tree/master/changelog">CHANGELOGS</a></li>
+</ul>
+
+<h2 id="license:a77ed1ade38ce3c238f99a3daa112ef1">License</h2>
+
+<pre><code>Copyright (c) LessPainful APS. All rights reserved.
+The use and distribution terms for this software are covered by the
+Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
+which can be found in the file epl-v10.html at the root of this distribution.
+By using this software in any fashion, you are agreeing to be bound by
+the terms of this license. You must not remove this notice, or any other,
+from this software.
+</code></pre>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://vietch2612.github.io/qablog/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+
