@@ -1,5 +1,5 @@
 +++
-date = "2015-12-23"
+date = "2015-12-22"
 title = "Calabash: Calabash-Android tutorial"
 description = "How to use Calabash-Android to Automated Test for Android Application"
 keywords = ["calabash", "android", "automation test", "testing", "quality control", "quality assurance"]
