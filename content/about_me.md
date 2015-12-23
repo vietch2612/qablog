@@ -1,6 +1,6 @@
 +++
 date = "2014-04-09"
-title = "About Me"
+title = "About me"
 description = "About me, my tech musings, current projects and how to get in touch!"
 keywords = ["hoai viet", "about", "website", "blog", "contact"]
 menu = "main"

@@ -1,4 +1,4 @@
-baseurl = "http://vietch2612.github.io/qablog/"
+baseurl = "http://hoaiviet.netlify.com/"
 title = "Cao Hoai Viet Blog"
 languageCode = "en-us"
 disqusShortname = "hoaiviet" # Optional, enable Disqus integration
