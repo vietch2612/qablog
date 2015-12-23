@@ -6,11 +6,6 @@ keywords = ["Calabash", "ios", "automation test", "testing", "quality control", 
 categories = ["Automation"]
 +++
 ---
-
-| master  | develop | [versioning](VERSIONING.md) | [license](LICENSE) | [contributing](CONTRIBUTING.md)|
-|---------|---------|-----------------------------|--------------------|--------------------------------|
-|[![Build Status](https://travis-ci.org/calabash/calabash-ios.svg?branch=master)](https://travis-ci.org/calabash/calabash-ios)| [![Build Status](https://travis-ci.org/calabash/calabash-ios.svg?branch=develop)](https://travis-ci.org/calabash/calabash-ios-server)| [![GitHub version](https://badge.fury.io/gh/calabash%2Fcalabash-ios.svg)](http://badge.fury.io/gh/calabash%2Fcalabash-ios) |[![License](https://img.shields.io/badge/licence-Eclipse-blue.svg)](http://opensource.org/licenses/EPL-1.0) | [![Contributing](https://img.shields.io/badge/contrib-gitflow-orange.svg)](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/)|
-
 ## Calabash iOS
 
 [http://calaba.sh/](http://calaba.sh/)
@@ -19,11 +14,7 @@ Calabash is an automated testing technology for Android and iOS native and hybri
 
 Calabash is a free-to-use open source project that is developed and maintained by [Xamarin](http://xamarin.com).
 
-While Calabash is completely free, Xamarin provides a number of commercial services centered around Calabash and quality assurance for mobile, namely Xamarin Test Cloud consisting of hosted test-execution environments which let you execute Calabash tests on a large number of Android and iOS devices.  For more information about the Xamarin Test Cloud visit [http://xamarin.com/test-cloud](http://xamarin.com/test-cloud).
-
 ## Requirements
-
-Xamarin Studio users should visit [http://developer.xamarin.com/testcloud/](http://developer.xamarin.com/testcloud/) for setup instructions and requirements.
 
 We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.
 
@@ -119,25 +110,3 @@ We recommend using scripts and/or changing the location where Xcode stages build
 | [iOS Smoke Test App](https://github.com/calabash/ios-smoke-test-app) | Demonstrates advanced features, setups, and workflows|
 | [iOS WebView Test App](https://github.com/calabash/ios-webview-test-app) | Demonstrates how to interact with UIWebView and WKWebView|
 | [Getting Help](https://github.com/calabash/calabash-ios/wiki) | The Calabash iOS Wiki |
-
-## Links
-
-* [Getting Help](https://github.com/calabash/calabash-ios/wiki#getting-help)
-* [Reporting Problems](https://github.com/calabash/calabash-ios/wiki#reporting-problems)
-* [Public API](http://calabashapi.xamarin.com/ios/)
-* [Xamarin Studio + Ruby Client](http://developer.xamarin.com/guides/testcloud/calabash/configuring/)
-* [Xamarin Studio + UITest](http://developer.xamarin.com/guides/testcloud/uitest/)
-* [Contributing](CONTRIBUTING.md)
-* [CHANGELOGS](https://github.com/calabash/calabash-ios/tree/master/changelog)
-
-## License
-
-```
-Copyright (c) LessPainful APS. All rights reserved.
-The use and distribution terms for this software are covered by the
-Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
-which can be found in the file epl-v10.html at the root of this distribution.
-By using this software in any fashion, you are agreeing to be bound by
-the terms of this license. You must not remove this notice, or any other,
-from this software.
-```
