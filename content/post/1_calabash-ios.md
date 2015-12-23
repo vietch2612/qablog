@@ -1,5 +1,5 @@
 +++
-date = "2015-12-21"
+date = "2015-12-23"
 title = "Calabash: Calabash-iOS for iOS tutorial"
 description = "How to use Calabash-iOS to Automated Test for iOS Application"
 keywords = ["Calabash", "ios", "automation test", "testing", "quality control", "quality assurance"]

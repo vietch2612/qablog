@@ -1,5 +1,5 @@
 +++
-date = "2015-12-23"
+date = "2015-12-21"
 title = "Appium: Appium for Android tutorial"
 description = "How to use Appium to Automated Test for Android Application"
 keywords = ["appium", "android", "automation test", "testing", "quality control", "quality assurance"]
