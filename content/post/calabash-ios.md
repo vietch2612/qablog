@@ -109,4 +109,4 @@ We recommend using scripts and/or changing the location where Xcode stages build
 | [API Docs](http://calabashapi.xamarin.com/ios) | The Calabash iOS ruby API |
 | [iOS Smoke Test App](https://github.com/calabash/ios-smoke-test-app) | Demonstrates advanced features, setups, and workflows|
 | [iOS WebView Test App](https://github.com/calabash/ios-webview-test-app) | Demonstrates how to interact with UIWebView and WKWebView|
-| [Getting Help](https://github.com/calabash/calabash-ios/wiki) | The Calabash iOS Wiki |
+| [Getting Help](https://github.com/calabash/calabash-ios/wiki) | The Calabash iOS Wiki | 
