@@ -1,4 +1,4 @@
-baseurl = "http://vietch2612.github.io/blog"
+baseurl = "http://vietch2612.github.io/qablog"
 title = "Cao Hoai Viet blog"
 languageCode = "en-us"
 disqusShortname = "hoaiviet" # Optional, enable Disqus integration
