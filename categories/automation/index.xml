@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Cao Hoai Viet blog</title>
+    <link>http://vietch2612.github.io/blog/categories/automation/</link>
+    <description>Recent content in Automation on Cao Hoai Viet blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://vietch2612.github.io/blog/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calabash: Calabash-Android tutorial</title>
+      <link>http://vietch2612.github.io/blog/blog/2015/12/23/calabash-calabash-android-tutorial/</link>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://vietch2612.github.io/blog/blog/2015/12/23/calabash-calabash-android-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;automation-test-cho-android-app-sử-dụng-calabash-cucumber:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Automation Test cho Android app sử dụng Calabash-Cucumber&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;yêu-cầu:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Yêu cầu&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JAVA JDK&lt;/li&gt;
+&lt;li&gt;ANDROID SDK&lt;/li&gt;
+&lt;li&gt;RUBY&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cài-đặt-java-jdk:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Java JDK&lt;/h2&gt;
+
+&lt;p&gt;Các bạn tải và cài đặt tại đây: &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;Java JDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cài-đặt-android-sdk:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Android SDK.&lt;/h2&gt;
+
+&lt;p&gt;Tải và cài đặt Android SDK dành cho Mac OS tại &lt;a href=&#34;http://developer.android.com/sdk/index.html#Other&#34;&gt;Android SDK Stand alone download&lt;/a&gt;
+    &lt;img src=&#34;http://i.imgur.com/sm5eCyE.png&#34; alt=&#34;android_sdk_for_macos&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sau khi tải về máy và giải nén, chúng ta phải cấu hình biến môi trường &lt;code&gt;ANDROID_HOME&lt;/code&gt; và &lt;code&gt;PATH&lt;/code&gt; với 2 folder &lt;code&gt;platform-tools&lt;/code&gt; và &lt;code&gt;tools&lt;/code&gt; trong folder của Android SDK&lt;br /&gt;
+Cài đặt &lt;code&gt;ANDROID_HOME&lt;/code&gt; bằng cách gõ command vào terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export ANDROID_HOME=/path/to/your/android/sdk/folder
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;/path/to/your/android/sdk/folder&lt;/code&gt; là đường dẫn tới folder lưu SDK của bạn, chẳng hạn như của mình sẽ là &lt;code&gt;/User/hoaiviet/Documents/android-sdk&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Và cài đặt &lt;code&gt;PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Và sau đó nhớ add 3 dòng command trên vào &lt;code&gt;~/.bash_profile&lt;/code&gt; hoặc &lt;code&gt;~/.zshrc&lt;/code&gt; nếu như dùng &lt;code&gt;zsh&lt;/code&gt;
+Khởi động lại Terminal hoặc run dòng command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;cài-đặt-ruby:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt Ruby.&lt;/h2&gt;
+
+&lt;p&gt;Đầu tiên là máy Mac của bạn phải có &lt;code&gt;Homebrew&lt;/code&gt;, nếu chưa có thì bạn phải cài đặt trước khi cài đặt Ruby.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tiếp theo là cài đặt Ruby, các bạn hãy làm theo các bước như bên dưới&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install rbenv ruby-build
+
+# Cài đặt ruby
+rbenv install 2.2.3
+rbenv global 2.2.3
+
+# Kiểm tra
+ruby -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nếu kiểm tra &lt;code&gt;ruby -v&lt;/code&gt; không đúng với version 2.2.3 thì các bạn hãy paste những đoạn sau vào cuối file &lt;code&gt;~/.bash_profile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=&amp;quot;$HOME/.rbenv/bin:$PATH&amp;quot;
+eval &amp;quot;$(rbenv init -)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Khởi động lại Terminal hoặc run dòng command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;cài-đặt-gem-calabash-android:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cài đặt gem calabash-android.&lt;/h2&gt;
+
+&lt;p&gt;Sau khi đã cài đặt xong Ruby thì chúng ta cần cài đặt gem Calabash-Android&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;khởi-tạo-thư-mục-test:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Khởi tạo thư mục test&lt;/h2&gt;
+
+&lt;p&gt;Các thứ các bạn cần chuẩn bị là:&lt;br /&gt;
+* Device android hoặc Emulator&lt;br /&gt;
+* File APK của app bạn muốn test.&lt;br /&gt;
+* Sublime Text hoặc bất kì một công cụ Texit Editor nào đó.&lt;/p&gt;
+
+&lt;p&gt;Trong bài này mình sẽ sử dụng là app Skype&lt;/p&gt;
+
+&lt;p&gt;Bây giờ bắt đầu tạo 1 folder mới&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mở folder vừa tạo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tiếp theo chúng ta sẽ tạo generate ra folder test bằng command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Calabash sẽ yêu cầu bạn nhấn Enter để tiếp tục, hãy nhấn Enter và bạn sẽ nhận được folder dạng như sau:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/Ltl5gtd.png&#34; alt=&#34;folder_structer&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ở đây các bạn cần quan tâm nhất 2 phần:&lt;br /&gt;
+&lt;code&gt;step_definitions&lt;/code&gt;: Sẽ chứa các file ruby mà các bạn sẽ định nghĩa các bước, ví dụ như nhấn button nào, gõ dòng text gì.&lt;/p&gt;
+
+&lt;p&gt;Các file có đuôi &lt;code&gt;.feature&lt;/code&gt; là những file mình sẽ viết Scenario, Test cases của app.&lt;/p&gt;
+
+&lt;p&gt;Bước tiếp theo, hãy copy file APK của app mình muốn test vào folder vừa tạo, sao đó resign app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android resign skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;viết-scenario-đầu-tiên:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Viết scenario đầu tiên&lt;/h2&gt;
+
+&lt;p&gt;Bắt đầu chúng ta hãy mở file &lt;code&gt;my_fist.feature&lt;/code&gt; bằng Sublime Text, chúng ta sẽ thấy như hình&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/verAlLs.png&#34; alt=&#34;first_step&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Đọc đến đây chắc các bạn cũng tự hỏi, làm sao để biết được viết các steps như nào mới là đúng? OK, tất cả các Steps mà Calabash đã defined sẵn ở đây, các bạn có thể xem ở đây: &lt;a href=&#34;https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md&#34;&gt;canned_steps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Nào quay lại với file feature, chúng ta hãy định nghĩa 1 scenario đơn giản cho chức năng đăng nhập bằng Skype name&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Step 1: Nhấn button Skype Name
+Step 2: Điền tài khoản skype vào khung nhập thứ nhất
+Step 3: Điền mật khẩu vào khung nhập thứ hai
+Step 4: Nhấn button đăng nhập
+Step 5: Kết quả mong muốn là muốn thấy nút Add friends
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Xong rồi, chúng ta bắt đầu sửa file &lt;code&gt;my_first.feature&lt;/code&gt; theo các step chúng ta đã define ở trên:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;Feature: Login feature
+
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+    Given I enter &amp;quot;viet.ch2612&amp;quot; into input field number 1
+    Given I enter my secret password into input fiend number 2
+    When I press view with id &amp;quot;sign_in_btn&amp;quot;
+    Then I should see &amp;quot;Add friend&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bước cuối cùng là run test. Để chạy được trên devices thật thì các bạn nhớ cắm dây USB và bật USB Debugging lên nhé.
+Tốt nhất các bạn nên kiểm tra bằng câu lệnh&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;adb devices
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK bây giờ chúng ta hãy run thử&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hãy xem devices và kết quả
+&lt;img src=&#34;http://i.imgur.com/LuvPgK4.png&#34; alt=&#34;first_run&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ồ, bước 1,2 chúng ta đã chạy OK nhưng tới bước 3 thì calabash báo là chúng ta chưa định nghĩa step này. OK giờ chúng ta sẽ định nghĩa nó. Trong folder test, chúng ta hãy mở file &lt;code&gt;calabash_steps.rb&lt;/code&gt; trong folder &lt;code&gt;step_definitions&lt;/code&gt; và thêm hàm như sau để định nghĩa step trên&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
+  enter_text(&amp;quot;android.widget.EditText index:#{index.to_i-1}&amp;quot;, &amp;quot;password&amp;quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Và bây giờ chúng ta run test lại lần nữa:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/VAiEZP2.png&#34; alt=&#34;result&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tất cả đều passed.&lt;/p&gt;
+
+&lt;h2 id=&#34;test-report:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Test report?&lt;/h2&gt;
+
+&lt;p&gt;Các bạn sẽ tự hỏi, tất cả thông báo các steps pass và fail đều hiện lên trên command line như vậy thì lưu lại report kiểu gì phải không? Tất nhiên là Calabash có hỗ trợ lưu report dưới dạng file, và cụ thể là HTML và report cũng rất là &amp;ldquo;cool&amp;rdquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --format html --out &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;hoặc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -f html -o &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;và đây là file report đã generate ra
+&lt;img src=&#34;http://i.imgur.com/6FLE3m5.png&#34; alt=&#34;report&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;run-cụ-thể-một-feature-nào-đó:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Run cụ thể một feature nào đó?&lt;/h2&gt;
+
+&lt;p&gt;Đơn giản là bạn chỉ cần dẫn tới file feature đó là được&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk feature/&amp;lt;filename&amp;gt;.feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;run-cụ-thể-một-tag-nào-đó:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Run cụ thể một @tag nào đó?&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --tag @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;hoặc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -t @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;clear-app-data:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Clear app data&lt;/h2&gt;
+
+&lt;h3 id=&#34;cách-1-dùng-tag-reset:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cách 1: Dùng tag &lt;code&gt;@reset&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Các bạn chỉ cần thêm đoạn code sau vào file &lt;code&gt;feature/support/app_installation_hooks.rb&lt;/code&gt; bên trong &lt;code&gt;Before&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;scenario_tags = scenario.source_tag_names
+  if scenario_tags.include?(&amp;quot;@reset&amp;quot;)
+    clear_app_data
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Còn tại feature, chúng ta chỉ cần thêm tag @reset vào trước Scenario để clear app data&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;@reset
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;cách-2-define-1-step-để-clear-app-data:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Cách 2: Define 1 step để clear app data&lt;/h3&gt;
+
+&lt;p&gt;Trong file sử dụng define step thì trước tiên chúng ta phải &lt;code&gt;require app_installation&lt;/code&gt; trước&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;calabash-android/management/app_installation&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;rồi define step&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given /^I clear app data$/ do
+  clear_app_data
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: Khi dử dụng step dạng này thì bạn nên có thêm thời gian đợi nhé&lt;/p&gt;
+
+&lt;h2 id=&#34;xem-id-class-của-các-đối-tượng:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Xem ID, Class của các đối tượng&lt;/h2&gt;
+
+&lt;p&gt;Các bạn hãy dùng &lt;code&gt;uiautomatorviewer&lt;/code&gt; có sẵn trong thư mực &lt;code&gt;tools&lt;/code&gt; của &lt;code&gt;ANDROID SDK&lt;/code&gt;
+&lt;img src=&#34;http://i.imgur.com/PHTeRBP.png&#34; alt=&#34;uiautomatorviewer&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;debugging-test-các-steps-của-bạn:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Debugging, test các steps của bạn&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android console skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tại đây các bạn có thể nhập các hàm của mình vào để test và xem kết quả trên device&lt;/p&gt;
+
+&lt;h2 id=&#34;kết:13bfcdf96d6f4bd40b719727127c3e97&#34;&gt;Kết&lt;/h2&gt;
+
+&lt;p&gt;Các bạn có thể clone repo này về rồi thực hành nhé&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
