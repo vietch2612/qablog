@@ -2,7 +2,7 @@ baseurl = "http://hoaiviet.netlify.com/"
 title = "Cao Hoai Viet Blog"
 languageCode = "en-us"
 disqusShortname = "hoaiviet" # Optional, enable Disqus integration
-MetaDataFormat = "hyde"
+MetaDataFormat = "toml"
 theme = "hyde"
 paginate = 15
 
@@ -34,7 +34,7 @@ paginate = 15
     # Changes sidebar background and link/accent colours.
     # See below for more colour options.
     # This also works: "theme-base-08 layout-reverse", or just "layout-reverse".
-    theme = "theme-base-00"
+    theme = ""
 
     # Select a syntax highight.
     # Check the static/css/highlight directory for options.
@@ -50,7 +50,7 @@ paginate = 15
 
     # Metadata used to drive integrations.
     googleAuthorship = "viet.ch2612"
-    googleAnalytics = "Your Google Analytics tracking code"
+    googleAnalytics = "UA-71717358-1"
     gravatarHash = "MD5 hash of your Gravatar email address"
 
     # Sidebar social links, these must be full URLs.
