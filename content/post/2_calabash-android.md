@@ -7,127 +7,115 @@ categories = ["Automation"]
 +++
 ---
 
-# Automation Test cho Android app sử dụng Calabash-Cucumber
+# Automation Testing for Android App
 ---
-### Yêu cầu
+### Requirement 
 - JAVA JDK
 - ANDROID SDK
 - RUBY  
 
-## Cài đặt Java JDK
-Các bạn tải và cài đặt tại đây: [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)  
+## Install Java JDK
+Download and install from here: [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)  
 
-## Cài đặt Android SDK.
-Tải và cài đặt Android SDK dành cho Mac OS tại [Android SDK Stand alone download](http://developer.android.com/sdk/index.html#Other)
+## Install and setup Android SDK.
+Download and install Android SDK for Mac from here[Android SDK Stand alone download](http://developer.android.com/sdk/index.html#Other)
     ![android_sdk_for_macos](http://i.imgur.com/sm5eCyE.png)  
 
-Sau khi tải về máy và giải nén, chúng ta phải cấu hình biến môi trường <code>ANDROID_HOME</code> và <code>PATH</code> với 2 folder <code>platform-tools</code> và <code>tools</code> trong folder của Android SDK  
-Cài đặt <code>ANDROID_HOME</code> bằng cách gõ command vào terminal  
+Download and unzip, then we need to export environment variable <code>ANDROID_HOME</code> and <code>PATH</code> to two folder <code>platform-tools</code> and <code>tools</code>from Android SDK folder   
+Set <code>ANDROID_HOME</code> by enter commend below to Terminal
 ```bash
 export ANDROID_HOME=/path/to/your/android/sdk/folder
 ```
-<code>/path/to/your/android/sdk/folder</code> là đường dẫn tới folder lưu SDK của bạn, chẳng hạn như của mình sẽ là <code>/User/hoaiviet/Documents/android-sdk</code>  
+<code>/path/to/your/android/sdk/folder</code> is path to your android sdk folder on your computer. In my case, this is <code>/User/hoaiviet/Documents/android-sdk</code>  
 
-Và cài đặt `PATH`:
+set `PATH`:
 ```bash
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 ```
-Và sau đó nhớ add 3 dòng command trên vào `~/.bash_profile` hoặc `~/.zshrc` nếu như dùng `zsh`
-Khởi động lại Terminal hoặc run dòng command
+Reset Terminal or add this commmand to `~/.bash_profile` or `~/.zshrc` if you are using `zsh`
+Reload configuration 
 ```bash
 source ~/.bash_profile
 ```
 
-## Cài đặt Ruby.  
-Đầu tiên là máy Mac của bạn phải có `Homebrew`, nếu chưa có thì bạn phải cài đặt trước khi cài đặt Ruby.  
+## Install Ruby
+We need `Homebrew` to install ruby. If not, follow command below to install:
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-Tiếp theo là cài đặt Ruby, các bạn hãy làm theo các bước như bên dưới  
-
+Now, install ruby by command
 ```bash
 brew install rbenv ruby-build
 
-# Cài đặt ruby
+# Install ruby
 rbenv install 2.2.3
 rbenv global 2.2.3
 
-# Kiểm tra
+# Check ruby version
 ruby -v
 ```
 
-Nếu kiểm tra `ruby -v` không đúng với version 2.2.3 thì các bạn hãy paste những đoạn sau vào cuối file `~/.bash_profile`
+If `ruby -v` response not equal version 2.2.3 then we need add command below to file `~/.bash_profile`
 ```bash
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 ```
-Khởi động lại Terminal hoặc run dòng command
+and reload 
 ```bash
 source ~/.bash_profile
 ```
 
-## Cài đặt gem calabash-android.
-Sau khi đã cài đặt xong Ruby thì chúng ta cần cài đặt gem Calabash-Android
+## Install Calabash Android
 ```bash
 gem install calabash-android
 ```
 
-## Khởi tạo thư mục test
-Các thứ các bạn cần chuẩn bị là:  
-* Device android hoặc Emulator  
-* File APK của app bạn muốn test.  
-* Sublime Text hoặc bất kì một công cụ Texit Editor nào đó.  
+## Create folder test
+In this tutorial, we use skype app for testing.
 
-Trong bài này mình sẽ sử dụng là app Skype
-
-Bây giờ bắt đầu tạo 1 folder mới
+Now we create new folder
 ```bash
 mkdir calabash-test-skype
 ```
 
-Mở folder vừa tạo
+Open this folder
 ```bash
 cd calabash-test-skype
 ```
 
-Tiếp theo chúng ta sẽ tạo generate ra folder test bằng command
+Generate test folder structure
 ```bash
 calabash-android gen
 ```
-Calabash sẽ yêu cầu bạn nhấn Enter để tiếp tục, hãy nhấn Enter và bạn sẽ nhận được folder dạng như sau:
+press Enter to continue
 
 ![folder_structer](http://i.imgur.com/Ltl5gtd.png)
 
-Ở đây các bạn cần quan tâm nhất 2 phần:  
-`step_definitions`: Sẽ chứa các file ruby mà các bạn sẽ định nghĩa các bước, ví dụ như nhấn button nào, gõ dòng text gì.
-
-Các file có đuôi `.feature` là những file mình sẽ viết Scenario, Test cases của app.
-
-Bước tiếp theo, hãy copy file APK của app mình muốn test vào folder vừa tạo, sao đó resign app:
+Copy your apk file to this folder then resign this by command
 ```bash
 calabash-android resign skype.apk
 ```
 
-## Viết scenario đầu tiên
-Bắt đầu chúng ta hãy mở file `my_fist.feature` bằng Sublime Text, chúng ta sẽ thấy như hình
+## Create first scenario
+Open `my_fist.feature` by whatever text editor what you like.
 
 ![first_step](http://i.imgur.com/verAlLs.png)
 
-Đọc đến đây chắc các bạn cũng tự hỏi, làm sao để biết được viết các steps như nào mới là đúng? OK, tất cả các Steps mà Calabash đã defined sẵn ở đây, các bạn có thể xem ở đây: [canned_steps](https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md)
+Note: You can view predefined command here: [canned_steps](https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md)
 
-Nào quay lại với file feature, chúng ta hãy định nghĩa 1 scenario đơn giản cho chức năng đăng nhập bằng Skype name
+First, we create scenario to test login function of skype
 
 ```
-Step 1: Nhấn button Skype Name
-Step 2: Điền tài khoản skype vào khung nhập thứ nhất
-Step 3: Điền mật khẩu vào khung nhập thứ hai
-Step 4: Nhấn button đăng nhập
-Step 5: Kết quả mong muốn là muốn thấy nút Add friends
+Step 1: Press Skyname button
+Step 2: Enter account name to input field number 1
+Step 3: Enter password to input field number 2
+Step 4: Press Sign up button
+Step 5: Assertion is we need to view Add friend button
 ```
 
-Xong rồi, chúng ta bắt đầu sửa file `my_first.feature` theo các step chúng ta đã define ở trên:
+Then we define this in `my_first.feature` :
 
 ```cucumber
 Feature: Login feature
@@ -140,62 +128,58 @@ Feature: Login feature
     Then I should see "Add friend"
 ```
 
-Bước cuối cùng là run test. Để chạy được trên devices thật thì các bạn nhớ cắm dây USB và bật USB Debugging lên nhé.
-Tốt nhất các bạn nên kiểm tra bằng câu lệnh
+Connect your device or Simulator then check
 ```bash
 adb devices
 ```
 
-OK bây giờ chúng ta hãy run thử
+Now, run this test
 ```bash
 calabash-android run skype.apk
 ```
-Hãy xem devices và kết quả
+
+This is result
 ![first_run](http://i.imgur.com/LuvPgK4.png)
 
-Ồ, bước 1,2 chúng ta đã chạy OK nhưng tới bước 3 thì calabash báo là chúng ta chưa định nghĩa step này. OK giờ chúng ta sẽ định nghĩa nó. Trong folder test, chúng ta hãy mở file `calabash_steps.rb` trong folder `step_definitions` và thêm hàm như sau để định nghĩa step trên
-
+We show "Not defined step"? Yes, now we define this step:
 ```ruby
 Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
   enter_text("android.widget.EditText index:#{index.to_i-1}", "password")
 end
 ```
 
-Và bây giờ chúng ta run test lại lần nữa:
-
+Run again
 ![result](http://i.imgur.com/VAiEZP2.png)
 
-Tất cả đều passed.
+OK all passed
 ## Test report?
-Các bạn sẽ tự hỏi, tất cả thông báo các steps pass và fail đều hiện lên trên command line như vậy thì lưu lại report kiểu gì phải không? Tất nhiên là Calabash có hỗ trợ lưu report dưới dạng file, và cụ thể là HTML và report cũng rất là "cool".
 ```bash
 calabash-android run skype.apk --format html --out <filename>.html
 ```
-hoặc
+or
 ```bash
 calabash-android run skype.apk -f html -o <filename>.html
 ```
-và đây là file report đã generate ra
+this is test report format
 ![report](http://i.imgur.com/6FLE3m5.png)
 
-## Run cụ thể một feature nào đó?
-Đơn giản là bạn chỉ cần dẫn tới file feature đó là được
+## Run one feature?
 ```bash
 calabash-android run skype.apk feature/<filename>.feature
 ```
 
-## Run cụ thể một @tag nào đó?
+## Run scenario by @tag
 ```bash
 calabash-android run skype.apk --tag @test
 ```
-hoặc
+or
 ```bash
 calabash-android run skype.apk -t @test
 ```
 
 ## Clear app data
-### Cách 1: Dùng tag `@reset`
-Các bạn chỉ cần thêm đoạn code sau vào file `feature/support/app_installation_hooks.rb` bên trong `Before`
+### 1: Use tag `@reset`
+Add this to `feature/support/app_installation_hooks.rb` inside `Before`
 ```ruby
 scenario_tags = scenario.source_tag_names
   if scenario_tags.include?("@reset")
@@ -203,34 +187,22 @@ scenario_tags = scenario.source_tag_names
   end
 ```
 
-Còn tại feature, chúng ta chỉ cần thêm tag @reset vào trước Scenario để clear app data
+And add @reset before scenario
 ```cucumber
 @reset
   Scenario: As a valid user I can log into my app
     Given I press the "Skype Name" button
 ```
-### Cách 2: Define 1 step để clear app data
-Trong file sử dụng define step thì trước tiên chúng ta phải `require app_installation` trước
+### 2: Define 1 step for clear app data
+First, require `require app_installation` 
 ```ruby
 require 'calabash-android/management/app_installation'
 ```
-rồi define step
+and define step
 ```ruby
 Given /^I clear app data$/ do
   clear_app_data
 end
 ```
-Note: Khi dử dụng step dạng này thì bạn nên có thêm thời gian đợi nhé
+Note: Recommend add delay time for this step
 
-## Xem ID, Class của các đối tượng
-Các bạn hãy dùng `uiautomatorviewer` có sẵn trong thư mực `tools` của `ANDROID SDK`
-![uiautomatorviewer](http://i.imgur.com/PHTeRBP.png)
-
-## Debugging, test các steps của bạn
-```bash
-calabash-android console skype.apk
-```
-Tại đây các bạn có thể nhập các hàm của mình vào để test và xem kết quả trên device
-
-## Kết
-Các bạn có thể clone repo này về rồi thực hành nhé
