@@ -50,7 +50,8 @@ paginate = 15
 
     # Metadata used to drive integrations.
     googleAuthorship = "viet.ch2612"
-    googleAnalytics = "UA-71717358-1"
+    # googleAnalytics = "UA-71717358-1"
+    googleAnalytics = "UA-71743843-1"
     gravatarHash = "MD5 hash of your Gravatar email address"
 
     # Sidebar social links, these must be full URLs.
