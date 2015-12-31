@@ -28,7 +28,7 @@ paginate = 15
     truncate = true
 
     # Used when a given page doesn't set its own.
-    defaultDescription = "Share more to Learn more"
+    defaultDescription = "Share to learn"
     defaultKeywords = "automation,qa,quality,testing"
 
     # Changes sidebar background and link/accent colours.
@@ -42,7 +42,7 @@ paginate = 15
 
     # Displays under the author name in the sidebar, keep it short.
     # You can use markdown here.
-    tagline = "Senior Automation QA at Silicon Straits Saigon"
+    tagline = "Senior QA Automation at Silicon Straits"
 
     # Text for the top menu link, which goes the root URL for the site.
     # Default (if omitted) is "Blog".
