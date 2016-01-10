@@ -6,8 +6,11 @@ keywords = ["hoaiviet", "about", "website", "blog", "contact"]
 menu = "main"
 +++
 
-Hi, I'm Hoai Viet! I'm an Automation QA. Currently i working for Silicon Straits Saigon. I’m start to work in software quality assurance areas from Oct, 2013.
-My advantage is automation testing on mobile and web application. My favorite tool is Calabash, Appium for mobile and Selenium for web application, JMeter for performance testing.
+Hi, I'm Cao Hoai Viet! I'm an Automation QA. Currently I working for Silicon Straits Saigon. I’m start to work in software quality assurance areas from Oct, 2013.
+
+My advantage is automation testing on mobile and web application.
+
+My favorite tool is Calabash, Appium for mobile and Selenium for web application, JMeter for API/performance testing.
 
 ### Experience
 
