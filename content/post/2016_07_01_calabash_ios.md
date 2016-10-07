@@ -18,11 +18,14 @@ Bài lần trước chúng ta đã làm quen với Calabash cho Android và lầ
 ## Yêu cầu
 
 Calabash khuyến khích bạn nên dùng phiên bản mới nhất của Xcode, MacOS và Ruby
+
+```bash
 * MacOS 10.10 or 10.11
 * Xcode 6 or 7
 * iOS Devices >= 7.1
 * iOS Simulators >= 8.0
 * ruby >= 2.0 (Hoặc version mới nhất nào bạn ưa thích)
+```
 
 Giống như bài trước, chúng ta sẽ dùng `rbenv` để quản lý Ruby: [rbenv](https://github.com/sstephenson/rbenv).
 Và bây giờ cài đặt Calabash iOS
