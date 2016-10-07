@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Automation on Cao Hoai Viet Blog</title>
+    <link>http://hoaiviet.netlify.com/categories/automation/</link>
+    <description>Recent content in Automation on Cao Hoai Viet Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jan 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://hoaiviet.netlify.com/categories/automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calabash: Hướng dẫn cách cài đặt để kiểm thử ứng dụng iOS tự động với Calabash</title>
+      <link>http://hoaiviet.netlify.com/blog/2016/01/17/calabash-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-c%C3%A0i-%C4%91%E1%BA%B7t-%C4%91%E1%BB%83-ki%E1%BB%83m-th%E1%BB%AD-%E1%BB%A9ng-d%E1%BB%A5ng-ios-t%E1%BB%B1-%C4%91%E1%BB%99ng-v%E1%BB%9Bi-calabash/</link>
+      <pubDate>Sun, 17 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2016/01/17/calabash-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-c%C3%A0i-%C4%91%E1%BA%B7t-%C4%91%E1%BB%83-ki%E1%BB%83m-th%E1%BB%AD-%E1%BB%A9ng-d%E1%BB%A5ng-ios-t%E1%BB%B1-%C4%91%E1%BB%99ng-v%E1%BB%9Bi-calabash/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;giới-thiệu-về-calabash&#34;&gt;Giới thiệu về Calabash&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Giới thiệu về Calabash
+Calabash là một ứng dựng nguồn mở và miễn phí để kiểm thử tự động các ứng dụng di động. Nó là ứng dụng đa nền tảng và hỗ trợ cả iOS và Android. Calabash bao gồm những thư viện cho phép tương tác với các native app và hybrid app giống như người dùng cuối bao gồm các hành động như giả lập cử chỉ, xác định đúng sai và chụp hình màn hình…&lt;/p&gt;
+
+&lt;p&gt;Bài lần trước chúng ta đã làm quen với Calabash cho Android và lần này chúng ta sẽ làm quen với iOS.&lt;/p&gt;
+
+&lt;h2 id=&#34;yêu-cầu&#34;&gt;Yêu cầu&lt;/h2&gt;
+
+&lt;p&gt;Calabash khuyến khích bạn nên dùng phiên bản mới nhất của Xcode, MacOS và Ruby&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;* MacOS 10.10 or 10.11
+* Xcode 6 or 7
+* iOS Devices &amp;gt;= 7.1
+* iOS Simulators &amp;gt;= 8.0
+* ruby &amp;gt;= 2.0 (Hoặc version mới nhất nào bạn ưa thích)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Giống như bài trước, chúng ta sẽ dùng &lt;code&gt;rbenv&lt;/code&gt; để quản lý Ruby: &lt;a href=&#34;https://github.com/sstephenson/rbenv&#34;&gt;rbenv&lt;/a&gt;.
+Và bây giờ cài đặt Calabash iOS&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hoặc bạn có thể dùng &lt;a href=&#34;https://github.com/calabash/install&#34;&gt;Calabash Sandbox&lt;/a&gt; nếu bạn không muốn dùng một chương trình quản lý Ruby nào hết.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Cài đặt Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nên nhớ, &lt;strong&gt;không&lt;/strong&gt; cài đặt &lt;code&gt;gems&lt;/code&gt; bằng &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Các bạn có thể đọc bài trước để xem thêm cách cài đặt &lt;code&gt;rbenv&lt;/code&gt;:
+&lt;a href=&#34;http://blog.siliconstraits.vn/kiem-thu-tu-dong-ung-dung-android-bang-calabash/&#34;&gt;Kiểm thử tự động ứng dụng Android bằng Calabash&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;bắt-đầu&#34;&gt;Bắt đầu&lt;/h2&gt;
+
+&lt;h2 id=&#34;cài-đặt&#34;&gt;Cài đặt&lt;/h2&gt;
+
+&lt;p&gt;Để bắt đầu Calabash trong dự án của bạn, bạn cần liên kết Objective-C framework (calabash.framework) vào trong ứng dụng của bạn. Dưới đây là hướng dẫn với ứng được iOS viết bằng ngôn ngữ Swift&lt;/p&gt;
+
+&lt;h4 id=&#34;tại-sao-phải-chia-riêng-biệt-target-ra&#34;&gt;Tại sao phải chia riêng biệt Target ra?&lt;/h4&gt;
+
+&lt;p&gt;Tại vì Calabash có chưa framework và methods mà khi thêm vào project của bạn có thể bị reject bởi AppStore.&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-1-tạo-calabash-target&#34;&gt;Bước 1. Tạo Calabash target&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-1-tạo-bản-sao-target-từ-production&#34;&gt;1.1 Tạo bản sao target từ Production&lt;/h4&gt;
+
+&lt;p&gt;Trong list target, chuột phải vào Production target và chọn &lt;code&gt;Duplicate&lt;/code&gt;
+&lt;img src=&#34;http://i.imgur.com/l1iau88.jpg&#34; alt=&#34;Duplicate target&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nếu project của bạn chỉ dành cho iPhone hay iPad thì bạn sẽ nhìn thấy thông báo như này:
+&lt;img src=&#34;http://i.imgur.com/VLoZHHw.png&#34; alt=&#34;Alert&#34; /&gt;
+Nếu có, hãy chọn &amp;ldquo;Duplicate Only&amp;rdquo;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-2-đổi-tên-cho-target-vừa-tạo&#34;&gt;1.2 Đổi tên cho Target vừa tạo&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/6d6ZgjV.jpg&#34; alt=&#34;Rename target&#34; /&gt;
+Bạn nên đổi tên theo dạng &lt;code&gt;tênapp-cal&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-3-thay-đổi-bundle-identifier&#34;&gt;1.3 Thay đổi bundle identifier&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/WFvsKgC.jpg&#34; alt=&#34;Rename bundle&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-4-thay-đổi-info-plist&#34;&gt;1.4 Thay đổi Info.plist&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/VEtyYlc.jpg&#34; alt=&#34;Change info.plist&#34; /&gt;
+Là Info.plist của target Production&lt;/p&gt;
+
+&lt;h4 id=&#34;1-5-xoá-info-plist-bản-copy-khi-duplicate-target-từ-production&#34;&gt;1.5 Xoá Info.plist bản copy khi Duplicate target từ Production&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/spK8bMR.jpg&#34; alt=&#34;Remove info.plist&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-2-tạo-calabash-schema&#34;&gt;Bước 2. Tạo Calabash Schema&lt;/h3&gt;
+
+&lt;h4 id=&#34;2-1-chọn-schema-manage-schema&#34;&gt;2.1 Chọn Schema -&amp;gt; Manage Schema&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/UJ34NpB.jpg&#34; alt=&#34;ManageSchema&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-2-đổi-tên-của-schema-copy&#34;&gt;2.2 Đổi tên của Schema copy&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/neKWHsK.jpg&#34; alt=&#34;DuplicateSchema&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-3-đánh-dấu-show-và-shared&#34;&gt;2.3 Đánh dấu &lt;code&gt;Show&lt;/code&gt; và &lt;code&gt;Shared&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/tOlm8Hg.jpg&#34; alt=&#34;Check shared&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-4-chọn-scheme-executable&#34;&gt;2.4 Chọn Scheme Executable&lt;/h4&gt;
+
+&lt;p&gt;Bước này có thể không cần thiết nhưng bạn cần phải chắc chắn rằng Executable cho -cal scheme là -cal target.
+&lt;img src=&#34;http://i.imgur.com/dOxEnIG.jpg&#34; alt=&#34;exe&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-3-link-tới-cfnetwork-framework&#34;&gt;Bước 3. Link tới CFNetwork.framework&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/vU5J0xd.jpg&#34; alt=&#34;link&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/GbVurI3.jpg&#34; alt=&#34;cfnetwork&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-4-link-tới-calabash-framework&#34;&gt;Bước 4. Link tới calabash.framework&lt;/h3&gt;
+
+&lt;h4 id=&#34;4-1-tải-về-calabash-framework&#34;&gt;4.1 Tải về calabash.framework&lt;/h4&gt;
+
+&lt;p&gt;Tạo Gemfile trong folder chứa file .xcodeproj của bạn với nội dung sau:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;source &amp;quot;https://rubygems.org&amp;quot;
+gem &amp;quot;calabash-cucumber&amp;quot;, &amp;quot;&amp;gt;= 0.16&amp;quot;, &amp;quot;&amp;lt; 2.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Và chạy những câu lệnh sau đây tại thư mục đó&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bundle exec calabash-ios download
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nếu màn hình kết quả trả về kết quả như sau nghĩa là đã hoàn thành&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;----------Info----------
+caution: excluded filename not matched:  __MACOSX/*
+caution: excluded filename not matched:  calabash.framework/.DS_Store
+---------------------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-2-thêm-calabash-framework-vào-project&#34;&gt;4.2 Thêm calabash.framework vào project&lt;/h4&gt;
+
+&lt;p&gt;Hãy chắc chắn rằng calabash-framework không được trỏ tới target nào hết.
+&lt;img src=&#34;http://i.imgur.com/wrMa9mf.jpg&#34; alt=&#34;add f&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/isStJZD.jpg&#34; alt=&#34;add f&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/7NKMT5I.jpg&#34; alt=&#34;no target&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;4-3-link-tới-calabash-framework&#34;&gt;4.3 Link tới calabash.framework&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/XhYWywr.jpg&#34; alt=&#34;link&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thêm đoạn sau vào Other Linked Flags&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;-ObjC -force_load &amp;quot;$(SOURCE_ROOT)/calabash.framework/calabash&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;chạy-test-cucumber-trên-ios-simulator&#34;&gt;Chạy test Cucumber trên iOS Simulator&lt;/h2&gt;
+
+&lt;p&gt;Khởi tạo feature folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Trong folder chứa file .xcodeproj và Gemfile
+$ bundle exec calabash-ios gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build và run trong Xcode, chọn target tới iOS Simulator.  Calabash sẽ tự động tìm file .app bạn vừa build.
+Và chúng ta run test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nếu Calabash không tìm thấy file .app bạn vừa build thì Calabash sẽ báo lỗi &amp;ldquo;Cannot find APP_BUNDLE_PATH&amp;rdquo;. Nếu nó sảy ra thì bạn hãy tạo biến môi trường APP_BUNDLE_PATH bằng tay&lt;/p&gt;
+
+&lt;p&gt;Khi build thì mặc định file .app của bạn sẽ nằm tại:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;và tạo biến môi trường &lt;code&gt;APP_BUNDLE_PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export APP=&amp;quot;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app&amp;quot;
+$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Còn tất cả các bước khác như Define steps, report thì đều giống Calabash Android trong bài viết trước mình đã đề cập. Hy vọng bài viết sẽ giúp bạn có thêm 1 lựa chọn mới để giúp công việc của bạn trở nên thú vị và giảm được thời gian. Cảm ơn.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calabash: Calabash-iOS for iOS tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</link>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;calabash-ios&#34;&gt;Calabash iOS&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Calabash is an automated testing technology for Android and iOS native and hybrid applications.&lt;/p&gt;
+
+&lt;p&gt;Calabash is a free-to-use open source project that is developed and maintained by &lt;a href=&#34;http://xamarin.com&#34;&gt;Xamarin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MacOS 10.10 or 10.11&lt;/li&gt;
+&lt;li&gt;Xcode 6 or 7&lt;/li&gt;
+&lt;li&gt;iOS Devices &amp;gt;= 7.1&lt;/li&gt;
+&lt;li&gt;iOS Simulators &amp;gt;= 8.0&lt;/li&gt;
+&lt;li&gt;ruby &amp;gt;= 2.0 (latest is preferred)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the best Ruby experience we recommend that you use a managed Ruby
+like &lt;a href=&#34;https://github.com/sstephenson/rbenv&#34;&gt;rbenv&lt;/a&gt; or &lt;a href=&#34;https://rvm.io/&#34;&gt;rvm&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you are just getting started or don&amp;rsquo;t want to commit to a managed Ruby, we
+recommend you install and use the &lt;a href=&#34;https://github.com/calabash/install&#34;&gt;Calabash Sandbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Installs the Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please do &lt;em&gt;not&lt;/em&gt; install gems with &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more information about ruby on MacOS, see these Wiki pages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Ruby-on-MacOS&#34;&gt;Ruby on MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo&#34;&gt;Best Practice: Never install gems with sudo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;If you want to see Calabash iOS in action, head over to the &lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;Calabash iOS Smoke Test App&lt;/a&gt; and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.&lt;/p&gt;
+
+&lt;p&gt;The examples below assume you are using a managed ruby or are working in the Calabash
+Sandbox:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ calabash-sandbox
+This terminal is now ready to use with Calabash.
+To exit, type &#39;exit&#39;.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;step-1-link-calabash-framework&#34;&gt;Step 1: Link calabash.framework&lt;/h3&gt;
+
+&lt;p&gt;To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
+that are written in Swift.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;Tutorial&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Use linker flags in the Debug build config to load the calabash.framework&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Calabash-config&#34;&gt;Calabash Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Create a new Calabash Build Configuration&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A--Creating-a-cal-Target&#34;&gt;-cal Target&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Add a new app target to Xcode.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you want to get started quickly, follow the &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt; instructions.  The &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode&#34;&gt;Tutorial: How to add Calabash to Xcode&lt;/a&gt; wiki page discusses the merits of each approach and has instructions for using CocoaPods.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-2-run-cucumber-against-an-ios-simulator&#34;&gt;Step 2: Run Cucumber against an iOS Simulator&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/calabash/calabash-ios-example&#34;&gt;Calabash iOS Example&lt;/a&gt; README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# In the directory where your .xcodeproj and Gemfile are
+$ bundle exec calabash-ios gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build and run in Xcode, targeting an iOS Simulator.  Calabash will try to detect the .app you just built.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If Calabash cannot find the .app you just built, it will raise an error.  If this happens, you will to tell Calabash where it can find your .app.&lt;/p&gt;
+
+&lt;p&gt;By default, Xcode builds to a DerivedData directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Try to locate the .app and set the &lt;code&gt;APP&lt;/code&gt; variable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export APP=&amp;quot;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app&amp;quot;
+$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a &lt;code&gt;./Products&lt;/code&gt;, even when building from Xcode.  You can use the Xcode &amp;gt; Preferences &amp;gt; Locations settings to do the same.&lt;/p&gt;
+
+&lt;h3 id=&#34;where-to-go-from-here&#34;&gt;Where to go from here?&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Getting-Started&#34;&gt;Getting Started&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A more in-depth tutorial using the LPSimpleExample.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Testing-on-Physical-Devices&#34;&gt;Testing on Physical Devices&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Everything you need to know about testing on physical devices.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://calabashapi.xamarin.com/ios&#34;&gt;API Docs&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS ruby API&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;iOS Smoke Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates advanced features, setups, and workflows&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-webview-test-app&#34;&gt;iOS WebView Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates how to interact with UIWebView and WKWebView&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki&#34;&gt;Getting Help&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS Wiki&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calabash: Calabash-Android tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/</link>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;automation-testing-for-android-app&#34;&gt;Automation Testing for Android App&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;requirement&#34;&gt;Requirement&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JAVA JDK&lt;/li&gt;
+&lt;li&gt;ANDROID SDK&lt;/li&gt;
+&lt;li&gt;RUBY&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;install-java-jdk&#34;&gt;Install Java JDK&lt;/h2&gt;
+
+&lt;p&gt;Download and install from here: &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;Java JDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;install-and-setup-android-sdk&#34;&gt;Install and setup Android SDK.&lt;/h2&gt;
+
+&lt;p&gt;Download and install Android SDK for Mac from here&lt;a href=&#34;http://developer.android.com/sdk/index.html#Other&#34;&gt;Android SDK Stand alone download&lt;/a&gt;
+    &lt;img src=&#34;http://i.imgur.com/sm5eCyE.png&#34; alt=&#34;android_sdk_for_macos&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Download and unzip, then we need to export environment variable &lt;code&gt;ANDROID_HOME&lt;/code&gt; and &lt;code&gt;PATH&lt;/code&gt; to two folder &lt;code&gt;platform-tools&lt;/code&gt; and &lt;code&gt;tools&lt;/code&gt;from Android SDK folder&lt;br /&gt;
+Set &lt;code&gt;ANDROID_HOME&lt;/code&gt; by enter commend below to Terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export ANDROID_HOME=/path/to/your/android/sdk/folder
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;/path/to/your/android/sdk/folder&lt;/code&gt; is path to your android sdk folder on your computer. In my case, this is &lt;code&gt;/User/hoaiviet/Documents/android-sdk&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;set &lt;code&gt;PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reset Terminal or add this commmand to &lt;code&gt;~/.bash_profile&lt;/code&gt; or &lt;code&gt;~/.zshrc&lt;/code&gt; if you are using &lt;code&gt;zsh&lt;/code&gt;
+Reload configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-ruby&#34;&gt;Install Ruby&lt;/h2&gt;
+
+&lt;p&gt;We need &lt;code&gt;Homebrew&lt;/code&gt; to install ruby. If not, follow command below to install:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, install ruby by command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install rbenv ruby-build
+
+# Install ruby
+rbenv install 2.2.3
+rbenv global 2.2.3
+
+# Check ruby version
+ruby -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If &lt;code&gt;ruby -v&lt;/code&gt; response not equal version 2.2.3 then we need add command below to file &lt;code&gt;~/.bash_profile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=&amp;quot;$HOME/.rbenv/bin:$PATH&amp;quot;
+eval &amp;quot;$(rbenv init -)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and reload&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-calabash-android&#34;&gt;Install Calabash Android&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-folder-test&#34;&gt;Create folder test&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial, we use skype app for testing.&lt;/p&gt;
+
+&lt;p&gt;Now we create new folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open this folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Generate test folder structure&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;press Enter to continue&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/Ltl5gtd.png&#34; alt=&#34;folder_structer&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Copy your apk file to this folder then resign this by command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android resign skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-first-scenario&#34;&gt;Create first scenario&lt;/h2&gt;
+
+&lt;p&gt;Open &lt;code&gt;my_fist.feature&lt;/code&gt; by whatever text editor what you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/verAlLs.png&#34; alt=&#34;first_step&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note: You can view predefined command here: &lt;a href=&#34;https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md&#34;&gt;canned_steps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;First, we create scenario to test login function of skype&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Step 1: Press Skyname button
+Step 2: Enter account name to input field number 1
+Step 3: Enter password to input field number 2
+Step 4: Press Sign up button
+Step 5: Assertion is we need to view Add friend button
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we define this in &lt;code&gt;my_first.feature&lt;/code&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;Feature: Login feature
+
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+    Given I enter &amp;quot;viet.ch2612&amp;quot; into input field number 1
+    Given I enter my secret password into input fiend number 2
+    When I press view with id &amp;quot;sign_in_btn&amp;quot;
+    Then I should see &amp;quot;Add friend&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Connect your device or Simulator then check&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;adb devices
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, run this test&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is result
+&lt;img src=&#34;http://i.imgur.com/LuvPgK4.png&#34; alt=&#34;first_run&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We show &amp;ldquo;Not defined step&amp;rdquo;? Yes, now we define this step:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
+  enter_text(&amp;quot;android.widget.EditText index:#{index.to_i-1}&amp;quot;, &amp;quot;password&amp;quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run again
+&lt;img src=&#34;http://i.imgur.com/VAiEZP2.png&#34; alt=&#34;result&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;OK all passed&lt;/p&gt;
+
+&lt;h2 id=&#34;test-report&#34;&gt;Test report?&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --format html --out &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -f html -o &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this is test report format
+&lt;img src=&#34;http://i.imgur.com/6FLE3m5.png&#34; alt=&#34;report&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;run-one-feature&#34;&gt;Run one feature?&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk feature/&amp;lt;filename&amp;gt;.feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;run-scenario-by-tag&#34;&gt;Run scenario by @tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --tag @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -t @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;clear-app-data&#34;&gt;Clear app data&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-use-tag-reset&#34;&gt;1: Use tag &lt;code&gt;@reset&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Add this to &lt;code&gt;feature/support/app_installation_hooks.rb&lt;/code&gt; inside &lt;code&gt;Before&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;scenario_tags = scenario.source_tag_names
+  if scenario_tags.include?(&amp;quot;@reset&amp;quot;)
+    clear_app_data
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And add @reset before scenario&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;@reset
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-define-1-step-for-clear-app-data&#34;&gt;2: Define 1 step for clear app data&lt;/h3&gt;
+
+&lt;p&gt;First, require &lt;code&gt;require app_installation&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;calabash-android/management/app_installation&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and define step&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given /^I clear app data$/ do
+  clear_app_data
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: Recommend add delay time for this step&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Appium: Appium for Android tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/21/appium-appium-for-android-tutorial/</link>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/21/appium-appium-for-android-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;các-phần-mềm-yêu-cầu-dành-cho-windows&#34;&gt;Các phần mềm yêu cầu. (Dành cho Windows)&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Java JDK &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/index.html&#34;&gt;http://www.oracle.com/technetwork/java/javase/downloads/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Android SDK &lt;a href=&#34;https://developer.android.com/sdk/index.html&#34;&gt;https://developer.android.com/sdk/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Appium Desktop Apps &lt;a href=&#34;http://appium.io/downloads.html&#34;&gt;http://appium.io/downloads.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Phầm mềm giả lập Android hoặc một chiếc device chạy Android thật. Yêu cầu phải có API &amp;gt;= 17 (4.2). Mình gợi ý dùng Genymotion vì khá là nhẹ với những bạn có PC cấu hình yếu. &lt;a href=&#34;https://www.genymotion.com/&#34;&gt;https://www.genymotion.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Java IDE (IntelliJ, Eclipse, Netbeans &amp;hellip;). Tại bài hướng dẫn này thì mình sử dụng IntelliJ 14 &lt;a href=&#34;https://www.jetbrains.com/idea/download/&#34;&gt;https://www.jetbrains.com/idea/download/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;các-bước-tiến-hành&#34;&gt;Các bước tiến hành&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Cài đặt Java JDK.
+Tiến hành cài đặt như bình thường và tạo biến môi trường: JAVA_HOME. Hướng dẫn có sẵn tại đây &lt;a href=&#34;https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html&#34;&gt;https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android SDK: Cài đặt và tải SDK Packages mới nhất. Hướng dẫn có sẵn tại đây &lt;a href=&#34;https://developer.android.com/sdk/installing/adding-packages.html&#34;&gt;https://developer.android.com/sdk/installing/adding-packages.html&lt;/a&gt;. Sau khi cài đặt xong sẽ tạo thêm biến môi trường ANDROID_HOME.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Cài đặt Appium và chạy Appium.exe, nhấn nút Start để start appium server.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Tạo một Android Emulator hoặc tìm một device thật để test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;tạo-một-project-mới&#34;&gt;Tạo một project mới&lt;/h3&gt;
+
+&lt;p&gt;Hướng dẫn này sử dụng IntelliJ IDEA và test trên Whatsapp.apk&lt;/p&gt;
+
+&lt;p&gt;Từ IntelliJ, tạo một Maven Project mới.&lt;/p&gt;
+
+&lt;p&gt;Trong pom.xml, add thêm 2 dependencies là io.appium và testNG&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;io.appium&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;java-client&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;org.testng&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;testng&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;6.9.6&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;tạo-một-class-test-cơ-bản&#34;&gt;Tạo một class Test cơ bản.&lt;/h3&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

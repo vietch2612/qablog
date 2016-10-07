@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Calabash: Hướng dẫn cách cài đặt để kiểm thử ứng dụng iOS tự động với Calabash &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Hướng dẫn sử dụng Calabash-iOS để kiểm thử ứng dụng iOS">
+  <meta name="keywords" content="Calabash,ios,automation test,testing,quality control,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">QA Automation at Silicon Straits</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Calabash: Hướng dẫn cách cài đặt để kiểm thử ứng dụng iOS tự động với Calabash</h1>
+    <span class="post-date">Jan 17, 2016 &middot; 4 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2016/01/17/calabash-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-c%C3%A0i-%C4%91%E1%BA%B7t-%C4%91%E1%BB%83-ki%E1%BB%83m-th%E1%BB%AD-%E1%BB%A9ng-d%E1%BB%A5ng-ios-t%E1%BB%B1-%C4%91%E1%BB%99ng-v%E1%BB%9Bi-calabash/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/automation">Automation</a>
+    </span>
+    
+
+<hr />
+
+<h2 id="giới-thiệu-về-calabash">Giới thiệu về Calabash</h2>
+
+<p><a href="http://calaba.sh/">http://calaba.sh/</a></p>
+
+<p>Giới thiệu về Calabash
+Calabash là một ứng dựng nguồn mở và miễn phí để kiểm thử tự động các ứng dụng di động. Nó là ứng dụng đa nền tảng và hỗ trợ cả iOS và Android. Calabash bao gồm những thư viện cho phép tương tác với các native app và hybrid app giống như người dùng cuối bao gồm các hành động như giả lập cử chỉ, xác định đúng sai và chụp hình màn hình…</p>
+
+<p>Bài lần trước chúng ta đã làm quen với Calabash cho Android và lần này chúng ta sẽ làm quen với iOS.</p>
+
+<h2 id="yêu-cầu">Yêu cầu</h2>
+
+<p>Calabash khuyến khích bạn nên dùng phiên bản mới nhất của Xcode, MacOS và Ruby</p>
+
+<pre><code class="language-bash">* MacOS 10.10 or 10.11
+* Xcode 6 or 7
+* iOS Devices &gt;= 7.1
+* iOS Simulators &gt;= 8.0
+* ruby &gt;= 2.0 (Hoặc version mới nhất nào bạn ưa thích)
+</code></pre>
+
+<p>Giống như bài trước, chúng ta sẽ dùng <code>rbenv</code> để quản lý Ruby: <a href="https://github.com/sstephenson/rbenv">rbenv</a>.
+Và bây giờ cài đặt Calabash iOS</p>
+
+<pre><code class="language-bash">gem install calabash-ios
+</code></pre>
+
+<p>Hoặc bạn có thể dùng <a href="https://github.com/calabash/install">Calabash Sandbox</a> nếu bạn không muốn dùng một chương trình quản lý Ruby nào hết.</p>
+
+<pre><code># Cài đặt Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+</code></pre>
+
+<p>Nên nhớ, <strong>không</strong> cài đặt <code>gems</code> bằng <code>sudo</code></p>
+
+<p>Các bạn có thể đọc bài trước để xem thêm cách cài đặt <code>rbenv</code>:
+<a href="http://blog.siliconstraits.vn/kiem-thu-tu-dong-ung-dung-android-bang-calabash/">Kiểm thử tự động ứng dụng Android bằng Calabash</a></p>
+
+<h2 id="bắt-đầu">Bắt đầu</h2>
+
+<h2 id="cài-đặt">Cài đặt</h2>
+
+<p>Để bắt đầu Calabash trong dự án của bạn, bạn cần liên kết Objective-C framework (calabash.framework) vào trong ứng dụng của bạn. Dưới đây là hướng dẫn với ứng được iOS viết bằng ngôn ngữ Swift</p>
+
+<h4 id="tại-sao-phải-chia-riêng-biệt-target-ra">Tại sao phải chia riêng biệt Target ra?</h4>
+
+<p>Tại vì Calabash có chưa framework và methods mà khi thêm vào project của bạn có thể bị reject bởi AppStore.</p>
+
+<h3 id="bước-1-tạo-calabash-target">Bước 1. Tạo Calabash target</h3>
+
+<h4 id="1-1-tạo-bản-sao-target-từ-production">1.1 Tạo bản sao target từ Production</h4>
+
+<p>Trong list target, chuột phải vào Production target và chọn <code>Duplicate</code>
+<img src="http://i.imgur.com/l1iau88.jpg" alt="Duplicate target" /></p>
+
+<p>Nếu project của bạn chỉ dành cho iPhone hay iPad thì bạn sẽ nhìn thấy thông báo như này:
+<img src="http://i.imgur.com/VLoZHHw.png" alt="Alert" />
+Nếu có, hãy chọn &ldquo;Duplicate Only&rdquo;</p>
+
+<h4 id="1-2-đổi-tên-cho-target-vừa-tạo">1.2 Đổi tên cho Target vừa tạo</h4>
+
+<p><img src="http://i.imgur.com/6d6ZgjV.jpg" alt="Rename target" />
+Bạn nên đổi tên theo dạng <code>tênapp-cal</code></p>
+
+<h4 id="1-3-thay-đổi-bundle-identifier">1.3 Thay đổi bundle identifier</h4>
+
+<p><img src="http://i.imgur.com/WFvsKgC.jpg" alt="Rename bundle" /></p>
+
+<h4 id="1-4-thay-đổi-info-plist">1.4 Thay đổi Info.plist</h4>
+
+<p><img src="http://i.imgur.com/VEtyYlc.jpg" alt="Change info.plist" />
+Là Info.plist của target Production</p>
+
+<h4 id="1-5-xoá-info-plist-bản-copy-khi-duplicate-target-từ-production">1.5 Xoá Info.plist bản copy khi Duplicate target từ Production</h4>
+
+<p><img src="http://i.imgur.com/spK8bMR.jpg" alt="Remove info.plist" /></p>
+
+<h3 id="bước-2-tạo-calabash-schema">Bước 2. Tạo Calabash Schema</h3>
+
+<h4 id="2-1-chọn-schema-manage-schema">2.1 Chọn Schema -&gt; Manage Schema</h4>
+
+<p><img src="http://i.imgur.com/UJ34NpB.jpg" alt="ManageSchema" /></p>
+
+<h4 id="2-2-đổi-tên-của-schema-copy">2.2 Đổi tên của Schema copy</h4>
+
+<p><img src="http://i.imgur.com/neKWHsK.jpg" alt="DuplicateSchema" /></p>
+
+<h4 id="2-3-đánh-dấu-show-và-shared">2.3 Đánh dấu <code>Show</code> và <code>Shared</code></h4>
+
+<p><img src="http://i.imgur.com/tOlm8Hg.jpg" alt="Check shared" /></p>
+
+<h4 id="2-4-chọn-scheme-executable">2.4 Chọn Scheme Executable</h4>
+
+<p>Bước này có thể không cần thiết nhưng bạn cần phải chắc chắn rằng Executable cho -cal scheme là -cal target.
+<img src="http://i.imgur.com/dOxEnIG.jpg" alt="exe" /></p>
+
+<h3 id="bước-3-link-tới-cfnetwork-framework">Bước 3. Link tới CFNetwork.framework</h3>
+
+<p><img src="http://i.imgur.com/vU5J0xd.jpg" alt="link" />
+<img src="http://i.imgur.com/GbVurI3.jpg" alt="cfnetwork" /></p>
+
+<h3 id="bước-4-link-tới-calabash-framework">Bước 4. Link tới calabash.framework</h3>
+
+<h4 id="4-1-tải-về-calabash-framework">4.1 Tải về calabash.framework</h4>
+
+<p>Tạo Gemfile trong folder chứa file .xcodeproj của bạn với nội dung sau:</p>
+
+<pre><code class="language-Bash">source &quot;https://rubygems.org&quot;
+gem &quot;calabash-cucumber&quot;, &quot;&gt;= 0.16&quot;, &quot;&lt; 2.0&quot;
+</code></pre>
+
+<p>Và chạy những câu lệnh sau đây tại thư mục đó</p>
+
+<pre><code class="language-bash">bundle
+</code></pre>
+
+<pre><code class="language-bash">bundle exec calabash-ios download
+</code></pre>
+
+<p>Nếu màn hình kết quả trả về kết quả như sau nghĩa là đã hoàn thành</p>
+
+<pre><code class="language-bash">----------Info----------
+caution: excluded filename not matched:  __MACOSX/*
+caution: excluded filename not matched:  calabash.framework/.DS_Store
+---------------------------
+</code></pre>
+
+<h4 id="4-2-thêm-calabash-framework-vào-project">4.2 Thêm calabash.framework vào project</h4>
+
+<p>Hãy chắc chắn rằng calabash-framework không được trỏ tới target nào hết.
+<img src="http://i.imgur.com/wrMa9mf.jpg" alt="add f" />
+<img src="http://i.imgur.com/isStJZD.jpg" alt="add f" />
+<img src="http://i.imgur.com/7NKMT5I.jpg" alt="no target" /></p>
+
+<h4 id="4-3-link-tới-calabash-framework">4.3 Link tới calabash.framework</h4>
+
+<p><img src="http://i.imgur.com/XhYWywr.jpg" alt="link" /></p>
+
+<p>Thêm đoạn sau vào Other Linked Flags</p>
+
+<pre><code class="language-bash">-ObjC -force_load &quot;$(SOURCE_ROOT)/calabash.framework/calabash&quot;
+</code></pre>
+
+<h2 id="chạy-test-cucumber-trên-ios-simulator">Chạy test Cucumber trên iOS Simulator</h2>
+
+<p>Khởi tạo feature folder</p>
+
+<pre><code># Trong folder chứa file .xcodeproj và Gemfile
+$ bundle exec calabash-ios gen
+</code></pre>
+
+<p>Build và run trong Xcode, chọn target tới iOS Simulator.  Calabash sẽ tự động tìm file .app bạn vừa build.
+Và chúng ta run test:</p>
+
+<pre><code>$ bundle exec cucumber
+</code></pre>
+
+<p>Nếu Calabash không tìm thấy file .app bạn vừa build thì Calabash sẽ báo lỗi &ldquo;Cannot find APP_BUNDLE_PATH&rdquo;. Nếu nó sảy ra thì bạn hãy tạo biến môi trường APP_BUNDLE_PATH bằng tay</p>
+
+<p>Khi build thì mặc định file .app của bạn sẽ nằm tại:</p>
+
+<pre><code>~/Library/Developer/Xcode/DerivedData/&lt;UDID&gt;/Build/Products/Debug-iphonesimulator/&lt;NAME&gt;.app
+</code></pre>
+
+<p>và tạo biến môi trường <code>APP_BUNDLE_PATH</code>:</p>
+
+<pre><code>$ export APP=&quot;~/Library/Developer/Xcode/DerivedData/&lt;UDID&gt;/Build/Products/Debug-iphonesimulator/&lt;NAME&gt;.app&quot;
+$ bundle exec cucumber
+</code></pre>
+
+<p>Còn tất cả các bước khác như Define steps, report thì đều giống Calabash Android trong bài viết trước mình đã đề cập. Hy vọng bài viết sẽ giúp bạn có thêm 1 lựa chọn mới để giúp công việc của bạn trở nên thú vị và giảm được thời gian. Cảm ơn.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

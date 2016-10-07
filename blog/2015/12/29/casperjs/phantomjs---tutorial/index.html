@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>CasperJS/PhantomJS - Tutorial &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Automation for Web Application with PhantomJS/CasperJS">
+  <meta name="keywords" content="casperjs,phantomjs,automation test,testing,web,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">QA Automation at Silicon Straits</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>CasperJS/PhantomJS - Tutorial</h1>
+    <span class="post-date">Dec 29, 2015 &middot; 2 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/web">web</a>
+    </span>
+    
+
+<h3 id="we-use">We use</h3>
+
+<p>PhantomJS - This acts as browser to run test in.
+CasperJS - build for PhantomJS, this give you some nice utilities for testing such as clicks and logging events.</p>
+
+<h3 id="steps-1-install-node-js-and-npm">Steps 1 - Install Node.js and NPM</h3>
+
+<pre><code class="language-bash">$ brew install node
+</code></pre>
+
+<h3 id="steps-2-install-phantomjs">Steps 2 - Install PhantomJS</h3>
+
+<pre><code class="language-bash">$ npm install phantomjs -g
+</code></pre>
+
+<p>To test that PhantomJS has installed and is accessible through your terminal:</p>
+
+<pre><code class="language-bash">phantomjs -v
+</code></pre>
+
+<p>This will return version of phantomjs
+<img src="https://zippy.gfycat.com/ScratchyThirstyArthropods.gif" alt="img" />
+Write your first PhantomJS hello world script. Create a &ldquo;test.js&rdquo; file with one line:</p>
+
+<pre><code class="language-js">console.log(&quot;Hello from PhantomJS&quot;)
+</code></pre>
+
+<p>To run, <code>cd</code> to folder and enter following command to your console:</p>
+
+<pre><code class="language-bash">phantomjs test.js
+</code></pre>
+
+<p><img src="https://zippy.gfycat.com/DefinitiveSlushyGroundbeetle.gif" alt="runtestphantomjs" /></p>
+
+<h3 id="steps-3-install-casperjs">Steps 3 - Install CasperJS</h3>
+
+<p>If you are using NPM.</p>
+
+<pre><code class="language-bash">$ npm install casperjs -g
+</code></pre>
+
+<p>To test that CasperJS has installed and is accessible through your terminal:</p>
+
+<pre><code class="language-bash">casperjs -version
+</code></pre>
+
+<p>This should return the version number</p>
+
+<p>Now lets get to grips with CasperJS. Create a new <code>casper_test.js</code> file.</p>
+
+<p>Require and create a new Casper instance The <code>.create()</code> method will return an instance of the casper class</p>
+
+<pre><code class="language-js">var Casper = require('casper').create();
+</code></pre>
+
+<p>To start Casper up, you must use the <code>.start()</code> method to navigate the site and run the casper suit</p>
+
+<pre><code class="language-js">// casper.start(url, callback);
+casper.start('http//:google.com', function(){})
+Now echo out the title of the current page. You can print out messages in a range of different styles: INFO, ERROR, WARNING, COMMENT
+
+casper.start('http//:google.com', function(){
+    // this.echo(messageToPrint, style)
+    this.echo(this.getTitle, 'INFO')
+});
+</code></pre>
+
+<p>Finally use the run method</p>
+
+<pre><code class="language-js">casper.run()
+The full code is as follows:
+
+var casper = require('casper').create();
+
+casper.start('http://google.com/', function() {
+    this.echo(this.getTitle(), 'INFO');
+});
+
+casper.run();
+</code></pre>
+
+<p>To run this, go to your terminal and enter:</p>
+
+<pre><code class="language-bash">$ casperjs casper_test.js
+</code></pre>
+
+<p>The console should print out &lsquo;Google&rsquo;</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

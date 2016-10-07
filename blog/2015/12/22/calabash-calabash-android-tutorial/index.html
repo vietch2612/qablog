@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Calabash: Calabash-Android tutorial &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="How to use Calabash-Android to Automated Test for Android Application">
+  <meta name="keywords" content="calabash,android,automation test,testing,quality control,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">QA Automation at Silicon Straits</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Calabash: Calabash-Android tutorial</h1>
+    <span class="post-date">Dec 22, 2015 &middot; 3 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/automation">Automation</a>
+    </span>
+    
+
+<hr />
+
+<h1 id="automation-testing-for-android-app">Automation Testing for Android App</h1>
+
+<hr />
+
+<h3 id="requirement">Requirement</h3>
+
+<ul>
+<li>JAVA JDK</li>
+<li>ANDROID SDK</li>
+<li>RUBY<br /></li>
+</ul>
+
+<h2 id="install-java-jdk">Install Java JDK</h2>
+
+<p>Download and install from here: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java JDK</a></p>
+
+<h2 id="install-and-setup-android-sdk">Install and setup Android SDK.</h2>
+
+<p>Download and install Android SDK for Mac from here<a href="http://developer.android.com/sdk/index.html#Other">Android SDK Stand alone download</a>
+    <img src="http://i.imgur.com/sm5eCyE.png" alt="android_sdk_for_macos" /></p>
+
+<p>Download and unzip, then we need to export environment variable <code>ANDROID_HOME</code> and <code>PATH</code> to two folder <code>platform-tools</code> and <code>tools</code>from Android SDK folder<br />
+Set <code>ANDROID_HOME</code> by enter commend below to Terminal</p>
+
+<pre><code class="language-bash">export ANDROID_HOME=/path/to/your/android/sdk/folder
+</code></pre>
+
+<p><code>/path/to/your/android/sdk/folder</code> is path to your android sdk folder on your computer. In my case, this is <code>/User/hoaiviet/Documents/android-sdk</code></p>
+
+<p>set <code>PATH</code>:</p>
+
+<pre><code class="language-bash">export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+</code></pre>
+
+<p>Reset Terminal or add this commmand to <code>~/.bash_profile</code> or <code>~/.zshrc</code> if you are using <code>zsh</code>
+Reload configuration</p>
+
+<pre><code class="language-bash">source ~/.bash_profile
+</code></pre>
+
+<h2 id="install-ruby">Install Ruby</h2>
+
+<p>We need <code>Homebrew</code> to install ruby. If not, follow command below to install:</p>
+
+<pre><code class="language-bash">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<p>Now, install ruby by command</p>
+
+<pre><code class="language-bash">brew install rbenv ruby-build
+
+# Install ruby
+rbenv install 2.2.3
+rbenv global 2.2.3
+
+# Check ruby version
+ruby -v
+</code></pre>
+
+<p>If <code>ruby -v</code> response not equal version 2.2.3 then we need add command below to file <code>~/.bash_profile</code></p>
+
+<pre><code class="language-bash">export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;
+eval &quot;$(rbenv init -)&quot;
+</code></pre>
+
+<p>and reload</p>
+
+<pre><code class="language-bash">source ~/.bash_profile
+</code></pre>
+
+<h2 id="install-calabash-android">Install Calabash Android</h2>
+
+<pre><code class="language-bash">gem install calabash-android
+</code></pre>
+
+<h2 id="create-folder-test">Create folder test</h2>
+
+<p>In this tutorial, we use skype app for testing.</p>
+
+<p>Now we create new folder</p>
+
+<pre><code class="language-bash">mkdir calabash-test-skype
+</code></pre>
+
+<p>Open this folder</p>
+
+<pre><code class="language-bash">cd calabash-test-skype
+</code></pre>
+
+<p>Generate test folder structure</p>
+
+<pre><code class="language-bash">calabash-android gen
+</code></pre>
+
+<p>press Enter to continue</p>
+
+<p><img src="http://i.imgur.com/Ltl5gtd.png" alt="folder_structer" /></p>
+
+<p>Copy your apk file to this folder then resign this by command</p>
+
+<pre><code class="language-bash">calabash-android resign skype.apk
+</code></pre>
+
+<h2 id="create-first-scenario">Create first scenario</h2>
+
+<p>Open <code>my_fist.feature</code> by whatever text editor what you like.</p>
+
+<p><img src="http://i.imgur.com/verAlLs.png" alt="first_step" /></p>
+
+<p>Note: You can view predefined command here: <a href="https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md">canned_steps</a></p>
+
+<p>First, we create scenario to test login function of skype</p>
+
+<pre><code>Step 1: Press Skyname button
+Step 2: Enter account name to input field number 1
+Step 3: Enter password to input field number 2
+Step 4: Press Sign up button
+Step 5: Assertion is we need to view Add friend button
+</code></pre>
+
+<p>Then we define this in <code>my_first.feature</code> :</p>
+
+<pre><code class="language-cucumber">Feature: Login feature
+
+  Scenario: As a valid user I can log into my app
+    Given I press the &quot;Skype Name&quot; button
+    Given I enter &quot;viet.ch2612&quot; into input field number 1
+    Given I enter my secret password into input fiend number 2
+    When I press view with id &quot;sign_in_btn&quot;
+    Then I should see &quot;Add friend&quot;
+</code></pre>
+
+<p>Connect your device or Simulator then check</p>
+
+<pre><code class="language-bash">adb devices
+</code></pre>
+
+<p>Now, run this test</p>
+
+<pre><code class="language-bash">calabash-android run skype.apk
+</code></pre>
+
+<p>This is result
+<img src="http://i.imgur.com/LuvPgK4.png" alt="first_run" /></p>
+
+<p>We show &ldquo;Not defined step&rdquo;? Yes, now we define this step:</p>
+
+<pre><code class="language-ruby">Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
+  enter_text(&quot;android.widget.EditText index:#{index.to_i-1}&quot;, &quot;password&quot;)
+end
+</code></pre>
+
+<p>Run again
+<img src="http://i.imgur.com/VAiEZP2.png" alt="result" /></p>
+
+<p>OK all passed</p>
+
+<h2 id="test-report">Test report?</h2>
+
+<pre><code class="language-bash">calabash-android run skype.apk --format html --out &lt;filename&gt;.html
+</code></pre>
+
+<p>or</p>
+
+<pre><code class="language-bash">calabash-android run skype.apk -f html -o &lt;filename&gt;.html
+</code></pre>
+
+<p>this is test report format
+<img src="http://i.imgur.com/6FLE3m5.png" alt="report" /></p>
+
+<h2 id="run-one-feature">Run one feature?</h2>
+
+<pre><code class="language-bash">calabash-android run skype.apk feature/&lt;filename&gt;.feature
+</code></pre>
+
+<h2 id="run-scenario-by-tag">Run scenario by @tag</h2>
+
+<pre><code class="language-bash">calabash-android run skype.apk --tag @test
+</code></pre>
+
+<p>or</p>
+
+<pre><code class="language-bash">calabash-android run skype.apk -t @test
+</code></pre>
+
+<h2 id="clear-app-data">Clear app data</h2>
+
+<h3 id="1-use-tag-reset">1: Use tag <code>@reset</code></h3>
+
+<p>Add this to <code>feature/support/app_installation_hooks.rb</code> inside <code>Before</code></p>
+
+<pre><code class="language-ruby">scenario_tags = scenario.source_tag_names
+  if scenario_tags.include?(&quot;@reset&quot;)
+    clear_app_data
+  end
+</code></pre>
+
+<p>And add @reset before scenario</p>
+
+<pre><code class="language-cucumber">@reset
+  Scenario: As a valid user I can log into my app
+    Given I press the &quot;Skype Name&quot; button
+</code></pre>
+
+<h3 id="2-define-1-step-for-clear-app-data">2: Define 1 step for clear app data</h3>
+
+<p>First, require <code>require app_installation</code></p>
+
+<pre><code class="language-ruby">require 'calabash-android/management/app_installation'
+</code></pre>
+
+<p>and define step</p>
+
+<pre><code class="language-ruby">Given /^I clear app data$/ do
+  clear_app_data
+end
+</code></pre>
+
+<p>Note: Recommend add delay time for this step</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

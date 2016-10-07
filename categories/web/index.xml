@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Cao Hoai Viet Blog</title>
+    <link>http://hoaiviet.netlify.com/categories/web/</link>
+    <description>Recent content in Web on Cao Hoai Viet Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://hoaiviet.netlify.com/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>CasperJS/PhantomJS - Tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/</link>
+      <pubDate>Tue, 29 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/</guid>
+      <description>
+
+&lt;h3 id=&#34;we-use&#34;&gt;We use&lt;/h3&gt;
+
+&lt;p&gt;PhantomJS - This acts as browser to run test in.
+CasperJS - build for PhantomJS, this give you some nice utilities for testing such as clicks and logging events.&lt;/p&gt;
+
+&lt;h3 id=&#34;steps-1-install-node-js-and-npm&#34;&gt;Steps 1 - Install Node.js and NPM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;steps-2-install-phantomjs&#34;&gt;Steps 2 - Install PhantomJS&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install phantomjs -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test that PhantomJS has installed and is accessible through your terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;phantomjs -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will return version of phantomjs
+&lt;img src=&#34;https://zippy.gfycat.com/ScratchyThirstyArthropods.gif&#34; alt=&#34;img&#34; /&gt;
+Write your first PhantomJS hello world script. Create a &amp;ldquo;test.js&amp;rdquo; file with one line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&amp;quot;Hello from PhantomJS&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run, &lt;code&gt;cd&lt;/code&gt; to folder and enter following command to your console:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;phantomjs test.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://zippy.gfycat.com/DefinitiveSlushyGroundbeetle.gif&#34; alt=&#34;runtestphantomjs&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;steps-3-install-casperjs&#34;&gt;Steps 3 - Install CasperJS&lt;/h3&gt;
+
+&lt;p&gt;If you are using NPM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install casperjs -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test that CasperJS has installed and is accessible through your terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;casperjs -version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This should return the version number&lt;/p&gt;
+
+&lt;p&gt;Now lets get to grips with CasperJS. Create a new &lt;code&gt;casper_test.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;Require and create a new Casper instance The &lt;code&gt;.create()&lt;/code&gt; method will return an instance of the casper class&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var Casper = require(&#39;casper&#39;).create();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start Casper up, you must use the &lt;code&gt;.start()&lt;/code&gt; method to navigate the site and run the casper suit&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;// casper.start(url, callback);
+casper.start(&#39;http//:google.com&#39;, function(){})
+Now echo out the title of the current page. You can print out messages in a range of different styles: INFO, ERROR, WARNING, COMMENT
+
+casper.start(&#39;http//:google.com&#39;, function(){
+    // this.echo(messageToPrint, style)
+    this.echo(this.getTitle, &#39;INFO&#39;)
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally use the run method&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;casper.run()
+The full code is as follows:
+
+var casper = require(&#39;casper&#39;).create();
+
+casper.start(&#39;http://google.com/&#39;, function() {
+    this.echo(this.getTitle(), &#39;INFO&#39;);
+});
+
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run this, go to your terminal and enter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ casperjs casper_test.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The console should print out &amp;lsquo;Google&amp;rsquo;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

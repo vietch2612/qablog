@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Calabash: Ruby API &middot; Hoai Viet</title>
+
+  
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Ruby API for Calabash Android">
+  <meta name="keywords" content="calabash,android,automation test,testing,quality control,quality assurance">
+  <link rel="author" href="http://plus.google.com/viet.ch2612">
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
+      
+      <h1>Hoai Viet</h1>
+      <p class="lead">QA Automation at Silicon Straits</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/vietch2612"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      <a href="https://vn.linkedin.com/in/vietch2612"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Calabash: Ruby API</h1>
+    <span class="post-date">Dec 25, 2015 &middot; 8 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/25/calabash-ruby-api/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/calabash">calabash</a>
+    </span>
+    
+
+<hr />
+
+<h1 id="ruby-api">Ruby API</h1>
+
+<p>When writing custom steps, you&rsquo;ll need to use the Ruby API to interact with your application. This document describes the API at a high level. If you want to see details you can look at the source code in the files at <a href="../ruby-gem/lib/calabash-android/">ruby-gem/lib/calabash-android</a>. There are functions in the source code which aren&rsquo;t documented here. Those are way more likely to change (so be warned if you rely on those).</p>
+
+<p>Calabash Android has a client-server architecture. The Calabash Ruby API is the client side which speaks HTTP with the test server that running on the device along with your app. To get an architectural overview of Calabash Android please read the blog posts:</p>
+
+<h1 id="general">General</h1>
+
+<h3 id="start-test-server-in-background"><code>start_test_server_in_background</code></h3>
+
+<p>Starts the test server and the app under test (AUT). If the app is already running it will be restarted.</p>
+
+<h3 id="reinstall-apps"><code>reinstall_apps</code></h3>
+
+<p>Will reinstall both the test server and the AUT to be sure the newest versions are installed.</p>
+
+<h1 id="query">Query</h1>
+
+<h3 id="query-uiquery-args"><code>query(uiquery, *args)</code></h3>
+
+<p>Query returns an <a href="http://www.ruby-doc.org/core-1.9.3/Array.html">array</a> of its results. The query function gives powerful query capability from your test code. You can find views and other application objects, and make assertions about them or extract data from them.</p>
+
+<p>Calabash Android tries to return results that carry useable information by default. For view objects this includes coordinates, class and contentdescription:</p>
+
+<pre><code>irb(main):002:0&gt; query(&quot;button index:1&quot;)
+=&gt; [{&quot;id&quot;=&gt;&quot;save&quot;, &quot;enabled&quot;=&gt;true, &quot;contentDescription&quot;=&gt;nil, &quot;class&quot;=&gt;&quot;android.widget.Button&quot;, &quot;text&quot;=&gt;&quot;Save&quot;, &quot;rect&quot;=&gt;{&quot;center_y&quot;=&gt;724.0, &quot;center_x&quot;=&gt;645.5, &quot;height&quot;=&gt;64, &quot;y&quot;=&gt;692, &quot;width&quot;=&gt;71, &quot;x&quot;=&gt;610}, &quot;description&quot;=&gt;&quot;android.widget.Button{4267b4a0 VFED..C. ........ 497,243-568,307 #7f070023 app:id/save}&quot;}]
+</code></pre>
+
+<p>A view is represented as a ruby <a href="http://www.ruby-doc.org/core-1.9.3/Hash.html">Hash</a> (hash map) so you can look into the result</p>
+
+<pre><code>irb(main):003:0&gt; query(&quot;button index:1&quot;).first.keys
+=&gt; [&quot;id&quot;, &quot;enabled&quot;, &quot;contentDescription&quot;, &quot;class&quot;, &quot;text&quot;, &quot;rect&quot;, &quot;description&quot;]
+</code></pre>
+
+<p>The <code>*args</code> parameter lets you perform methods on the query result <em>before</em> it is returned to your Ruby script code (remember that the query is evaluated as Java code inside the app and the result is sent back to the Ruby code). The form <code>*args</code> is Ruby-speak for a variable number of args. For example, if you have a button you can do</p>
+
+<pre><code>irb(main):005:0&gt; query(&quot;button&quot;, &quot;text&quot;)
+=&gt; [&quot;Optional Settings&quot;, &quot;Save&quot;, &quot;Cancel&quot;, &quot;Get a free blog at WordPress.com&quot;]
+</code></pre>
+
+<p>This calls a &lsquo;getter&rsquo; method &ldquo;text&rdquo; (that is text(), getText() or isText()) on each of the buttons in the view (it always returns an array). You can perform a sequence of methods:</p>
+
+<pre><code>irb(main):007:0&gt; query(&quot;button&quot;, &quot;text&quot;, &quot;length&quot;)
+=&gt; [17, 4, 6, 32]
+
+irb(main):008:0&gt; query(&quot;button&quot;, &quot;text&quot;, &quot;toLowerCase&quot;)
+=&gt; [&quot;optional settings&quot;, &quot;save&quot;, &quot;cancel&quot;, &quot;get a free blog at wordpress.com&quot;]
+</code></pre>
+
+<p>For methods with arguments you can use hashes. In Ruby 1.9 this has quite nice syntax:</p>
+
+<pre><code>irb(main):033:0&gt; query(&quot;edittext index:1&quot;, setText:&quot;1234&quot;)
+=&gt; [&quot;&lt;VOID&gt;&quot;]
+</code></pre>
+
+<p>On Ruby 1.8 you can&rsquo;t use key:val as literal Hash syntax so you must do:</p>
+
+<pre><code>irb(main):034:0&gt; query(&quot;edittext index:1&quot;, :setText =&gt; &quot;1234&quot;)
+=&gt; [&quot;&lt;VOID&gt;&quot;]
+</code></pre>
+
+<p>Behind the scenes the Java method <code>setText</code> will be execute with the argument <code>&quot;12345&quot;</code> on all view elements that were matched by the query.</p>
+
+<p>Notice that the string <code>&lt;VOID&gt;</code> is Calabash&rsquo;s way of returning from a Java method with return type <code>void</code>.</p>
+
+<p>For more complex methods you use Arrays of Hashes. Here is a complex Ruby 1.9 example:</p>
+
+<pre><code>TODO: Example
+</code></pre>
+
+<h3 id="element-does-not-exist-uiquery"><code>element_does_not_exist(uiquery)</code></h3>
+
+<h3 id="element-exists-uiquery"><code>element_exists(uiquery)</code></h3>
+
+<h3 id="view-with-mark-exists-expected-mark"><code>view_with_mark_exists(expected_mark)</code></h3>
+
+<p>The <code>element_exists</code> function returns true if an element exists matching query <code>uiquery</code>.
+The <code>element_does_not_exist</code> function returns true if an element matching query <code>uiquery</code> does not exist.</p>
+
+<p>The function <code>view_with_mark_exists(expected_mark)</code> is shorthand for</p>
+
+<pre><code>element_exists(&quot;* marked:'#{expected_mark}'&quot;)
+</code></pre>
+
+<h1 id="waiting">Waiting</h1>
+
+<h3 id="wait-for-options-block"><code>wait_for(options, &amp;block)</code></h3>
+
+<p>Waits for a condition to occur. Takes a hash of options and a block to be called repeatedly. The options (which are described below) have the following defaults:</p>
+
+<pre><code>{
+ :timeout =&gt; 10, #maximum number of seconds to wait
+ :retry_frequency =&gt; 0.2, #wait this long before retrying the block
+ :post_timeout =&gt; 0.1, #wait this long after the block returns true
+ :timeout_message =&gt; &quot;Timed out waiting...&quot;, #error message in case options[:timeout] is exceeded
+ :screenshot_on_error =&gt; true # take a screenshot in case of error
+}
+</code></pre>
+
+<p>The <code>timeout</code> argument should be a number indicating the maximal number of seconds you are willing to wait (after that amount of time the step will cause your test to fail). The <code>:post_timeout</code> (0.1 by default) is an number of seconds to wait <em>after the condition becomes true</em>.</p>
+
+<p>The <code>&amp;block</code> parameter is Ruby syntax for saying that this method takes a block of code. This block specifies the condition to wait for. The block should return <code>true</code> when the the condition occurs.</p>
+
+<p>The <code>:retry_frequency</code> is a small sleep that is made between each call to the specified block. This describes how often Calabash should poll for the condition to be true.</p>
+
+<p>Here is a simple example:</p>
+
+<pre><code>irb(main):030:0&gt; wait_for(:timeout =&gt; 5) { query(&quot;button marked:'Save'&quot;).size &gt; 0 }
+</code></pre>
+
+<p>This will check for the existence of a view matching: &ldquo;button marked:&lsquo;Save&rsquo;&ldquo;. It will wait <em>at most</em> 5 seconds (failing if more than 5 seconds pass). It will issue the query repeatedly until it is found or 5 seconds pass.</p>
+
+<p>A typical form uses <code>element_exists</code>.</p>
+
+<pre><code>irb(main):031:0&gt; wait_for(:timeout =&gt; 5) { element_exists(&quot;button marked:'Save'&quot;) }
+</code></pre>
+
+<p>In Ruby short blocks are written with braces (like: <code>{ element_exists(&quot;button marked:'Save'&quot;) }</code>), and more complicated blocks are written using <code>do</code>-<code>end</code>. For example:</p>
+
+<pre><code>wait_for(:timeout =&gt; 30) do
+    res = query(&quot;checkbox marked:'Geotag Posts'&quot;, 'checked')
+    res.first == true
+end
+</code></pre>
+
+<p>A Ruby block always returns the value of its last expression (<code>res.first == true</code> in this case).</p>
+
+<p><em>Notes:</em> Waiting for a condition to occur is superior to using the <code>sleep</code> function. With <code>sleep</code> you end up either specifying too long waits which slows the test down or you become sensitive to timing issues. Sometimes you do need sleep (to wait for animations to complete), but try to use waiting as much as possible.</p>
+
+<h3 id="wait-for-element-exists-uiquery-options">wait_for_element_exists(uiquery, options={})</h3>
+
+<p>A high-level waiting function. This captures the common practice of waiting for UI elements, i.e., combining <code>wait_for</code> and <code>element_exists</code>.</p>
+
+<p>Takes a query and waits for it to return a results. Calls <code>wait_for</code> supplying <code>options</code>.</p>
+
+<pre><code>irb(main):009:0&gt; wait_for_elements_exist( &quot;* marked:'Please sign in'&quot;, :timeout =&gt; 10)
+</code></pre>
+
+<h3 id="wait-for-elements-exist-elements-arr-options">wait_for_elements_exist(elements_arr, options={})</h3>
+
+<p>Like <code>wait_for_element_exists</code> but takes an <em>array</em> of queries and waits for all of those queries to return results. Calls <code>wait_for</code> supplying <code>options</code>.</p>
+
+<pre><code>irb(main):008:0&gt; wait_for_elements_exist( [&quot;button marked:'Save'&quot;, &quot;* marked:'Please sign in'&quot;], :timeout =&gt; 2)
+</code></pre>
+
+<h3 id="wait-for-element-does-not-exist-uiquery-options">wait_for_element_does_not_exist(uiquery, options={})</h3>
+
+<p>Similar to <code>wait_for_element_exists</code>, but waits for an element to not exist.</p>
+
+<h3 id="wait-for-elements-do-not-exist-elements-arr-options">wait_for_elements_do_not_exist(elements_arr, options={})</h3>
+
+<p>Similar to <code>wait_for_elements_exist</code>, but waits for all of the elements to not exist.</p>
+
+<h1 id="assertions">Assertions</h1>
+
+<h4 id="fail-msg-error-check-log-for-details"><code>fail(msg=&quot;Error. Check log for details.&quot;)</code></h4>
+
+<p>Will fail the test with message <code>msg</code>. Takes a screenshot.</p>
+
+<h3 id="check-element-exists-query"><code>check_element_exists(query)</code></h3>
+
+<h3 id="check-element-does-not-exist-query"><code>check_element_does_not_exist(query)</code></h3>
+
+<h3 id="check-view-with-mark-exists-expected-mark"><code>check_view_with_mark_exists(expected_mark)</code></h3>
+
+<p>Asserts that an element exists using the query function on the parameter <code>query</code>.</p>
+
+<p>The function <code>check_view_with_mark_exists(expected_mark)</code> is shorthand for</p>
+
+<pre><code>check_element_exists(&quot;view marked:'#{expected_mark}'&quot;)
+</code></pre>
+
+<h1 id="touch">Touch</h1>
+
+<h3 id="touch-uiquery-options"><code>touch(uiquery, options={})</code></h3>
+
+<p>Touches a view found by performing the query <code>uiquery</code>. It is recommended that <code>uiquery</code> only produce one match, but the default is to just touch the first of the results if there are several.</p>
+
+<p>The <code>touch</code> method is one of the most used in Calabash. It is mostly used in its simplest form:</p>
+
+<pre><code>irb(main):037:0&gt; touch(&quot;* marked:'Save'&quot;)
+</code></pre>
+
+<p>Which uses content descriptions, ids or texts. This form is so common that there is a short-hand for it: <code>tap</code>:</p>
+
+<pre><code>irb(main):038:0&gt; tap 'Save'
+</code></pre>
+
+<p>For flexibility you can also pass in a hash representation of a view and the the touch event will be calculated based on those values and no query will be executed. <code>touch</code> will also accept a list of hashes in which case Calabash will touch the first one view in the list.</p>
+
+<p>The following are all equivalent</p>
+
+<pre><code>touch(&quot;button index:0&quot;)
+touch(&quot;button&quot;)
+touch(query(&quot;button index:0&quot;))
+touch(query(&quot;button&quot;).first)
+touch(query(&quot;button&quot;))
+</code></pre>
+
+<h1 id="entering-text">Entering text</h1>
+
+<h3 id="keyboard-enter-text-text-options"><code>keyboard_enter_text(text, options={})</code></h3>
+
+<p>Enters <strong>text</strong> into the currently focused view.</p>
+
+<h3 id="enter-text-uiquery-text-options"><code>enter_text(uiquery, text, options={})</code></h3>
+
+<p>Taps the first element returned by <strong>uiquery</strong>, then enters <strong>text</strong> into the view.</p>
+
+<h1 id="screenshot">Screenshot</h1>
+
+<h3 id="screenshot-options-prefix-nil-name-nil"><code>screenshot(options={:prefix=&gt;nil, :name=&gt;nil})</code></h3>
+
+<p>Takes a screenshot of the app.</p>
+
+<pre><code>screenshot({:prefix =&gt; &quot;/tmp&quot;, :name=&gt;&quot;my.png&quot;})
+</code></pre>
+
+<p>If prefix and name are nil it will use default values (which is currently the line in the current feature).</p>
+
+<h3 id="screenshot-embed-options-prefix-nil-name-nil-label-nil"><code>screenshot_embed(options={:prefix=&gt;nil, :name=&gt;nil, :label =&gt; nil})</code></h3>
+
+<p>Takes a screenshot of the app and embeds to cucumber reporters (e.g. html reports).</p>
+
+<pre><code>screenshot_embed({:prefix =&gt; &quot;/tmp&quot;, :name=&gt;&quot;my.png&quot;, :label =&gt; &quot;Mine&quot;})
+</code></pre>
+
+<p>If prefix and name are nil it will use default values (which is currently the line in the current feature).</p>
+
+<p>Label is the label used in the cucumber report output (equals to name if not specified).</p>
+
+<h1 id="pull-and-push-files-and-folders-from-and-to-the-device">Pull and push files and folders from and to the device</h1>
+
+<h3 id="pull-remote-local"><code>pull(remote, local)</code></h3>
+
+<p>Pulls a file from the device to local computer:</p>
+
+<pre><code>pull(&quot;/sdcard/file.jpg&quot;, &quot;file.jpg&quot;)
+</code></pre>
+
+<h3 id="push-local-remote"><code>push(local, remote)</code></h3>
+
+<p>Pushes a file from the local computer to the device:</p>
+
+<pre><code>push(&quot;file.jpg&quot;, &quot;/sdcard/file.jpg&quot;)
+</code></pre>
+
+<p>Uses <a href="http://developer.android.com/tools/help/adb.html">adb</a> so same rules apply:</p>
+
+<ul>
+<li>Won&rsquo;t be able to pull or push from restricted folders such as /data/data</li>
+<li>If destination path already exists, it&rsquo;s overwritten without warning</li>
+<li>For files, full destination path must be provided, ie:</li>
+</ul>
+
+<p>Won&rsquo;t work:</p>
+
+<pre><code>push(&quot;file.jpg&quot;, &quot;/sdcard/folder&quot;)
+</code></pre>
+
+<p>Will work:</p>
+
+<pre><code>push(&quot;file.jpg&quot;, &quot;/sdcard/folder/file.jpg&quot;)
+</code></pre>
+
+<h1 id="read-write-and-clear-sharedpreferences">Read, write and clear SharedPreferences</h1>
+
+<p>Simple API over <a href="http://developer.android.com/guide/topics/data/data-storage.html#pref">SharedPreferences</a>, all
+methods require the name of the SharedPreferences file as the first argument. Supports ints, floats, booleans and strings.</p>
+
+<p>It is important to notice that depending on your application you might need to poke around with SharedPreferences
+before or after your application or activity starts. In that case you will need to call these methods either
+before or after your scenario.</p>
+
+<p>To do so, you can tag a particular scenario and edit your application lifecycle hooks as explained <a href="https://groups.google.com/forum/?fromgroups=#!topic/calabash-android/Ql3iluRMijg">here</a>.</p>
+
+<h3 id="get-preferences-name"><code>get_preferences(name)</code></h3>
+
+<p>Returns a hash with the preferences available for the given name:</p>
+
+<pre><code>preferences = get_preferences(&quot;my_preferences&quot;)
+</code></pre>
+
+<h3 id="set-preferences-name-hash"><code>set_preferences(name, hash)</code></h3>
+
+<p>Sets the given hash as preferences for the given name:</p>
+
+<pre><code>set_preferences(&quot;my_preferences&quot;, {:name =&gt; &quot;wadus&quot;, :email =&gt; &quot;wadus@wadus.com&quot;, :id =&gt; 8, :active =&gt; true})
+</code></pre>
+
+<h3 id="clear-preferences-name"><code>clear_preferences(name)</code></h3>
+
+<p>Clears the preferences for the given name:</p>
+
+<pre><code>clear_preferences(&quot;my_preferences&quot;)
+</code></pre>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "hoaiviet";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "hoaiviet";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

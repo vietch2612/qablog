@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Cao Hoai Viet Blog</title>
+    <link>http://hoaiviet.netlify.com/post/</link>
+    <description>Recent content in Posts on Cao Hoai Viet Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Jan 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://hoaiviet.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calabash: Hướng dẫn cách cài đặt để kiểm thử ứng dụng iOS tự động với Calabash</title>
+      <link>http://hoaiviet.netlify.com/blog/2016/01/17/calabash-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-c%C3%A0i-%C4%91%E1%BA%B7t-%C4%91%E1%BB%83-ki%E1%BB%83m-th%E1%BB%AD-%E1%BB%A9ng-d%E1%BB%A5ng-ios-t%E1%BB%B1-%C4%91%E1%BB%99ng-v%E1%BB%9Bi-calabash/</link>
+      <pubDate>Sun, 17 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2016/01/17/calabash-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-c%C3%A0i-%C4%91%E1%BA%B7t-%C4%91%E1%BB%83-ki%E1%BB%83m-th%E1%BB%AD-%E1%BB%A9ng-d%E1%BB%A5ng-ios-t%E1%BB%B1-%C4%91%E1%BB%99ng-v%E1%BB%9Bi-calabash/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;giới-thiệu-về-calabash&#34;&gt;Giới thiệu về Calabash&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Giới thiệu về Calabash
+Calabash là một ứng dựng nguồn mở và miễn phí để kiểm thử tự động các ứng dụng di động. Nó là ứng dụng đa nền tảng và hỗ trợ cả iOS và Android. Calabash bao gồm những thư viện cho phép tương tác với các native app và hybrid app giống như người dùng cuối bao gồm các hành động như giả lập cử chỉ, xác định đúng sai và chụp hình màn hình…&lt;/p&gt;
+
+&lt;p&gt;Bài lần trước chúng ta đã làm quen với Calabash cho Android và lần này chúng ta sẽ làm quen với iOS.&lt;/p&gt;
+
+&lt;h2 id=&#34;yêu-cầu&#34;&gt;Yêu cầu&lt;/h2&gt;
+
+&lt;p&gt;Calabash khuyến khích bạn nên dùng phiên bản mới nhất của Xcode, MacOS và Ruby&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;* MacOS 10.10 or 10.11
+* Xcode 6 or 7
+* iOS Devices &amp;gt;= 7.1
+* iOS Simulators &amp;gt;= 8.0
+* ruby &amp;gt;= 2.0 (Hoặc version mới nhất nào bạn ưa thích)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Giống như bài trước, chúng ta sẽ dùng &lt;code&gt;rbenv&lt;/code&gt; để quản lý Ruby: &lt;a href=&#34;https://github.com/sstephenson/rbenv&#34;&gt;rbenv&lt;/a&gt;.
+Và bây giờ cài đặt Calabash iOS&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-ios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hoặc bạn có thể dùng &lt;a href=&#34;https://github.com/calabash/install&#34;&gt;Calabash Sandbox&lt;/a&gt; nếu bạn không muốn dùng một chương trình quản lý Ruby nào hết.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Cài đặt Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nên nhớ, &lt;strong&gt;không&lt;/strong&gt; cài đặt &lt;code&gt;gems&lt;/code&gt; bằng &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Các bạn có thể đọc bài trước để xem thêm cách cài đặt &lt;code&gt;rbenv&lt;/code&gt;:
+&lt;a href=&#34;http://blog.siliconstraits.vn/kiem-thu-tu-dong-ung-dung-android-bang-calabash/&#34;&gt;Kiểm thử tự động ứng dụng Android bằng Calabash&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;bắt-đầu&#34;&gt;Bắt đầu&lt;/h2&gt;
+
+&lt;h2 id=&#34;cài-đặt&#34;&gt;Cài đặt&lt;/h2&gt;
+
+&lt;p&gt;Để bắt đầu Calabash trong dự án của bạn, bạn cần liên kết Objective-C framework (calabash.framework) vào trong ứng dụng của bạn. Dưới đây là hướng dẫn với ứng được iOS viết bằng ngôn ngữ Swift&lt;/p&gt;
+
+&lt;h4 id=&#34;tại-sao-phải-chia-riêng-biệt-target-ra&#34;&gt;Tại sao phải chia riêng biệt Target ra?&lt;/h4&gt;
+
+&lt;p&gt;Tại vì Calabash có chưa framework và methods mà khi thêm vào project của bạn có thể bị reject bởi AppStore.&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-1-tạo-calabash-target&#34;&gt;Bước 1. Tạo Calabash target&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-1-tạo-bản-sao-target-từ-production&#34;&gt;1.1 Tạo bản sao target từ Production&lt;/h4&gt;
+
+&lt;p&gt;Trong list target, chuột phải vào Production target và chọn &lt;code&gt;Duplicate&lt;/code&gt;
+&lt;img src=&#34;http://i.imgur.com/l1iau88.jpg&#34; alt=&#34;Duplicate target&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nếu project của bạn chỉ dành cho iPhone hay iPad thì bạn sẽ nhìn thấy thông báo như này:
+&lt;img src=&#34;http://i.imgur.com/VLoZHHw.png&#34; alt=&#34;Alert&#34; /&gt;
+Nếu có, hãy chọn &amp;ldquo;Duplicate Only&amp;rdquo;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-2-đổi-tên-cho-target-vừa-tạo&#34;&gt;1.2 Đổi tên cho Target vừa tạo&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/6d6ZgjV.jpg&#34; alt=&#34;Rename target&#34; /&gt;
+Bạn nên đổi tên theo dạng &lt;code&gt;tênapp-cal&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-3-thay-đổi-bundle-identifier&#34;&gt;1.3 Thay đổi bundle identifier&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/WFvsKgC.jpg&#34; alt=&#34;Rename bundle&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-4-thay-đổi-info-plist&#34;&gt;1.4 Thay đổi Info.plist&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/VEtyYlc.jpg&#34; alt=&#34;Change info.plist&#34; /&gt;
+Là Info.plist của target Production&lt;/p&gt;
+
+&lt;h4 id=&#34;1-5-xoá-info-plist-bản-copy-khi-duplicate-target-từ-production&#34;&gt;1.5 Xoá Info.plist bản copy khi Duplicate target từ Production&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/spK8bMR.jpg&#34; alt=&#34;Remove info.plist&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-2-tạo-calabash-schema&#34;&gt;Bước 2. Tạo Calabash Schema&lt;/h3&gt;
+
+&lt;h4 id=&#34;2-1-chọn-schema-manage-schema&#34;&gt;2.1 Chọn Schema -&amp;gt; Manage Schema&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/UJ34NpB.jpg&#34; alt=&#34;ManageSchema&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-2-đổi-tên-của-schema-copy&#34;&gt;2.2 Đổi tên của Schema copy&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/neKWHsK.jpg&#34; alt=&#34;DuplicateSchema&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-3-đánh-dấu-show-và-shared&#34;&gt;2.3 Đánh dấu &lt;code&gt;Show&lt;/code&gt; và &lt;code&gt;Shared&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/tOlm8Hg.jpg&#34; alt=&#34;Check shared&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-4-chọn-scheme-executable&#34;&gt;2.4 Chọn Scheme Executable&lt;/h4&gt;
+
+&lt;p&gt;Bước này có thể không cần thiết nhưng bạn cần phải chắc chắn rằng Executable cho -cal scheme là -cal target.
+&lt;img src=&#34;http://i.imgur.com/dOxEnIG.jpg&#34; alt=&#34;exe&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-3-link-tới-cfnetwork-framework&#34;&gt;Bước 3. Link tới CFNetwork.framework&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/vU5J0xd.jpg&#34; alt=&#34;link&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/GbVurI3.jpg&#34; alt=&#34;cfnetwork&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;bước-4-link-tới-calabash-framework&#34;&gt;Bước 4. Link tới calabash.framework&lt;/h3&gt;
+
+&lt;h4 id=&#34;4-1-tải-về-calabash-framework&#34;&gt;4.1 Tải về calabash.framework&lt;/h4&gt;
+
+&lt;p&gt;Tạo Gemfile trong folder chứa file .xcodeproj của bạn với nội dung sau:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Bash&#34;&gt;source &amp;quot;https://rubygems.org&amp;quot;
+gem &amp;quot;calabash-cucumber&amp;quot;, &amp;quot;&amp;gt;= 0.16&amp;quot;, &amp;quot;&amp;lt; 2.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Và chạy những câu lệnh sau đây tại thư mục đó&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bundle exec calabash-ios download
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nếu màn hình kết quả trả về kết quả như sau nghĩa là đã hoàn thành&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;----------Info----------
+caution: excluded filename not matched:  __MACOSX/*
+caution: excluded filename not matched:  calabash.framework/.DS_Store
+---------------------------
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;4-2-thêm-calabash-framework-vào-project&#34;&gt;4.2 Thêm calabash.framework vào project&lt;/h4&gt;
+
+&lt;p&gt;Hãy chắc chắn rằng calabash-framework không được trỏ tới target nào hết.
+&lt;img src=&#34;http://i.imgur.com/wrMa9mf.jpg&#34; alt=&#34;add f&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/isStJZD.jpg&#34; alt=&#34;add f&#34; /&gt;
+&lt;img src=&#34;http://i.imgur.com/7NKMT5I.jpg&#34; alt=&#34;no target&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;4-3-link-tới-calabash-framework&#34;&gt;4.3 Link tới calabash.framework&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/XhYWywr.jpg&#34; alt=&#34;link&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Thêm đoạn sau vào Other Linked Flags&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;-ObjC -force_load &amp;quot;$(SOURCE_ROOT)/calabash.framework/calabash&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;chạy-test-cucumber-trên-ios-simulator&#34;&gt;Chạy test Cucumber trên iOS Simulator&lt;/h2&gt;
+
+&lt;p&gt;Khởi tạo feature folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Trong folder chứa file .xcodeproj và Gemfile
+$ bundle exec calabash-ios gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build và run trong Xcode, chọn target tới iOS Simulator.  Calabash sẽ tự động tìm file .app bạn vừa build.
+Và chúng ta run test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nếu Calabash không tìm thấy file .app bạn vừa build thì Calabash sẽ báo lỗi &amp;ldquo;Cannot find APP_BUNDLE_PATH&amp;rdquo;. Nếu nó sảy ra thì bạn hãy tạo biến môi trường APP_BUNDLE_PATH bằng tay&lt;/p&gt;
+
+&lt;p&gt;Khi build thì mặc định file .app của bạn sẽ nằm tại:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;và tạo biến môi trường &lt;code&gt;APP_BUNDLE_PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export APP=&amp;quot;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app&amp;quot;
+$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Còn tất cả các bước khác như Define steps, report thì đều giống Calabash Android trong bài viết trước mình đã đề cập. Hy vọng bài viết sẽ giúp bạn có thêm 1 lựa chọn mới để giúp công việc của bạn trở nên thú vị và giảm được thời gian. Cảm ơn.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CasperJS/PhantomJS - Tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/</link>
+      <pubDate>Tue, 29 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/</guid>
+      <description>
+
+&lt;h3 id=&#34;we-use&#34;&gt;We use&lt;/h3&gt;
+
+&lt;p&gt;PhantomJS - This acts as browser to run test in.
+CasperJS - build for PhantomJS, this give you some nice utilities for testing such as clicks and logging events.&lt;/p&gt;
+
+&lt;h3 id=&#34;steps-1-install-node-js-and-npm&#34;&gt;Steps 1 - Install Node.js and NPM&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;steps-2-install-phantomjs&#34;&gt;Steps 2 - Install PhantomJS&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install phantomjs -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test that PhantomJS has installed and is accessible through your terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;phantomjs -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will return version of phantomjs
+&lt;img src=&#34;https://zippy.gfycat.com/ScratchyThirstyArthropods.gif&#34; alt=&#34;img&#34; /&gt;
+Write your first PhantomJS hello world script. Create a &amp;ldquo;test.js&amp;rdquo; file with one line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;console.log(&amp;quot;Hello from PhantomJS&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run, &lt;code&gt;cd&lt;/code&gt; to folder and enter following command to your console:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;phantomjs test.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://zippy.gfycat.com/DefinitiveSlushyGroundbeetle.gif&#34; alt=&#34;runtestphantomjs&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;steps-3-install-casperjs&#34;&gt;Steps 3 - Install CasperJS&lt;/h3&gt;
+
+&lt;p&gt;If you are using NPM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install casperjs -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test that CasperJS has installed and is accessible through your terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;casperjs -version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This should return the version number&lt;/p&gt;
+
+&lt;p&gt;Now lets get to grips with CasperJS. Create a new &lt;code&gt;casper_test.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;Require and create a new Casper instance The &lt;code&gt;.create()&lt;/code&gt; method will return an instance of the casper class&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var Casper = require(&#39;casper&#39;).create();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start Casper up, you must use the &lt;code&gt;.start()&lt;/code&gt; method to navigate the site and run the casper suit&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;// casper.start(url, callback);
+casper.start(&#39;http//:google.com&#39;, function(){})
+Now echo out the title of the current page. You can print out messages in a range of different styles: INFO, ERROR, WARNING, COMMENT
+
+casper.start(&#39;http//:google.com&#39;, function(){
+    // this.echo(messageToPrint, style)
+    this.echo(this.getTitle, &#39;INFO&#39;)
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally use the run method&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;casper.run()
+The full code is as follows:
+
+var casper = require(&#39;casper&#39;).create();
+
+casper.start(&#39;http://google.com/&#39;, function() {
+    this.echo(this.getTitle(), &#39;INFO&#39;);
+});
+
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run this, go to your terminal and enter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ casperjs casper_test.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The console should print out &amp;lsquo;Google&amp;rsquo;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calabash: Ruby API</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/25/calabash-ruby-api/</link>
+      <pubDate>Fri, 25 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/25/calabash-ruby-api/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;ruby-api&#34;&gt;Ruby API&lt;/h1&gt;
+
+&lt;p&gt;When writing custom steps, you&amp;rsquo;ll need to use the Ruby API to interact with your application. This document describes the API at a high level. If you want to see details you can look at the source code in the files at &lt;a href=&#34;../ruby-gem/lib/calabash-android/&#34;&gt;ruby-gem/lib/calabash-android&lt;/a&gt;. There are functions in the source code which aren&amp;rsquo;t documented here. Those are way more likely to change (so be warned if you rely on those).&lt;/p&gt;
+
+&lt;p&gt;Calabash Android has a client-server architecture. The Calabash Ruby API is the client side which speaks HTTP with the test server that running on the device along with your app. To get an architectural overview of Calabash Android please read the blog posts:&lt;/p&gt;
+
+&lt;h1 id=&#34;general&#34;&gt;General&lt;/h1&gt;
+
+&lt;h3 id=&#34;start-test-server-in-background&#34;&gt;&lt;code&gt;start_test_server_in_background&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Starts the test server and the app under test (AUT). If the app is already running it will be restarted.&lt;/p&gt;
+
+&lt;h3 id=&#34;reinstall-apps&#34;&gt;&lt;code&gt;reinstall_apps&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Will reinstall both the test server and the AUT to be sure the newest versions are installed.&lt;/p&gt;
+
+&lt;h1 id=&#34;query&#34;&gt;Query&lt;/h1&gt;
+
+&lt;h3 id=&#34;query-uiquery-args&#34;&gt;&lt;code&gt;query(uiquery, *args)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Query returns an &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Array.html&#34;&gt;array&lt;/a&gt; of its results. The query function gives powerful query capability from your test code. You can find views and other application objects, and make assertions about them or extract data from them.&lt;/p&gt;
+
+&lt;p&gt;Calabash Android tries to return results that carry useable information by default. For view objects this includes coordinates, class and contentdescription:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):002:0&amp;gt; query(&amp;quot;button index:1&amp;quot;)
+=&amp;gt; [{&amp;quot;id&amp;quot;=&amp;gt;&amp;quot;save&amp;quot;, &amp;quot;enabled&amp;quot;=&amp;gt;true, &amp;quot;contentDescription&amp;quot;=&amp;gt;nil, &amp;quot;class&amp;quot;=&amp;gt;&amp;quot;android.widget.Button&amp;quot;, &amp;quot;text&amp;quot;=&amp;gt;&amp;quot;Save&amp;quot;, &amp;quot;rect&amp;quot;=&amp;gt;{&amp;quot;center_y&amp;quot;=&amp;gt;724.0, &amp;quot;center_x&amp;quot;=&amp;gt;645.5, &amp;quot;height&amp;quot;=&amp;gt;64, &amp;quot;y&amp;quot;=&amp;gt;692, &amp;quot;width&amp;quot;=&amp;gt;71, &amp;quot;x&amp;quot;=&amp;gt;610}, &amp;quot;description&amp;quot;=&amp;gt;&amp;quot;android.widget.Button{4267b4a0 VFED..C. ........ 497,243-568,307 #7f070023 app:id/save}&amp;quot;}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A view is represented as a ruby &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Hash.html&#34;&gt;Hash&lt;/a&gt; (hash map) so you can look into the result&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):003:0&amp;gt; query(&amp;quot;button index:1&amp;quot;).first.keys
+=&amp;gt; [&amp;quot;id&amp;quot;, &amp;quot;enabled&amp;quot;, &amp;quot;contentDescription&amp;quot;, &amp;quot;class&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;rect&amp;quot;, &amp;quot;description&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;*args&lt;/code&gt; parameter lets you perform methods on the query result &lt;em&gt;before&lt;/em&gt; it is returned to your Ruby script code (remember that the query is evaluated as Java code inside the app and the result is sent back to the Ruby code). The form &lt;code&gt;*args&lt;/code&gt; is Ruby-speak for a variable number of args. For example, if you have a button you can do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):005:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;)
+=&amp;gt; [&amp;quot;Optional Settings&amp;quot;, &amp;quot;Save&amp;quot;, &amp;quot;Cancel&amp;quot;, &amp;quot;Get a free blog at WordPress.com&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This calls a &amp;lsquo;getter&amp;rsquo; method &amp;ldquo;text&amp;rdquo; (that is text(), getText() or isText()) on each of the buttons in the view (it always returns an array). You can perform a sequence of methods:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):007:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;length&amp;quot;)
+=&amp;gt; [17, 4, 6, 32]
+
+irb(main):008:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;toLowerCase&amp;quot;)
+=&amp;gt; [&amp;quot;optional settings&amp;quot;, &amp;quot;save&amp;quot;, &amp;quot;cancel&amp;quot;, &amp;quot;get a free blog at wordpress.com&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For methods with arguments you can use hashes. In Ruby 1.9 this has quite nice syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):033:0&amp;gt; query(&amp;quot;edittext index:1&amp;quot;, setText:&amp;quot;1234&amp;quot;)
+=&amp;gt; [&amp;quot;&amp;lt;VOID&amp;gt;&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Ruby 1.8 you can&amp;rsquo;t use key:val as literal Hash syntax so you must do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):034:0&amp;gt; query(&amp;quot;edittext index:1&amp;quot;, :setText =&amp;gt; &amp;quot;1234&amp;quot;)
+=&amp;gt; [&amp;quot;&amp;lt;VOID&amp;gt;&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Behind the scenes the Java method &lt;code&gt;setText&lt;/code&gt; will be execute with the argument &lt;code&gt;&amp;quot;12345&amp;quot;&lt;/code&gt; on all view elements that were matched by the query.&lt;/p&gt;
+
+&lt;p&gt;Notice that the string &lt;code&gt;&amp;lt;VOID&amp;gt;&lt;/code&gt; is Calabash&amp;rsquo;s way of returning from a Java method with return type &lt;code&gt;void&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more complex methods you use Arrays of Hashes. Here is a complex Ruby 1.9 example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TODO: Example
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;element-does-not-exist-uiquery&#34;&gt;&lt;code&gt;element_does_not_exist(uiquery)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;element-exists-uiquery&#34;&gt;&lt;code&gt;element_exists(uiquery)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;view-with-mark-exists-expected-mark&#34;&gt;&lt;code&gt;view_with_mark_exists(expected_mark)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;element_exists&lt;/code&gt; function returns true if an element exists matching query &lt;code&gt;uiquery&lt;/code&gt;.
+The &lt;code&gt;element_does_not_exist&lt;/code&gt; function returns true if an element matching query &lt;code&gt;uiquery&lt;/code&gt; does not exist.&lt;/p&gt;
+
+&lt;p&gt;The function &lt;code&gt;view_with_mark_exists(expected_mark)&lt;/code&gt; is shorthand for&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;element_exists(&amp;quot;* marked:&#39;#{expected_mark}&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;waiting&#34;&gt;Waiting&lt;/h1&gt;
+
+&lt;h3 id=&#34;wait-for-options-block&#34;&gt;&lt;code&gt;wait_for(options, &amp;amp;block)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Waits for a condition to occur. Takes a hash of options and a block to be called repeatedly. The options (which are described below) have the following defaults:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+ :timeout =&amp;gt; 10, #maximum number of seconds to wait
+ :retry_frequency =&amp;gt; 0.2, #wait this long before retrying the block
+ :post_timeout =&amp;gt; 0.1, #wait this long after the block returns true
+ :timeout_message =&amp;gt; &amp;quot;Timed out waiting...&amp;quot;, #error message in case options[:timeout] is exceeded
+ :screenshot_on_error =&amp;gt; true # take a screenshot in case of error
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;timeout&lt;/code&gt; argument should be a number indicating the maximal number of seconds you are willing to wait (after that amount of time the step will cause your test to fail). The &lt;code&gt;:post_timeout&lt;/code&gt; (0.1 by default) is an number of seconds to wait &lt;em&gt;after the condition becomes true&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;amp;block&lt;/code&gt; parameter is Ruby syntax for saying that this method takes a block of code. This block specifies the condition to wait for. The block should return &lt;code&gt;true&lt;/code&gt; when the the condition occurs.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;:retry_frequency&lt;/code&gt; is a small sleep that is made between each call to the specified block. This describes how often Calabash should poll for the condition to be true.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):030:0&amp;gt; wait_for(:timeout =&amp;gt; 5) { query(&amp;quot;button marked:&#39;Save&#39;&amp;quot;).size &amp;gt; 0 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will check for the existence of a view matching: &amp;ldquo;button marked:&amp;lsquo;Save&amp;rsquo;&amp;ldquo;. It will wait &lt;em&gt;at most&lt;/em&gt; 5 seconds (failing if more than 5 seconds pass). It will issue the query repeatedly until it is found or 5 seconds pass.&lt;/p&gt;
+
+&lt;p&gt;A typical form uses &lt;code&gt;element_exists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):031:0&amp;gt; wait_for(:timeout =&amp;gt; 5) { element_exists(&amp;quot;button marked:&#39;Save&#39;&amp;quot;) }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Ruby short blocks are written with braces (like: &lt;code&gt;{ element_exists(&amp;quot;button marked:&#39;Save&#39;&amp;quot;) }&lt;/code&gt;), and more complicated blocks are written using &lt;code&gt;do&lt;/code&gt;-&lt;code&gt;end&lt;/code&gt;. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wait_for(:timeout =&amp;gt; 30) do
+    res = query(&amp;quot;checkbox marked:&#39;Geotag Posts&#39;&amp;quot;, &#39;checked&#39;)
+    res.first == true
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A Ruby block always returns the value of its last expression (&lt;code&gt;res.first == true&lt;/code&gt; in this case).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Notes:&lt;/em&gt; Waiting for a condition to occur is superior to using the &lt;code&gt;sleep&lt;/code&gt; function. With &lt;code&gt;sleep&lt;/code&gt; you end up either specifying too long waits which slows the test down or you become sensitive to timing issues. Sometimes you do need sleep (to wait for animations to complete), but try to use waiting as much as possible.&lt;/p&gt;
+
+&lt;h3 id=&#34;wait-for-element-exists-uiquery-options&#34;&gt;wait_for_element_exists(uiquery, options={})&lt;/h3&gt;
+
+&lt;p&gt;A high-level waiting function. This captures the common practice of waiting for UI elements, i.e., combining &lt;code&gt;wait_for&lt;/code&gt; and &lt;code&gt;element_exists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Takes a query and waits for it to return a results. Calls &lt;code&gt;wait_for&lt;/code&gt; supplying &lt;code&gt;options&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):009:0&amp;gt; wait_for_elements_exist( &amp;quot;* marked:&#39;Please sign in&#39;&amp;quot;, :timeout =&amp;gt; 10)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wait-for-elements-exist-elements-arr-options&#34;&gt;wait_for_elements_exist(elements_arr, options={})&lt;/h3&gt;
+
+&lt;p&gt;Like &lt;code&gt;wait_for_element_exists&lt;/code&gt; but takes an &lt;em&gt;array&lt;/em&gt; of queries and waits for all of those queries to return results. Calls &lt;code&gt;wait_for&lt;/code&gt; supplying &lt;code&gt;options&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):008:0&amp;gt; wait_for_elements_exist( [&amp;quot;button marked:&#39;Save&#39;&amp;quot;, &amp;quot;* marked:&#39;Please sign in&#39;&amp;quot;], :timeout =&amp;gt; 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wait-for-element-does-not-exist-uiquery-options&#34;&gt;wait_for_element_does_not_exist(uiquery, options={})&lt;/h3&gt;
+
+&lt;p&gt;Similar to &lt;code&gt;wait_for_element_exists&lt;/code&gt;, but waits for an element to not exist.&lt;/p&gt;
+
+&lt;h3 id=&#34;wait-for-elements-do-not-exist-elements-arr-options&#34;&gt;wait_for_elements_do_not_exist(elements_arr, options={})&lt;/h3&gt;
+
+&lt;p&gt;Similar to &lt;code&gt;wait_for_elements_exist&lt;/code&gt;, but waits for all of the elements to not exist.&lt;/p&gt;
+
+&lt;h1 id=&#34;assertions&#34;&gt;Assertions&lt;/h1&gt;
+
+&lt;h4 id=&#34;fail-msg-error-check-log-for-details&#34;&gt;&lt;code&gt;fail(msg=&amp;quot;Error. Check log for details.&amp;quot;)&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;Will fail the test with message &lt;code&gt;msg&lt;/code&gt;. Takes a screenshot.&lt;/p&gt;
+
+&lt;h3 id=&#34;check-element-exists-query&#34;&gt;&lt;code&gt;check_element_exists(query)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;check-element-does-not-exist-query&#34;&gt;&lt;code&gt;check_element_does_not_exist(query)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;check-view-with-mark-exists-expected-mark&#34;&gt;&lt;code&gt;check_view_with_mark_exists(expected_mark)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Asserts that an element exists using the query function on the parameter &lt;code&gt;query&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The function &lt;code&gt;check_view_with_mark_exists(expected_mark)&lt;/code&gt; is shorthand for&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check_element_exists(&amp;quot;view marked:&#39;#{expected_mark}&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;touch&#34;&gt;Touch&lt;/h1&gt;
+
+&lt;h3 id=&#34;touch-uiquery-options&#34;&gt;&lt;code&gt;touch(uiquery, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Touches a view found by performing the query &lt;code&gt;uiquery&lt;/code&gt;. It is recommended that &lt;code&gt;uiquery&lt;/code&gt; only produce one match, but the default is to just touch the first of the results if there are several.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;touch&lt;/code&gt; method is one of the most used in Calabash. It is mostly used in its simplest form:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):037:0&amp;gt; touch(&amp;quot;* marked:&#39;Save&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which uses content descriptions, ids or texts. This form is so common that there is a short-hand for it: &lt;code&gt;tap&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):038:0&amp;gt; tap &#39;Save&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For flexibility you can also pass in a hash representation of a view and the the touch event will be calculated based on those values and no query will be executed. &lt;code&gt;touch&lt;/code&gt; will also accept a list of hashes in which case Calabash will touch the first one view in the list.&lt;/p&gt;
+
+&lt;p&gt;The following are all equivalent&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;touch(&amp;quot;button index:0&amp;quot;)
+touch(&amp;quot;button&amp;quot;)
+touch(query(&amp;quot;button index:0&amp;quot;))
+touch(query(&amp;quot;button&amp;quot;).first)
+touch(query(&amp;quot;button&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;entering-text&#34;&gt;Entering text&lt;/h1&gt;
+
+&lt;h3 id=&#34;keyboard-enter-text-text-options&#34;&gt;&lt;code&gt;keyboard_enter_text(text, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Enters &lt;strong&gt;text&lt;/strong&gt; into the currently focused view.&lt;/p&gt;
+
+&lt;h3 id=&#34;enter-text-uiquery-text-options&#34;&gt;&lt;code&gt;enter_text(uiquery, text, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Taps the first element returned by &lt;strong&gt;uiquery&lt;/strong&gt;, then enters &lt;strong&gt;text&lt;/strong&gt; into the view.&lt;/p&gt;
+
+&lt;h1 id=&#34;screenshot&#34;&gt;Screenshot&lt;/h1&gt;
+
+&lt;h3 id=&#34;screenshot-options-prefix-nil-name-nil&#34;&gt;&lt;code&gt;screenshot(options={:prefix=&amp;gt;nil, :name=&amp;gt;nil})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Takes a screenshot of the app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;screenshot({:prefix =&amp;gt; &amp;quot;/tmp&amp;quot;, :name=&amp;gt;&amp;quot;my.png&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If prefix and name are nil it will use default values (which is currently the line in the current feature).&lt;/p&gt;
+
+&lt;h3 id=&#34;screenshot-embed-options-prefix-nil-name-nil-label-nil&#34;&gt;&lt;code&gt;screenshot_embed(options={:prefix=&amp;gt;nil, :name=&amp;gt;nil, :label =&amp;gt; nil})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Takes a screenshot of the app and embeds to cucumber reporters (e.g. html reports).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;screenshot_embed({:prefix =&amp;gt; &amp;quot;/tmp&amp;quot;, :name=&amp;gt;&amp;quot;my.png&amp;quot;, :label =&amp;gt; &amp;quot;Mine&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If prefix and name are nil it will use default values (which is currently the line in the current feature).&lt;/p&gt;
+
+&lt;p&gt;Label is the label used in the cucumber report output (equals to name if not specified).&lt;/p&gt;
+
+&lt;h1 id=&#34;pull-and-push-files-and-folders-from-and-to-the-device&#34;&gt;Pull and push files and folders from and to the device&lt;/h1&gt;
+
+&lt;h3 id=&#34;pull-remote-local&#34;&gt;&lt;code&gt;pull(remote, local)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Pulls a file from the device to local computer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pull(&amp;quot;/sdcard/file.jpg&amp;quot;, &amp;quot;file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;push-local-remote&#34;&gt;&lt;code&gt;push(local, remote)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Pushes a file from the local computer to the device:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uses &lt;a href=&#34;http://developer.android.com/tools/help/adb.html&#34;&gt;adb&lt;/a&gt; so same rules apply:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Won&amp;rsquo;t be able to pull or push from restricted folders such as /data/data&lt;/li&gt;
+&lt;li&gt;If destination path already exists, it&amp;rsquo;s overwritten without warning&lt;/li&gt;
+&lt;li&gt;For files, full destination path must be provided, ie:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Won&amp;rsquo;t work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/folder&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Will work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/folder/file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;read-write-and-clear-sharedpreferences&#34;&gt;Read, write and clear SharedPreferences&lt;/h1&gt;
+
+&lt;p&gt;Simple API over &lt;a href=&#34;http://developer.android.com/guide/topics/data/data-storage.html#pref&#34;&gt;SharedPreferences&lt;/a&gt;, all
+methods require the name of the SharedPreferences file as the first argument. Supports ints, floats, booleans and strings.&lt;/p&gt;
+
+&lt;p&gt;It is important to notice that depending on your application you might need to poke around with SharedPreferences
+before or after your application or activity starts. In that case you will need to call these methods either
+before or after your scenario.&lt;/p&gt;
+
+&lt;p&gt;To do so, you can tag a particular scenario and edit your application lifecycle hooks as explained &lt;a href=&#34;https://groups.google.com/forum/?fromgroups=#!topic/calabash-android/Ql3iluRMijg&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;get-preferences-name&#34;&gt;&lt;code&gt;get_preferences(name)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Returns a hash with the preferences available for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;preferences = get_preferences(&amp;quot;my_preferences&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set-preferences-name-hash&#34;&gt;&lt;code&gt;set_preferences(name, hash)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Sets the given hash as preferences for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set_preferences(&amp;quot;my_preferences&amp;quot;, {:name =&amp;gt; &amp;quot;wadus&amp;quot;, :email =&amp;gt; &amp;quot;wadus@wadus.com&amp;quot;, :id =&amp;gt; 8, :active =&amp;gt; true})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;clear-preferences-name&#34;&gt;&lt;code&gt;clear_preferences(name)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Clears the preferences for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear_preferences(&amp;quot;my_preferences&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calabash: Calabash-iOS for iOS tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</link>
+      <pubDate>Wed, 23 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;calabash-ios&#34;&gt;Calabash iOS&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://calaba.sh/&#34;&gt;http://calaba.sh/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Calabash is an automated testing technology for Android and iOS native and hybrid applications.&lt;/p&gt;
+
+&lt;p&gt;Calabash is a free-to-use open source project that is developed and maintained by &lt;a href=&#34;http://xamarin.com&#34;&gt;Xamarin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MacOS 10.10 or 10.11&lt;/li&gt;
+&lt;li&gt;Xcode 6 or 7&lt;/li&gt;
+&lt;li&gt;iOS Devices &amp;gt;= 7.1&lt;/li&gt;
+&lt;li&gt;iOS Simulators &amp;gt;= 8.0&lt;/li&gt;
+&lt;li&gt;ruby &amp;gt;= 2.0 (latest is preferred)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the best Ruby experience we recommend that you use a managed Ruby
+like &lt;a href=&#34;https://github.com/sstephenson/rbenv&#34;&gt;rbenv&lt;/a&gt; or &lt;a href=&#34;https://rvm.io/&#34;&gt;rvm&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you are just getting started or don&amp;rsquo;t want to commit to a managed Ruby, we
+recommend you install and use the &lt;a href=&#34;https://github.com/calabash/install&#34;&gt;Calabash Sandbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Installs the Calabash Sandbox
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please do &lt;em&gt;not&lt;/em&gt; install gems with &lt;code&gt;sudo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more information about ruby on MacOS, see these Wiki pages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Ruby-on-MacOS&#34;&gt;Ruby on MacOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo&#34;&gt;Best Practice: Never install gems with sudo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;If you want to see Calabash iOS in action, head over to the &lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;Calabash iOS Smoke Test App&lt;/a&gt; and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.&lt;/p&gt;
+
+&lt;p&gt;The examples below assume you are using a managed ruby or are working in the Calabash
+Sandbox:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ calabash-sandbox
+This terminal is now ready to use with Calabash.
+To exit, type &#39;exit&#39;.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;step-1-link-calabash-framework&#34;&gt;Step 1: Link calabash.framework&lt;/h3&gt;
+
+&lt;p&gt;To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
+that are written in Swift.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;center&#34;&gt;Tutorial&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Use linker flags in the Debug build config to load the calabash.framework&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Calabash-config&#34;&gt;Calabash Config&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Create a new Calabash Build Configuration&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A--Creating-a-cal-Target&#34;&gt;-cal Target&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Add a new app target to Xcode.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If you want to get started quickly, follow the &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config&#34;&gt;Debug Config&lt;/a&gt; instructions.  The &lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode&#34;&gt;Tutorial: How to add Calabash to Xcode&lt;/a&gt; wiki page discusses the merits of each approach and has instructions for using CocoaPods.&lt;/p&gt;
+
+&lt;h3 id=&#34;step-2-run-cucumber-against-an-ios-simulator&#34;&gt;Step 2: Run Cucumber against an iOS Simulator&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/calabash/calabash-ios-example&#34;&gt;Calabash iOS Example&lt;/a&gt; README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# In the directory where your .xcodeproj and Gemfile are
+$ bundle exec calabash-ios gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build and run in Xcode, targeting an iOS Simulator.  Calabash will try to detect the .app you just built.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If Calabash cannot find the .app you just built, it will raise an error.  If this happens, you will to tell Calabash where it can find your .app.&lt;/p&gt;
+
+&lt;p&gt;By default, Xcode builds to a DerivedData directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Try to locate the .app and set the &lt;code&gt;APP&lt;/code&gt; variable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ export APP=&amp;quot;~/Library/Developer/Xcode/DerivedData/&amp;lt;UDID&amp;gt;/Build/Products/Debug-iphonesimulator/&amp;lt;NAME&amp;gt;.app&amp;quot;
+$ bundle exec cucumber
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a &lt;code&gt;./Products&lt;/code&gt;, even when building from Xcode.  You can use the Xcode &amp;gt; Preferences &amp;gt; Locations settings to do the same.&lt;/p&gt;
+
+&lt;h3 id=&#34;where-to-go-from-here&#34;&gt;Where to go from here?&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Getting-Started&#34;&gt;Getting Started&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A more in-depth tutorial using the LPSimpleExample.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki/Testing-on-Physical-Devices&#34;&gt;Testing on Physical Devices&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Everything you need to know about testing on physical devices.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;http://calabashapi.xamarin.com/ios&#34;&gt;API Docs&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS ruby API&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-smoke-test-app&#34;&gt;iOS Smoke Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates advanced features, setups, and workflows&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/ios-webview-test-app&#34;&gt;iOS WebView Test App&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Demonstrates how to interact with UIWebView and WKWebView&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/calabash/calabash-ios/wiki&#34;&gt;Getting Help&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;The Calabash iOS Wiki&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calabash: Calabash-Android tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/</link>
+      <pubDate>Tue, 22 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;automation-testing-for-android-app&#34;&gt;Automation Testing for Android App&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;requirement&#34;&gt;Requirement&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JAVA JDK&lt;/li&gt;
+&lt;li&gt;ANDROID SDK&lt;/li&gt;
+&lt;li&gt;RUBY&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;install-java-jdk&#34;&gt;Install Java JDK&lt;/h2&gt;
+
+&lt;p&gt;Download and install from here: &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&#34;&gt;Java JDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;install-and-setup-android-sdk&#34;&gt;Install and setup Android SDK.&lt;/h2&gt;
+
+&lt;p&gt;Download and install Android SDK for Mac from here&lt;a href=&#34;http://developer.android.com/sdk/index.html#Other&#34;&gt;Android SDK Stand alone download&lt;/a&gt;
+    &lt;img src=&#34;http://i.imgur.com/sm5eCyE.png&#34; alt=&#34;android_sdk_for_macos&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Download and unzip, then we need to export environment variable &lt;code&gt;ANDROID_HOME&lt;/code&gt; and &lt;code&gt;PATH&lt;/code&gt; to two folder &lt;code&gt;platform-tools&lt;/code&gt; and &lt;code&gt;tools&lt;/code&gt;from Android SDK folder&lt;br /&gt;
+Set &lt;code&gt;ANDROID_HOME&lt;/code&gt; by enter commend below to Terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export ANDROID_HOME=/path/to/your/android/sdk/folder
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;/path/to/your/android/sdk/folder&lt;/code&gt; is path to your android sdk folder on your computer. In my case, this is &lt;code&gt;/User/hoaiviet/Documents/android-sdk&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;set &lt;code&gt;PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reset Terminal or add this commmand to &lt;code&gt;~/.bash_profile&lt;/code&gt; or &lt;code&gt;~/.zshrc&lt;/code&gt; if you are using &lt;code&gt;zsh&lt;/code&gt;
+Reload configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-ruby&#34;&gt;Install Ruby&lt;/h2&gt;
+
+&lt;p&gt;We need &lt;code&gt;Homebrew&lt;/code&gt; to install ruby. If not, follow command below to install:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, install ruby by command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install rbenv ruby-build
+
+# Install ruby
+rbenv install 2.2.3
+rbenv global 2.2.3
+
+# Check ruby version
+ruby -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If &lt;code&gt;ruby -v&lt;/code&gt; response not equal version 2.2.3 then we need add command below to file &lt;code&gt;~/.bash_profile&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export PATH=&amp;quot;$HOME/.rbenv/bin:$PATH&amp;quot;
+eval &amp;quot;$(rbenv init -)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and reload&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-calabash-android&#34;&gt;Install Calabash Android&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install calabash-android
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-folder-test&#34;&gt;Create folder test&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial, we use skype app for testing.&lt;/p&gt;
+
+&lt;p&gt;Now we create new folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open this folder&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd calabash-test-skype
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Generate test folder structure&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android gen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;press Enter to continue&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/Ltl5gtd.png&#34; alt=&#34;folder_structer&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Copy your apk file to this folder then resign this by command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android resign skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-first-scenario&#34;&gt;Create first scenario&lt;/h2&gt;
+
+&lt;p&gt;Open &lt;code&gt;my_fist.feature&lt;/code&gt; by whatever text editor what you like.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/verAlLs.png&#34; alt=&#34;first_step&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note: You can view predefined command here: &lt;a href=&#34;https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md&#34;&gt;canned_steps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;First, we create scenario to test login function of skype&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Step 1: Press Skyname button
+Step 2: Enter account name to input field number 1
+Step 3: Enter password to input field number 2
+Step 4: Press Sign up button
+Step 5: Assertion is we need to view Add friend button
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we define this in &lt;code&gt;my_first.feature&lt;/code&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;Feature: Login feature
+
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+    Given I enter &amp;quot;viet.ch2612&amp;quot; into input field number 1
+    Given I enter my secret password into input fiend number 2
+    When I press view with id &amp;quot;sign_in_btn&amp;quot;
+    Then I should see &amp;quot;Add friend&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Connect your device or Simulator then check&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;adb devices
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, run this test&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is result
+&lt;img src=&#34;http://i.imgur.com/LuvPgK4.png&#34; alt=&#34;first_run&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We show &amp;ldquo;Not defined step&amp;rdquo;? Yes, now we define this step:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
+  enter_text(&amp;quot;android.widget.EditText index:#{index.to_i-1}&amp;quot;, &amp;quot;password&amp;quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run again
+&lt;img src=&#34;http://i.imgur.com/VAiEZP2.png&#34; alt=&#34;result&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;OK all passed&lt;/p&gt;
+
+&lt;h2 id=&#34;test-report&#34;&gt;Test report?&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --format html --out &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -f html -o &amp;lt;filename&amp;gt;.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;this is test report format
+&lt;img src=&#34;http://i.imgur.com/6FLE3m5.png&#34; alt=&#34;report&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;run-one-feature&#34;&gt;Run one feature?&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk feature/&amp;lt;filename&amp;gt;.feature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;run-scenario-by-tag&#34;&gt;Run scenario by @tag&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk --tag @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;calabash-android run skype.apk -t @test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;clear-app-data&#34;&gt;Clear app data&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-use-tag-reset&#34;&gt;1: Use tag &lt;code&gt;@reset&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Add this to &lt;code&gt;feature/support/app_installation_hooks.rb&lt;/code&gt; inside &lt;code&gt;Before&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;scenario_tags = scenario.source_tag_names
+  if scenario_tags.include?(&amp;quot;@reset&amp;quot;)
+    clear_app_data
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And add @reset before scenario&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cucumber&#34;&gt;@reset
+  Scenario: As a valid user I can log into my app
+    Given I press the &amp;quot;Skype Name&amp;quot; button
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-define-1-step-for-clear-app-data&#34;&gt;2: Define 1 step for clear app data&lt;/h3&gt;
+
+&lt;p&gt;First, require &lt;code&gt;require app_installation&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;require &#39;calabash-android/management/app_installation&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and define step&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;Given /^I clear app data$/ do
+  clear_app_data
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: Recommend add delay time for this step&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Appium: Appium for Android tutorial</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/21/appium-appium-for-android-tutorial/</link>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/21/appium-appium-for-android-tutorial/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;các-phần-mềm-yêu-cầu-dành-cho-windows&#34;&gt;Các phần mềm yêu cầu. (Dành cho Windows)&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Java JDK &lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/index.html&#34;&gt;http://www.oracle.com/technetwork/java/javase/downloads/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Android SDK &lt;a href=&#34;https://developer.android.com/sdk/index.html&#34;&gt;https://developer.android.com/sdk/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Appium Desktop Apps &lt;a href=&#34;http://appium.io/downloads.html&#34;&gt;http://appium.io/downloads.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Phầm mềm giả lập Android hoặc một chiếc device chạy Android thật. Yêu cầu phải có API &amp;gt;= 17 (4.2). Mình gợi ý dùng Genymotion vì khá là nhẹ với những bạn có PC cấu hình yếu. &lt;a href=&#34;https://www.genymotion.com/&#34;&gt;https://www.genymotion.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Java IDE (IntelliJ, Eclipse, Netbeans &amp;hellip;). Tại bài hướng dẫn này thì mình sử dụng IntelliJ 14 &lt;a href=&#34;https://www.jetbrains.com/idea/download/&#34;&gt;https://www.jetbrains.com/idea/download/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;các-bước-tiến-hành&#34;&gt;Các bước tiến hành&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Cài đặt Java JDK.
+Tiến hành cài đặt như bình thường và tạo biến môi trường: JAVA_HOME. Hướng dẫn có sẵn tại đây &lt;a href=&#34;https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html&#34;&gt;https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Android SDK: Cài đặt và tải SDK Packages mới nhất. Hướng dẫn có sẵn tại đây &lt;a href=&#34;https://developer.android.com/sdk/installing/adding-packages.html&#34;&gt;https://developer.android.com/sdk/installing/adding-packages.html&lt;/a&gt;. Sau khi cài đặt xong sẽ tạo thêm biến môi trường ANDROID_HOME.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Cài đặt Appium và chạy Appium.exe, nhấn nút Start để start appium server.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Tạo một Android Emulator hoặc tìm một device thật để test.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;tạo-một-project-mới&#34;&gt;Tạo một project mới&lt;/h3&gt;
+
+&lt;p&gt;Hướng dẫn này sử dụng IntelliJ IDEA và test trên Whatsapp.apk&lt;/p&gt;
+
+&lt;p&gt;Từ IntelliJ, tạo một Maven Project mới.&lt;/p&gt;
+
+&lt;p&gt;Trong pom.xml, add thêm 2 dependencies là io.appium và testNG&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;io.appium&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;java-client&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;org.testng&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;testng&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;6.9.6&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;tạo-một-class-test-cơ-bản&#34;&gt;Tạo một class Test cơ bản.&lt;/h3&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
