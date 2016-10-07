@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Calabash on Cao Hoai Viet Blog</title>
+    <link>http://hoaiviet.netlify.com/categories/calabash/</link>
+    <description>Recent content in Calabash on Cao Hoai Viet Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://hoaiviet.netlify.com/categories/calabash/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calabash: Ruby API</title>
+      <link>http://hoaiviet.netlify.com/blog/2015/12/25/calabash-ruby-api/</link>
+      <pubDate>Fri, 25 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hoaiviet.netlify.com/blog/2015/12/25/calabash-ruby-api/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;ruby-api&#34;&gt;Ruby API&lt;/h1&gt;
+
+&lt;p&gt;When writing custom steps, you&amp;rsquo;ll need to use the Ruby API to interact with your application. This document describes the API at a high level. If you want to see details you can look at the source code in the files at &lt;a href=&#34;../ruby-gem/lib/calabash-android/&#34;&gt;ruby-gem/lib/calabash-android&lt;/a&gt;. There are functions in the source code which aren&amp;rsquo;t documented here. Those are way more likely to change (so be warned if you rely on those).&lt;/p&gt;
+
+&lt;p&gt;Calabash Android has a client-server architecture. The Calabash Ruby API is the client side which speaks HTTP with the test server that running on the device along with your app. To get an architectural overview of Calabash Android please read the blog posts:&lt;/p&gt;
+
+&lt;h1 id=&#34;general&#34;&gt;General&lt;/h1&gt;
+
+&lt;h3 id=&#34;start-test-server-in-background&#34;&gt;&lt;code&gt;start_test_server_in_background&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Starts the test server and the app under test (AUT). If the app is already running it will be restarted.&lt;/p&gt;
+
+&lt;h3 id=&#34;reinstall-apps&#34;&gt;&lt;code&gt;reinstall_apps&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Will reinstall both the test server and the AUT to be sure the newest versions are installed.&lt;/p&gt;
+
+&lt;h1 id=&#34;query&#34;&gt;Query&lt;/h1&gt;
+
+&lt;h3 id=&#34;query-uiquery-args&#34;&gt;&lt;code&gt;query(uiquery, *args)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Query returns an &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Array.html&#34;&gt;array&lt;/a&gt; of its results. The query function gives powerful query capability from your test code. You can find views and other application objects, and make assertions about them or extract data from them.&lt;/p&gt;
+
+&lt;p&gt;Calabash Android tries to return results that carry useable information by default. For view objects this includes coordinates, class and contentdescription:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):002:0&amp;gt; query(&amp;quot;button index:1&amp;quot;)
+=&amp;gt; [{&amp;quot;id&amp;quot;=&amp;gt;&amp;quot;save&amp;quot;, &amp;quot;enabled&amp;quot;=&amp;gt;true, &amp;quot;contentDescription&amp;quot;=&amp;gt;nil, &amp;quot;class&amp;quot;=&amp;gt;&amp;quot;android.widget.Button&amp;quot;, &amp;quot;text&amp;quot;=&amp;gt;&amp;quot;Save&amp;quot;, &amp;quot;rect&amp;quot;=&amp;gt;{&amp;quot;center_y&amp;quot;=&amp;gt;724.0, &amp;quot;center_x&amp;quot;=&amp;gt;645.5, &amp;quot;height&amp;quot;=&amp;gt;64, &amp;quot;y&amp;quot;=&amp;gt;692, &amp;quot;width&amp;quot;=&amp;gt;71, &amp;quot;x&amp;quot;=&amp;gt;610}, &amp;quot;description&amp;quot;=&amp;gt;&amp;quot;android.widget.Button{4267b4a0 VFED..C. ........ 497,243-568,307 #7f070023 app:id/save}&amp;quot;}]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A view is represented as a ruby &lt;a href=&#34;http://www.ruby-doc.org/core-1.9.3/Hash.html&#34;&gt;Hash&lt;/a&gt; (hash map) so you can look into the result&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):003:0&amp;gt; query(&amp;quot;button index:1&amp;quot;).first.keys
+=&amp;gt; [&amp;quot;id&amp;quot;, &amp;quot;enabled&amp;quot;, &amp;quot;contentDescription&amp;quot;, &amp;quot;class&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;rect&amp;quot;, &amp;quot;description&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;*args&lt;/code&gt; parameter lets you perform methods on the query result &lt;em&gt;before&lt;/em&gt; it is returned to your Ruby script code (remember that the query is evaluated as Java code inside the app and the result is sent back to the Ruby code). The form &lt;code&gt;*args&lt;/code&gt; is Ruby-speak for a variable number of args. For example, if you have a button you can do&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):005:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;)
+=&amp;gt; [&amp;quot;Optional Settings&amp;quot;, &amp;quot;Save&amp;quot;, &amp;quot;Cancel&amp;quot;, &amp;quot;Get a free blog at WordPress.com&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This calls a &amp;lsquo;getter&amp;rsquo; method &amp;ldquo;text&amp;rdquo; (that is text(), getText() or isText()) on each of the buttons in the view (it always returns an array). You can perform a sequence of methods:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):007:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;length&amp;quot;)
+=&amp;gt; [17, 4, 6, 32]
+
+irb(main):008:0&amp;gt; query(&amp;quot;button&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;toLowerCase&amp;quot;)
+=&amp;gt; [&amp;quot;optional settings&amp;quot;, &amp;quot;save&amp;quot;, &amp;quot;cancel&amp;quot;, &amp;quot;get a free blog at wordpress.com&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For methods with arguments you can use hashes. In Ruby 1.9 this has quite nice syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):033:0&amp;gt; query(&amp;quot;edittext index:1&amp;quot;, setText:&amp;quot;1234&amp;quot;)
+=&amp;gt; [&amp;quot;&amp;lt;VOID&amp;gt;&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Ruby 1.8 you can&amp;rsquo;t use key:val as literal Hash syntax so you must do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):034:0&amp;gt; query(&amp;quot;edittext index:1&amp;quot;, :setText =&amp;gt; &amp;quot;1234&amp;quot;)
+=&amp;gt; [&amp;quot;&amp;lt;VOID&amp;gt;&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Behind the scenes the Java method &lt;code&gt;setText&lt;/code&gt; will be execute with the argument &lt;code&gt;&amp;quot;12345&amp;quot;&lt;/code&gt; on all view elements that were matched by the query.&lt;/p&gt;
+
+&lt;p&gt;Notice that the string &lt;code&gt;&amp;lt;VOID&amp;gt;&lt;/code&gt; is Calabash&amp;rsquo;s way of returning from a Java method with return type &lt;code&gt;void&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more complex methods you use Arrays of Hashes. Here is a complex Ruby 1.9 example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TODO: Example
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;element-does-not-exist-uiquery&#34;&gt;&lt;code&gt;element_does_not_exist(uiquery)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;element-exists-uiquery&#34;&gt;&lt;code&gt;element_exists(uiquery)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;view-with-mark-exists-expected-mark&#34;&gt;&lt;code&gt;view_with_mark_exists(expected_mark)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;element_exists&lt;/code&gt; function returns true if an element exists matching query &lt;code&gt;uiquery&lt;/code&gt;.
+The &lt;code&gt;element_does_not_exist&lt;/code&gt; function returns true if an element matching query &lt;code&gt;uiquery&lt;/code&gt; does not exist.&lt;/p&gt;
+
+&lt;p&gt;The function &lt;code&gt;view_with_mark_exists(expected_mark)&lt;/code&gt; is shorthand for&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;element_exists(&amp;quot;* marked:&#39;#{expected_mark}&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;waiting&#34;&gt;Waiting&lt;/h1&gt;
+
+&lt;h3 id=&#34;wait-for-options-block&#34;&gt;&lt;code&gt;wait_for(options, &amp;amp;block)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Waits for a condition to occur. Takes a hash of options and a block to be called repeatedly. The options (which are described below) have the following defaults:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+ :timeout =&amp;gt; 10, #maximum number of seconds to wait
+ :retry_frequency =&amp;gt; 0.2, #wait this long before retrying the block
+ :post_timeout =&amp;gt; 0.1, #wait this long after the block returns true
+ :timeout_message =&amp;gt; &amp;quot;Timed out waiting...&amp;quot;, #error message in case options[:timeout] is exceeded
+ :screenshot_on_error =&amp;gt; true # take a screenshot in case of error
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;timeout&lt;/code&gt; argument should be a number indicating the maximal number of seconds you are willing to wait (after that amount of time the step will cause your test to fail). The &lt;code&gt;:post_timeout&lt;/code&gt; (0.1 by default) is an number of seconds to wait &lt;em&gt;after the condition becomes true&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;amp;block&lt;/code&gt; parameter is Ruby syntax for saying that this method takes a block of code. This block specifies the condition to wait for. The block should return &lt;code&gt;true&lt;/code&gt; when the the condition occurs.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;:retry_frequency&lt;/code&gt; is a small sleep that is made between each call to the specified block. This describes how often Calabash should poll for the condition to be true.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):030:0&amp;gt; wait_for(:timeout =&amp;gt; 5) { query(&amp;quot;button marked:&#39;Save&#39;&amp;quot;).size &amp;gt; 0 }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will check for the existence of a view matching: &amp;ldquo;button marked:&amp;lsquo;Save&amp;rsquo;&amp;ldquo;. It will wait &lt;em&gt;at most&lt;/em&gt; 5 seconds (failing if more than 5 seconds pass). It will issue the query repeatedly until it is found or 5 seconds pass.&lt;/p&gt;
+
+&lt;p&gt;A typical form uses &lt;code&gt;element_exists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):031:0&amp;gt; wait_for(:timeout =&amp;gt; 5) { element_exists(&amp;quot;button marked:&#39;Save&#39;&amp;quot;) }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Ruby short blocks are written with braces (like: &lt;code&gt;{ element_exists(&amp;quot;button marked:&#39;Save&#39;&amp;quot;) }&lt;/code&gt;), and more complicated blocks are written using &lt;code&gt;do&lt;/code&gt;-&lt;code&gt;end&lt;/code&gt;. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wait_for(:timeout =&amp;gt; 30) do
+    res = query(&amp;quot;checkbox marked:&#39;Geotag Posts&#39;&amp;quot;, &#39;checked&#39;)
+    res.first == true
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A Ruby block always returns the value of its last expression (&lt;code&gt;res.first == true&lt;/code&gt; in this case).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Notes:&lt;/em&gt; Waiting for a condition to occur is superior to using the &lt;code&gt;sleep&lt;/code&gt; function. With &lt;code&gt;sleep&lt;/code&gt; you end up either specifying too long waits which slows the test down or you become sensitive to timing issues. Sometimes you do need sleep (to wait for animations to complete), but try to use waiting as much as possible.&lt;/p&gt;
+
+&lt;h3 id=&#34;wait-for-element-exists-uiquery-options&#34;&gt;wait_for_element_exists(uiquery, options={})&lt;/h3&gt;
+
+&lt;p&gt;A high-level waiting function. This captures the common practice of waiting for UI elements, i.e., combining &lt;code&gt;wait_for&lt;/code&gt; and &lt;code&gt;element_exists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Takes a query and waits for it to return a results. Calls &lt;code&gt;wait_for&lt;/code&gt; supplying &lt;code&gt;options&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):009:0&amp;gt; wait_for_elements_exist( &amp;quot;* marked:&#39;Please sign in&#39;&amp;quot;, :timeout =&amp;gt; 10)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wait-for-elements-exist-elements-arr-options&#34;&gt;wait_for_elements_exist(elements_arr, options={})&lt;/h3&gt;
+
+&lt;p&gt;Like &lt;code&gt;wait_for_element_exists&lt;/code&gt; but takes an &lt;em&gt;array&lt;/em&gt; of queries and waits for all of those queries to return results. Calls &lt;code&gt;wait_for&lt;/code&gt; supplying &lt;code&gt;options&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):008:0&amp;gt; wait_for_elements_exist( [&amp;quot;button marked:&#39;Save&#39;&amp;quot;, &amp;quot;* marked:&#39;Please sign in&#39;&amp;quot;], :timeout =&amp;gt; 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wait-for-element-does-not-exist-uiquery-options&#34;&gt;wait_for_element_does_not_exist(uiquery, options={})&lt;/h3&gt;
+
+&lt;p&gt;Similar to &lt;code&gt;wait_for_element_exists&lt;/code&gt;, but waits for an element to not exist.&lt;/p&gt;
+
+&lt;h3 id=&#34;wait-for-elements-do-not-exist-elements-arr-options&#34;&gt;wait_for_elements_do_not_exist(elements_arr, options={})&lt;/h3&gt;
+
+&lt;p&gt;Similar to &lt;code&gt;wait_for_elements_exist&lt;/code&gt;, but waits for all of the elements to not exist.&lt;/p&gt;
+
+&lt;h1 id=&#34;assertions&#34;&gt;Assertions&lt;/h1&gt;
+
+&lt;h4 id=&#34;fail-msg-error-check-log-for-details&#34;&gt;&lt;code&gt;fail(msg=&amp;quot;Error. Check log for details.&amp;quot;)&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;Will fail the test with message &lt;code&gt;msg&lt;/code&gt;. Takes a screenshot.&lt;/p&gt;
+
+&lt;h3 id=&#34;check-element-exists-query&#34;&gt;&lt;code&gt;check_element_exists(query)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;check-element-does-not-exist-query&#34;&gt;&lt;code&gt;check_element_does_not_exist(query)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#34;check-view-with-mark-exists-expected-mark&#34;&gt;&lt;code&gt;check_view_with_mark_exists(expected_mark)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Asserts that an element exists using the query function on the parameter &lt;code&gt;query&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The function &lt;code&gt;check_view_with_mark_exists(expected_mark)&lt;/code&gt; is shorthand for&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;check_element_exists(&amp;quot;view marked:&#39;#{expected_mark}&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;touch&#34;&gt;Touch&lt;/h1&gt;
+
+&lt;h3 id=&#34;touch-uiquery-options&#34;&gt;&lt;code&gt;touch(uiquery, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Touches a view found by performing the query &lt;code&gt;uiquery&lt;/code&gt;. It is recommended that &lt;code&gt;uiquery&lt;/code&gt; only produce one match, but the default is to just touch the first of the results if there are several.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;touch&lt;/code&gt; method is one of the most used in Calabash. It is mostly used in its simplest form:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):037:0&amp;gt; touch(&amp;quot;* marked:&#39;Save&#39;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which uses content descriptions, ids or texts. This form is so common that there is a short-hand for it: &lt;code&gt;tap&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;irb(main):038:0&amp;gt; tap &#39;Save&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For flexibility you can also pass in a hash representation of a view and the the touch event will be calculated based on those values and no query will be executed. &lt;code&gt;touch&lt;/code&gt; will also accept a list of hashes in which case Calabash will touch the first one view in the list.&lt;/p&gt;
+
+&lt;p&gt;The following are all equivalent&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;touch(&amp;quot;button index:0&amp;quot;)
+touch(&amp;quot;button&amp;quot;)
+touch(query(&amp;quot;button index:0&amp;quot;))
+touch(query(&amp;quot;button&amp;quot;).first)
+touch(query(&amp;quot;button&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;entering-text&#34;&gt;Entering text&lt;/h1&gt;
+
+&lt;h3 id=&#34;keyboard-enter-text-text-options&#34;&gt;&lt;code&gt;keyboard_enter_text(text, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Enters &lt;strong&gt;text&lt;/strong&gt; into the currently focused view.&lt;/p&gt;
+
+&lt;h3 id=&#34;enter-text-uiquery-text-options&#34;&gt;&lt;code&gt;enter_text(uiquery, text, options={})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Taps the first element returned by &lt;strong&gt;uiquery&lt;/strong&gt;, then enters &lt;strong&gt;text&lt;/strong&gt; into the view.&lt;/p&gt;
+
+&lt;h1 id=&#34;screenshot&#34;&gt;Screenshot&lt;/h1&gt;
+
+&lt;h3 id=&#34;screenshot-options-prefix-nil-name-nil&#34;&gt;&lt;code&gt;screenshot(options={:prefix=&amp;gt;nil, :name=&amp;gt;nil})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Takes a screenshot of the app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;screenshot({:prefix =&amp;gt; &amp;quot;/tmp&amp;quot;, :name=&amp;gt;&amp;quot;my.png&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If prefix and name are nil it will use default values (which is currently the line in the current feature).&lt;/p&gt;
+
+&lt;h3 id=&#34;screenshot-embed-options-prefix-nil-name-nil-label-nil&#34;&gt;&lt;code&gt;screenshot_embed(options={:prefix=&amp;gt;nil, :name=&amp;gt;nil, :label =&amp;gt; nil})&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Takes a screenshot of the app and embeds to cucumber reporters (e.g. html reports).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;screenshot_embed({:prefix =&amp;gt; &amp;quot;/tmp&amp;quot;, :name=&amp;gt;&amp;quot;my.png&amp;quot;, :label =&amp;gt; &amp;quot;Mine&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If prefix and name are nil it will use default values (which is currently the line in the current feature).&lt;/p&gt;
+
+&lt;p&gt;Label is the label used in the cucumber report output (equals to name if not specified).&lt;/p&gt;
+
+&lt;h1 id=&#34;pull-and-push-files-and-folders-from-and-to-the-device&#34;&gt;Pull and push files and folders from and to the device&lt;/h1&gt;
+
+&lt;h3 id=&#34;pull-remote-local&#34;&gt;&lt;code&gt;pull(remote, local)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Pulls a file from the device to local computer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pull(&amp;quot;/sdcard/file.jpg&amp;quot;, &amp;quot;file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;push-local-remote&#34;&gt;&lt;code&gt;push(local, remote)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Pushes a file from the local computer to the device:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uses &lt;a href=&#34;http://developer.android.com/tools/help/adb.html&#34;&gt;adb&lt;/a&gt; so same rules apply:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Won&amp;rsquo;t be able to pull or push from restricted folders such as /data/data&lt;/li&gt;
+&lt;li&gt;If destination path already exists, it&amp;rsquo;s overwritten without warning&lt;/li&gt;
+&lt;li&gt;For files, full destination path must be provided, ie:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Won&amp;rsquo;t work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/folder&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Will work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;push(&amp;quot;file.jpg&amp;quot;, &amp;quot;/sdcard/folder/file.jpg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;read-write-and-clear-sharedpreferences&#34;&gt;Read, write and clear SharedPreferences&lt;/h1&gt;
+
+&lt;p&gt;Simple API over &lt;a href=&#34;http://developer.android.com/guide/topics/data/data-storage.html#pref&#34;&gt;SharedPreferences&lt;/a&gt;, all
+methods require the name of the SharedPreferences file as the first argument. Supports ints, floats, booleans and strings.&lt;/p&gt;
+
+&lt;p&gt;It is important to notice that depending on your application you might need to poke around with SharedPreferences
+before or after your application or activity starts. In that case you will need to call these methods either
+before or after your scenario.&lt;/p&gt;
+
+&lt;p&gt;To do so, you can tag a particular scenario and edit your application lifecycle hooks as explained &lt;a href=&#34;https://groups.google.com/forum/?fromgroups=#!topic/calabash-android/Ql3iluRMijg&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;get-preferences-name&#34;&gt;&lt;code&gt;get_preferences(name)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Returns a hash with the preferences available for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;preferences = get_preferences(&amp;quot;my_preferences&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;set-preferences-name-hash&#34;&gt;&lt;code&gt;set_preferences(name, hash)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Sets the given hash as preferences for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set_preferences(&amp;quot;my_preferences&amp;quot;, {:name =&amp;gt; &amp;quot;wadus&amp;quot;, :email =&amp;gt; &amp;quot;wadus@wadus.com&amp;quot;, :id =&amp;gt; 8, :active =&amp;gt; true})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;clear-preferences-name&#34;&gt;&lt;code&gt;clear_preferences(name)&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Clears the preferences for the given name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clear_preferences(&amp;quot;my_preferences&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

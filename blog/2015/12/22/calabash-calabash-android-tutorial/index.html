@@ -10,18 +10,18 @@
   <title>Calabash: Calabash-Android tutorial &middot; Hoai Viet</title>
 
   
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole-overrides.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-x.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/highlight/monokai.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://vietch2612.github.io/qablog/touch-icon-144-precomposed.png">
-  <link href="http://vietch2612.github.io/qablog/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
 
   
   
@@ -32,22 +32,21 @@
   <meta name="keywords" content="calabash,android,automation test,testing,quality control,quality assurance">
   <link rel="author" href="http://plus.google.com/viet.ch2612">
 </head>
-<body class="theme-base-00">
+<body>
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-        <img src="http://i.imgur.com/RX7KvGI.jpg"
-             alt="gravatar" title="Hoai Viet">
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
       
       <h1>Hoai Viet</h1>
-      <p class="lead">Senior Automation QA at Silicon Straits Saigon</p>
+      <p class="lead">QA Automation at Silicon Straits</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/qablog/about_me/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
       
     </ul>
 
@@ -66,8 +65,7 @@
 
     
 
-    <p>Copyright &copy; 2015 <br/>
-       By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a>. Powered by <a href="http://gohugo.io">Hugo</a></p>
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
   </div>
 </div>
 
@@ -75,20 +73,20 @@
 <div class="content container">
   <div class="post">
     <h1>Calabash: Calabash-Android tutorial</h1>
-    <span class="post-date">Dec 22, 2015 &middot; 6 minute read &middot; <a href="http://vietch2612.github.io/qablog/blog/2015/12/22/calabash-calabash-android-tutorial/#disqus_thread">Comments</a>
+    <span class="post-date">Dec 22, 2015 &middot; 3 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/22/calabash-calabash-android-tutorial/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://vietch2612.github.io/qablog/categories/automation">Automation</a>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/automation">Automation</a>
     </span>
     
 
 <hr />
 
-<h1 id="automation-test-cho-android-app-sử-dụng-calabash-cucumber:639caf80ece67ae5de0150c731de3547">Automation Test cho Android app sử dụng Calabash-Cucumber</h1>
+<h1 id="automation-testing-for-android-app">Automation Testing for Android App</h1>
 
 <hr />
 
-<h3 id="yêu-cầu:639caf80ece67ae5de0150c731de3547">Yêu cầu</h3>
+<h3 id="requirement">Requirement</h3>
 
 <ul>
 <li>JAVA JDK</li>
@@ -96,128 +94,116 @@
 <li>RUBY<br /></li>
 </ul>
 
-<h2 id="cài-đặt-java-jdk:639caf80ece67ae5de0150c731de3547">Cài đặt Java JDK</h2>
+<h2 id="install-java-jdk">Install Java JDK</h2>
 
-<p>Các bạn tải và cài đặt tại đây: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java JDK</a></p>
+<p>Download and install from here: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java JDK</a></p>
 
-<h2 id="cài-đặt-android-sdk:639caf80ece67ae5de0150c731de3547">Cài đặt Android SDK.</h2>
+<h2 id="install-and-setup-android-sdk">Install and setup Android SDK.</h2>
 
-<p>Tải và cài đặt Android SDK dành cho Mac OS tại <a href="http://developer.android.com/sdk/index.html#Other">Android SDK Stand alone download</a>
+<p>Download and install Android SDK for Mac from here<a href="http://developer.android.com/sdk/index.html#Other">Android SDK Stand alone download</a>
     <img src="http://i.imgur.com/sm5eCyE.png" alt="android_sdk_for_macos" /></p>
 
-<p>Sau khi tải về máy và giải nén, chúng ta phải cấu hình biến môi trường <code>ANDROID_HOME</code> và <code>PATH</code> với 2 folder <code>platform-tools</code> và <code>tools</code> trong folder của Android SDK<br />
-Cài đặt <code>ANDROID_HOME</code> bằng cách gõ command vào terminal</p>
+<p>Download and unzip, then we need to export environment variable <code>ANDROID_HOME</code> and <code>PATH</code> to two folder <code>platform-tools</code> and <code>tools</code>from Android SDK folder<br />
+Set <code>ANDROID_HOME</code> by enter commend below to Terminal</p>
 
 <pre><code class="language-bash">export ANDROID_HOME=/path/to/your/android/sdk/folder
 </code></pre>
 
-<p><code>/path/to/your/android/sdk/folder</code> là đường dẫn tới folder lưu SDK của bạn, chẳng hạn như của mình sẽ là <code>/User/hoaiviet/Documents/android-sdk</code></p>
+<p><code>/path/to/your/android/sdk/folder</code> is path to your android sdk folder on your computer. In my case, this is <code>/User/hoaiviet/Documents/android-sdk</code></p>
 
-<p>Và cài đặt <code>PATH</code>:</p>
+<p>set <code>PATH</code>:</p>
 
 <pre><code class="language-bash">export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 </code></pre>
 
-<p>Và sau đó nhớ add 3 dòng command trên vào <code>~/.bash_profile</code> hoặc <code>~/.zshrc</code> nếu như dùng <code>zsh</code>
-Khởi động lại Terminal hoặc run dòng command</p>
+<p>Reset Terminal or add this commmand to <code>~/.bash_profile</code> or <code>~/.zshrc</code> if you are using <code>zsh</code>
+Reload configuration</p>
 
 <pre><code class="language-bash">source ~/.bash_profile
 </code></pre>
 
-<h2 id="cài-đặt-ruby:639caf80ece67ae5de0150c731de3547">Cài đặt Ruby.</h2>
+<h2 id="install-ruby">Install Ruby</h2>
 
-<p>Đầu tiên là máy Mac của bạn phải có <code>Homebrew</code>, nếu chưa có thì bạn phải cài đặt trước khi cài đặt Ruby.</p>
+<p>We need <code>Homebrew</code> to install ruby. If not, follow command below to install:</p>
 
 <pre><code class="language-bash">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 </code></pre>
 
-<p>Tiếp theo là cài đặt Ruby, các bạn hãy làm theo các bước như bên dưới</p>
+<p>Now, install ruby by command</p>
 
 <pre><code class="language-bash">brew install rbenv ruby-build
 
-# Cài đặt ruby
+# Install ruby
 rbenv install 2.2.3
 rbenv global 2.2.3
 
-# Kiểm tra
+# Check ruby version
 ruby -v
 </code></pre>
 
-<p>Nếu kiểm tra <code>ruby -v</code> không đúng với version 2.2.3 thì các bạn hãy paste những đoạn sau vào cuối file <code>~/.bash_profile</code></p>
+<p>If <code>ruby -v</code> response not equal version 2.2.3 then we need add command below to file <code>~/.bash_profile</code></p>
 
 <pre><code class="language-bash">export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;
 eval &quot;$(rbenv init -)&quot;
 </code></pre>
 
-<p>Khởi động lại Terminal hoặc run dòng command</p>
+<p>and reload</p>
 
 <pre><code class="language-bash">source ~/.bash_profile
 </code></pre>
 
-<h2 id="cài-đặt-gem-calabash-android:639caf80ece67ae5de0150c731de3547">Cài đặt gem calabash-android.</h2>
-
-<p>Sau khi đã cài đặt xong Ruby thì chúng ta cần cài đặt gem Calabash-Android</p>
+<h2 id="install-calabash-android">Install Calabash Android</h2>
 
 <pre><code class="language-bash">gem install calabash-android
 </code></pre>
 
-<h2 id="khởi-tạo-thư-mục-test:639caf80ece67ae5de0150c731de3547">Khởi tạo thư mục test</h2>
+<h2 id="create-folder-test">Create folder test</h2>
 
-<p>Các thứ các bạn cần chuẩn bị là:<br />
-* Device android hoặc Emulator<br />
-* File APK của app bạn muốn test.<br />
-* Sublime Text hoặc bất kì một công cụ Texit Editor nào đó.</p>
+<p>In this tutorial, we use skype app for testing.</p>
 
-<p>Trong bài này mình sẽ sử dụng là app Skype</p>
-
-<p>Bây giờ bắt đầu tạo 1 folder mới</p>
+<p>Now we create new folder</p>
 
 <pre><code class="language-bash">mkdir calabash-test-skype
 </code></pre>
 
-<p>Mở folder vừa tạo</p>
+<p>Open this folder</p>
 
 <pre><code class="language-bash">cd calabash-test-skype
 </code></pre>
 
-<p>Tiếp theo chúng ta sẽ tạo generate ra folder test bằng command</p>
+<p>Generate test folder structure</p>
 
 <pre><code class="language-bash">calabash-android gen
 </code></pre>
 
-<p>Calabash sẽ yêu cầu bạn nhấn Enter để tiếp tục, hãy nhấn Enter và bạn sẽ nhận được folder dạng như sau:</p>
+<p>press Enter to continue</p>
 
 <p><img src="http://i.imgur.com/Ltl5gtd.png" alt="folder_structer" /></p>
 
-<p>Ở đây các bạn cần quan tâm nhất 2 phần:<br />
-<code>step_definitions</code>: Sẽ chứa các file ruby mà các bạn sẽ định nghĩa các bước, ví dụ như nhấn button nào, gõ dòng text gì.</p>
-
-<p>Các file có đuôi <code>.feature</code> là những file mình sẽ viết Scenario, Test cases của app.</p>
-
-<p>Bước tiếp theo, hãy copy file APK của app mình muốn test vào folder vừa tạo, sao đó resign app:</p>
+<p>Copy your apk file to this folder then resign this by command</p>
 
 <pre><code class="language-bash">calabash-android resign skype.apk
 </code></pre>
 
-<h2 id="viết-scenario-đầu-tiên:639caf80ece67ae5de0150c731de3547">Viết scenario đầu tiên</h2>
+<h2 id="create-first-scenario">Create first scenario</h2>
 
-<p>Bắt đầu chúng ta hãy mở file <code>my_fist.feature</code> bằng Sublime Text, chúng ta sẽ thấy như hình</p>
+<p>Open <code>my_fist.feature</code> by whatever text editor what you like.</p>
 
 <p><img src="http://i.imgur.com/verAlLs.png" alt="first_step" /></p>
 
-<p>Đọc đến đây chắc các bạn cũng tự hỏi, làm sao để biết được viết các steps như nào mới là đúng? OK, tất cả các Steps mà Calabash đã defined sẵn ở đây, các bạn có thể xem ở đây: <a href="https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md">canned_steps</a></p>
+<p>Note: You can view predefined command here: <a href="https://github.com/calabash/calabash-android/blob/master/ruby-gem/lib/calabash-android/canned_steps.md">canned_steps</a></p>
 
-<p>Nào quay lại với file feature, chúng ta hãy định nghĩa 1 scenario đơn giản cho chức năng đăng nhập bằng Skype name</p>
+<p>First, we create scenario to test login function of skype</p>
 
-<pre><code>Step 1: Nhấn button Skype Name
-Step 2: Điền tài khoản skype vào khung nhập thứ nhất
-Step 3: Điền mật khẩu vào khung nhập thứ hai
-Step 4: Nhấn button đăng nhập
-Step 5: Kết quả mong muốn là muốn thấy nút Add friends
+<pre><code>Step 1: Press Skyname button
+Step 2: Enter account name to input field number 1
+Step 3: Enter password to input field number 2
+Step 4: Press Sign up button
+Step 5: Assertion is we need to view Add friend button
 </code></pre>
 
-<p>Xong rồi, chúng ta bắt đầu sửa file <code>my_first.feature</code> theo các step chúng ta đã define ở trên:</p>
+<p>Then we define this in <code>my_first.feature</code> :</p>
 
 <pre><code class="language-cucumber">Feature: Login feature
 
@@ -229,70 +215,64 @@ Step 5: Kết quả mong muốn là muốn thấy nút Add friends
     Then I should see &quot;Add friend&quot;
 </code></pre>
 
-<p>Bước cuối cùng là run test. Để chạy được trên devices thật thì các bạn nhớ cắm dây USB và bật USB Debugging lên nhé.
-Tốt nhất các bạn nên kiểm tra bằng câu lệnh</p>
+<p>Connect your device or Simulator then check</p>
 
 <pre><code class="language-bash">adb devices
 </code></pre>
 
-<p>OK bây giờ chúng ta hãy run thử</p>
+<p>Now, run this test</p>
 
 <pre><code class="language-bash">calabash-android run skype.apk
 </code></pre>
 
-<p>Hãy xem devices và kết quả
+<p>This is result
 <img src="http://i.imgur.com/LuvPgK4.png" alt="first_run" /></p>
 
-<p>Ồ, bước 1,2 chúng ta đã chạy OK nhưng tới bước 3 thì calabash báo là chúng ta chưa định nghĩa step này. OK giờ chúng ta sẽ định nghĩa nó. Trong folder test, chúng ta hãy mở file <code>calabash_steps.rb</code> trong folder <code>step_definitions</code> và thêm hàm như sau để định nghĩa step trên</p>
+<p>We show &ldquo;Not defined step&rdquo;? Yes, now we define this step:</p>
 
 <pre><code class="language-ruby">Given(/^I enter my secret password into input fiend number (\d+)$/) do |index|
   enter_text(&quot;android.widget.EditText index:#{index.to_i-1}&quot;, &quot;password&quot;)
 end
 </code></pre>
 
-<p>Và bây giờ chúng ta run test lại lần nữa:</p>
+<p>Run again
+<img src="http://i.imgur.com/VAiEZP2.png" alt="result" /></p>
 
-<p><img src="http://i.imgur.com/VAiEZP2.png" alt="result" /></p>
+<p>OK all passed</p>
 
-<p>Tất cả đều passed.</p>
-
-<h2 id="test-report:639caf80ece67ae5de0150c731de3547">Test report?</h2>
-
-<p>Các bạn sẽ tự hỏi, tất cả thông báo các steps pass và fail đều hiện lên trên command line như vậy thì lưu lại report kiểu gì phải không? Tất nhiên là Calabash có hỗ trợ lưu report dưới dạng file, và cụ thể là HTML và report cũng rất là &ldquo;cool&rdquo;.</p>
+<h2 id="test-report">Test report?</h2>
 
 <pre><code class="language-bash">calabash-android run skype.apk --format html --out &lt;filename&gt;.html
 </code></pre>
 
-<p>hoặc</p>
+<p>or</p>
 
 <pre><code class="language-bash">calabash-android run skype.apk -f html -o &lt;filename&gt;.html
 </code></pre>
 
-<p>và đây là file report đã generate ra
+<p>this is test report format
 <img src="http://i.imgur.com/6FLE3m5.png" alt="report" /></p>
 
-<h2 id="run-cụ-thể-một-feature-nào-đó:639caf80ece67ae5de0150c731de3547">Run cụ thể một feature nào đó?</h2>
-
-<p>Đơn giản là bạn chỉ cần dẫn tới file feature đó là được</p>
+<h2 id="run-one-feature">Run one feature?</h2>
 
 <pre><code class="language-bash">calabash-android run skype.apk feature/&lt;filename&gt;.feature
 </code></pre>
 
-<h2 id="run-cụ-thể-một-tag-nào-đó:639caf80ece67ae5de0150c731de3547">Run cụ thể một @tag nào đó?</h2>
+<h2 id="run-scenario-by-tag">Run scenario by @tag</h2>
 
 <pre><code class="language-bash">calabash-android run skype.apk --tag @test
 </code></pre>
 
-<p>hoặc</p>
+<p>or</p>
 
 <pre><code class="language-bash">calabash-android run skype.apk -t @test
 </code></pre>
 
-<h2 id="clear-app-data:639caf80ece67ae5de0150c731de3547">Clear app data</h2>
+<h2 id="clear-app-data">Clear app data</h2>
 
-<h3 id="cách-1-dùng-tag-reset:639caf80ece67ae5de0150c731de3547">Cách 1: Dùng tag <code>@reset</code></h3>
+<h3 id="1-use-tag-reset">1: Use tag <code>@reset</code></h3>
 
-<p>Các bạn chỉ cần thêm đoạn code sau vào file <code>feature/support/app_installation_hooks.rb</code> bên trong <code>Before</code></p>
+<p>Add this to <code>feature/support/app_installation_hooks.rb</code> inside <code>Before</code></p>
 
 <pre><code class="language-ruby">scenario_tags = scenario.source_tag_names
   if scenario_tags.include?(&quot;@reset&quot;)
@@ -300,44 +280,28 @@ end
   end
 </code></pre>
 
-<p>Còn tại feature, chúng ta chỉ cần thêm tag @reset vào trước Scenario để clear app data</p>
+<p>And add @reset before scenario</p>
 
 <pre><code class="language-cucumber">@reset
   Scenario: As a valid user I can log into my app
     Given I press the &quot;Skype Name&quot; button
 </code></pre>
 
-<h3 id="cách-2-define-1-step-để-clear-app-data:639caf80ece67ae5de0150c731de3547">Cách 2: Define 1 step để clear app data</h3>
+<h3 id="2-define-1-step-for-clear-app-data">2: Define 1 step for clear app data</h3>
 
-<p>Trong file sử dụng define step thì trước tiên chúng ta phải <code>require app_installation</code> trước</p>
+<p>First, require <code>require app_installation</code></p>
 
 <pre><code class="language-ruby">require 'calabash-android/management/app_installation'
 </code></pre>
 
-<p>rồi define step</p>
+<p>and define step</p>
 
 <pre><code class="language-ruby">Given /^I clear app data$/ do
   clear_app_data
 end
 </code></pre>
 
-<p>Note: Khi dử dụng step dạng này thì bạn nên có thêm thời gian đợi nhé</p>
-
-<h2 id="xem-id-class-của-các-đối-tượng:639caf80ece67ae5de0150c731de3547">Xem ID, Class của các đối tượng</h2>
-
-<p>Các bạn hãy dùng <code>uiautomatorviewer</code> có sẵn trong thư mực <code>tools</code> của <code>ANDROID SDK</code>
-<img src="http://i.imgur.com/PHTeRBP.png" alt="uiautomatorviewer" /></p>
-
-<h2 id="debugging-test-các-steps-của-bạn:639caf80ece67ae5de0150c731de3547">Debugging, test các steps của bạn</h2>
-
-<pre><code class="language-bash">calabash-android console skype.apk
-</code></pre>
-
-<p>Tại đây các bạn có thể nhập các hàm của mình vào để test và xem kết quả trên device</p>
-
-<h2 id="kết:639caf80ece67ae5de0150c731de3547">Kết</h2>
-
-<p>Các bạn có thể clone repo này về rồi thực hành nhé</p>
+<p>Note: Recommend add delay time for this step</p>
 
   </div>
   <div id="disqus_thread"></div>
@@ -367,11 +331,11 @@ var disqus_shortname = "hoaiviet";
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<script src="http://vietch2612.github.io/qablog/js/highlight.pack.js"></script>
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 <script>
-  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
   g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
   s.parentNode.insertBefore(g,s)}(document,'script'));
