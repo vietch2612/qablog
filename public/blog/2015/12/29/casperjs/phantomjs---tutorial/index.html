@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Appium: Appium for Android tutorial &middot; Hoai Viet</title>
+  <title>CasperJS/PhantomJS - Tutorial &middot; Hoai Viet</title>
 
   
   <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
@@ -28,8 +28,8 @@
   
   
 
-  <meta name="description" content="How to use Appium to Automated Test for Android Application">
-  <meta name="keywords" content="appium,android,automation test,testing,quality control,quality assurance">
+  <meta name="description" content="Automation for Web Application with PhantomJS/CasperJS">
+  <meta name="keywords" content="casperjs,phantomjs,automation test,testing,web,quality assurance">
   <link rel="author" href="http://plus.google.com/viet.ch2612">
 </head>
 <body>
@@ -72,64 +72,101 @@
 
 <div class="content container">
   <div class="post">
-    <h1>Appium: Appium for Android tutorial</h1>
-    <span class="post-date">Dec 21, 2015 &middot; 1 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/21/appium-appium-for-android-tutorial/#disqus_thread">Comments</a>
+    <h1>CasperJS/PhantomJS - Tutorial</h1>
+    <span class="post-date">Dec 29, 2015 &middot; 2 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/29/casperjs/phantomjs---tutorial/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://hoaiviet.netlify.com/categories/automation">Automation</a>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/web">web</a>
     </span>
     
 
-<hr />
+<h3 id="we-use">We use</h3>
 
-<h3 id="các-phần-mềm-yêu-cầu-dành-cho-windows">Các phần mềm yêu cầu. (Dành cho Windows)</h3>
+<p>PhantomJS - This acts as browser to run test in.
+CasperJS - build for PhantomJS, this give you some nice utilities for testing such as clicks and logging events.</p>
 
-<ol>
-<li>Java JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></li>
-<li>Android SDK <a href="https://developer.android.com/sdk/index.html">https://developer.android.com/sdk/index.html</a></li>
-<li>Appium Desktop Apps <a href="http://appium.io/downloads.html">http://appium.io/downloads.html</a></li>
-<li>Phầm mềm giả lập Android hoặc một chiếc device chạy Android thật. Yêu cầu phải có API &gt;= 17 (4.2). Mình gợi ý dùng Genymotion vì khá là nhẹ với những bạn có PC cấu hình yếu. <a href="https://www.genymotion.com/">https://www.genymotion.com/</a></li>
-<li>Java IDE (IntelliJ, Eclipse, Netbeans &hellip;). Tại bài hướng dẫn này thì mình sử dụng IntelliJ 14 <a href="https://www.jetbrains.com/idea/download/">https://www.jetbrains.com/idea/download/</a></li>
-</ol>
+<h3 id="steps-1-install-node-js-and-npm">Steps 1 - Install Node.js and NPM</h3>
 
-<h3 id="các-bước-tiến-hành">Các bước tiến hành</h3>
-
-<ol>
-<li><p>Cài đặt Java JDK.
-Tiến hành cài đặt như bình thường và tạo biến môi trường: JAVA_HOME. Hướng dẫn có sẵn tại đây <a href="https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html">https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html</a></p></li>
-
-<li><p>Android SDK: Cài đặt và tải SDK Packages mới nhất. Hướng dẫn có sẵn tại đây <a href="https://developer.android.com/sdk/installing/adding-packages.html">https://developer.android.com/sdk/installing/adding-packages.html</a>. Sau khi cài đặt xong sẽ tạo thêm biến môi trường ANDROID_HOME.</p></li>
-
-<li><p>Cài đặt Appium và chạy Appium.exe, nhấn nút Start để start appium server.</p></li>
-
-<li><p>Tạo một Android Emulator hoặc tìm một device thật để test.</p></li>
-</ol>
-
-<h3 id="tạo-một-project-mới">Tạo một project mới</h3>
-
-<p>Hướng dẫn này sử dụng IntelliJ IDEA và test trên Whatsapp.apk</p>
-
-<p>Từ IntelliJ, tạo một Maven Project mới.</p>
-
-<p>Trong pom.xml, add thêm 2 dependencies là io.appium và testNG</p>
-
-<blockquote>
-<pre><code>&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.appium&lt;/groupId&gt;
-        &lt;artifactId&gt;java-client&lt;/artifactId&gt;
-        &lt;version&gt;3.1.0&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.testng&lt;/groupId&gt;
-        &lt;artifactId&gt;testng&lt;/artifactId&gt;
-        &lt;version&gt;6.9.6&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
+<pre><code class="language-bash">$ brew install node
 </code></pre>
-</blockquote>
 
-<h3 id="tạo-một-class-test-cơ-bản">Tạo một class Test cơ bản.</h3>
+<h3 id="steps-2-install-phantomjs">Steps 2 - Install PhantomJS</h3>
+
+<pre><code class="language-bash">$ npm install phantomjs -g
+</code></pre>
+
+<p>To test that PhantomJS has installed and is accessible through your terminal:</p>
+
+<pre><code class="language-bash">phantomjs -v
+</code></pre>
+
+<p>This will return version of phantomjs
+<img src="https://zippy.gfycat.com/ScratchyThirstyArthropods.gif" alt="img" />
+Write your first PhantomJS hello world script. Create a &ldquo;test.js&rdquo; file with one line:</p>
+
+<pre><code class="language-js">console.log(&quot;Hello from PhantomJS&quot;)
+</code></pre>
+
+<p>To run, <code>cd</code> to folder and enter following command to your console:</p>
+
+<pre><code class="language-bash">phantomjs test.js
+</code></pre>
+
+<p><img src="https://zippy.gfycat.com/DefinitiveSlushyGroundbeetle.gif" alt="runtestphantomjs" /></p>
+
+<h3 id="steps-3-install-casperjs">Steps 3 - Install CasperJS</h3>
+
+<p>If you are using NPM.</p>
+
+<pre><code class="language-bash">$ npm install casperjs -g
+</code></pre>
+
+<p>To test that CasperJS has installed and is accessible through your terminal:</p>
+
+<pre><code class="language-bash">casperjs -version
+</code></pre>
+
+<p>This should return the version number</p>
+
+<p>Now lets get to grips with CasperJS. Create a new <code>casper_test.js</code> file.</p>
+
+<p>Require and create a new Casper instance The <code>.create()</code> method will return an instance of the casper class</p>
+
+<pre><code class="language-js">var Casper = require('casper').create();
+</code></pre>
+
+<p>To start Casper up, you must use the <code>.start()</code> method to navigate the site and run the casper suit</p>
+
+<pre><code class="language-js">// casper.start(url, callback);
+casper.start('http//:google.com', function(){})
+Now echo out the title of the current page. You can print out messages in a range of different styles: INFO, ERROR, WARNING, COMMENT
+
+casper.start('http//:google.com', function(){
+    // this.echo(messageToPrint, style)
+    this.echo(this.getTitle, 'INFO')
+});
+</code></pre>
+
+<p>Finally use the run method</p>
+
+<pre><code class="language-js">casper.run()
+The full code is as follows:
+
+var casper = require('casper').create();
+
+casper.start('http://google.com/', function() {
+    this.echo(this.getTitle(), 'INFO');
+});
+
+casper.run();
+</code></pre>
+
+<p>To run this, go to your terminal and enter:</p>
+
+<pre><code class="language-bash">$ casperjs casper_test.js
+</code></pre>
+
+<p>The console should print out &lsquo;Google&rsquo;</p>
 
   </div>
   <div id="disqus_thread"></div>

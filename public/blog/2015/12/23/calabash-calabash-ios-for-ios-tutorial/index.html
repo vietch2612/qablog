@@ -10,18 +10,18 @@
   <title>Calabash: Calabash-iOS for iOS tutorial &middot; Hoai Viet</title>
 
   
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/poole-overrides.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/hyde-x.css">
-  <link rel="stylesheet" href="http://vietch2612.github.io/qablog/css/highlight/monokai.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://hoaiviet.netlify.com/css/highlight/monokai_sublime.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://vietch2612.github.io/qablog/touch-icon-144-precomposed.png">
-  <link href="http://vietch2612.github.io/qablog/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://hoaiviet.netlify.com/touch-icon-144-precomposed.png">
+  <link href="http://hoaiviet.netlify.com/favicon.png" rel="icon">
 
   
   
@@ -32,22 +32,21 @@
   <meta name="keywords" content="Calabash,ios,automation test,testing,quality control,quality assurance">
   <link rel="author" href="http://plus.google.com/viet.ch2612">
 </head>
-<body class="theme-base-00">
+<body>
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-        <img src="http://i.imgur.com/RX7KvGI.jpg"
-             alt="gravatar" title="Hoai Viet">
+        <img src="http://i.imgur.com/e3m61wi.jpg" >
       
       <h1>Hoai Viet</h1>
-      <p class="lead">Senior Automation QA at Silicon Straits Saigon</p>
+      <p class="lead">QA Automation at Silicon Straits</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="http://vietch2612.github.io/qablog/qablog/about_me/">About Me</a></li>
+      <li class="sidebar-nav-item"><a href="http://hoaiviet.netlify.com/about_me/">About Me</a></li>
       
     </ul>
 
@@ -66,8 +65,7 @@
 
     
 
-    <p>Copyright &copy; 2015 <br/>
-       By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a>. Powered by <a href="http://gohugo.io">Hugo</a></p>
+    <p>Copyright &copy; 2016 By <a href="https://github.com/vietch2612/qablog">Hoai Viet</a></p>
   </div>
 </div>
 
@@ -75,16 +73,16 @@
 <div class="content container">
   <div class="post">
     <h1>Calabash: Calabash-iOS for iOS tutorial</h1>
-    <span class="post-date">Dec 23, 2015 &middot; 3 minute read &middot; <a href="http://vietch2612.github.io/qablog/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/#disqus_thread">Comments</a>
+    <span class="post-date">Dec 23, 2015 &middot; 3 minute read &middot; <a href="http://hoaiviet.netlify.com/blog/2015/12/23/calabash-calabash-ios-for-ios-tutorial/#disqus_thread">Comments</a>
     
     <br/>
-    <a class="label" href="http://vietch2612.github.io/qablog/categories/automation">Automation</a>
+    <a class="label" href="http://hoaiviet.netlify.com/categories/automation">Automation</a>
     </span>
     
 
 <hr />
 
-<h2 id="calabash-ios:fa51c5f683dd69d73f37ebe0700e0144">Calabash iOS</h2>
+<h2 id="calabash-ios">Calabash iOS</h2>
 
 <p><a href="http://calaba.sh/">http://calaba.sh/</a></p>
 
@@ -92,7 +90,7 @@
 
 <p>Calabash is a free-to-use open source project that is developed and maintained by <a href="http://xamarin.com">Xamarin</a>.</p>
 
-<h2 id="requirements:fa51c5f683dd69d73f37ebe0700e0144">Requirements</h2>
+<h2 id="requirements">Requirements</h2>
 
 <p>We recommend that you use the most recent released version of Xcode, MacOS, and Ruby.</p>
 
@@ -123,7 +121,7 @@ $ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-os
 <li><a href="https://github.com/calabash/calabash-ios/wiki/Best-Practice%3A--Never-install-gems-with-sudo">Best Practice: Never install gems with sudo</a></li>
 </ul>
 
-<h2 id="getting-started:fa51c5f683dd69d73f37ebe0700e0144">Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 
 <p>If you want to see Calabash iOS in action, head over to the <a href="https://github.com/calabash/ios-smoke-test-app">Calabash iOS Smoke Test App</a> and follow the instructions in the README.  We use this app to document, demonstrate, and test Calabash iOS.  You can use this app to explore Calabash and as an example for how to configure your Xcode project and Calabash workflow.</p>
 
@@ -135,7 +133,7 @@ This terminal is now ready to use with Calabash.
 To exit, type 'exit'.
 </code></pre>
 
-<h3 id="step-1-link-calabash-framework:fa51c5f683dd69d73f37ebe0700e0144">Step 1: Link calabash.framework</h3>
+<h3 id="step-1-link-calabash-framework">Step 1: Link calabash.framework</h3>
 
 <p>To start using Calabash in your project, you need to link an Objective-C framework (calabash.framework) to your application.  These instructions are compatible with apps
 that are written in Swift.</p>
@@ -168,7 +166,7 @@ that are written in Swift.</p>
 
 <p>If you want to get started quickly, follow the <a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-Link-Calabash-in-Debug-config">Debug Config</a> instructions.  The <a href="https://github.com/calabash/calabash-ios/wiki/Tutorial%3A-How-to-add-Calabash-to-Xcode">Tutorial: How to add Calabash to Xcode</a> wiki page discusses the merits of each approach and has instructions for using CocoaPods.</p>
 
-<h3 id="step-2-run-cucumber-against-an-ios-simulator:fa51c5f683dd69d73f37ebe0700e0144">Step 2: Run Cucumber against an iOS Simulator</h3>
+<h3 id="step-2-run-cucumber-against-an-ios-simulator">Step 2: Run Cucumber against an iOS Simulator</h3>
 
 <p>The <a href="https://github.com/calabash/calabash-ios-example">Calabash iOS Example</a> README has simple instructions for how to link the calabash.framwork, generate a features directory, run cucumber, and and open a Calabash console.</p>
 
@@ -196,7 +194,7 @@ $ bundle exec cucumber
 
 <p>We recommend using scripts and/or changing the location where Xcode stages build products.  The sample projects use scripts to stage binaries to a <code>./Products</code>, even when building from Xcode.  You can use the Xcode &gt; Preferences &gt; Locations settings to do the same.</p>
 
-<h3 id="where-to-go-from-here:fa51c5f683dd69d73f37ebe0700e0144">Where to go from here?</h3>
+<h3 id="where-to-go-from-here">Where to go from here?</h3>
 
 <table>
 <thead>
@@ -267,11 +265,11 @@ var disqus_shortname = "hoaiviet";
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<script src="http://vietch2612.github.io/qablog/js/highlight.pack.js"></script>
+<script src="http://hoaiviet.netlify.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 <script>
-  var _gaq=[['_setAccount','Your Google Analytics tracking code'],['_trackPageview']];
+  var _gaq=[['_setAccount','UA-71743843-1'],['_trackPageview']];
   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
   g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
   s.parentNode.insertBefore(g,s)}(document,'script'));
